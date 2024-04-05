@@ -1,5 +1,0 @@
-venv/
-*.tar.gz
-
-scripts/llama/output/
-data/
