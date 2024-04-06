@@ -1,0 +1,31 @@
+[2024-04-02 19:25:54,720] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 19:25:54,720] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 19:25:54,720] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 19:25:54,720] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+----------- Preparing configs -----------
+-------- Preparing model and tokenizer --------
+------------ Preparing data ------------
+num train = 12600
+num val = 12600
+
+task = add
+
+example data: 
+### Question: What is "929771082571312379461054793119203138710353689862548918443312359420000925419 + 532391181961590178214370034756509578872590288708340824669505111773687057007"?
+ ### Answer: 200117750613432613788620719621300260294923572771893107901560495816472489654.</s> 
+------------ Preparing LoRA ------------
+Total parameters: 6746812416
+Trainable parameters: 8388608
+response template tokens: ['▁###', '▁Answer', ':']
+eval acc = 0.0001
+eval acc = 0.0001
+eval acc = 0.0001eval acc = 0.0001
+
+{'loss': 3.4649, 'learning_rate': 3.55e-05, 'epoch': 0.25}
+{'loss': 20.7588, 'learning_rate': 4.05e-05, 'epoch': 0.51}
+{'loss': 0.0, 'learning_rate': 4.05e-05, 'epoch': 0.76}
+eval acc = 0.0
+eval acc = 0.0
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 184.2737, 'eval_samples_per_second': 68.377, 'eval_steps_per_second': 1.069, 'epoch': 1.0}

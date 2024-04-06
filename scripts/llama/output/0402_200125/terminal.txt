@@ -1,0 +1,91 @@
+[2024-04-02 20:01:36,684] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 20:01:36,685] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 20:01:36,685] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-02 20:01:36,685] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+----------- Preparing configs -----------
+-------- Preparing model and tokenizer --------
+------------ Preparing data ------------
+num train = 12600
+num val = 12600
+
+task = add
+
+example data: 
+### Question: What is "929771082571312379461054793119203138710353689862548918443312359420000925419 + 532391181961590178214370034756509578872590288708340824669505111773687057007"?
+ ### Answer: 200117750613432613788620719621300260294923572771893107901560495816472489654.</s> 
+------------ Preparing LoRA ------------
+Total parameters: 6746812416
+Trainable parameters: 8388608
+response template tokens: ['▁###', '▁Answer', ':']
+eval acc = 0.0001
+eval acc = 0.0001
+eval acc = 0.0001
+eval acc = 0.0001
+{'loss': 2.9057, 'learning_rate': 5.3500000000000006e-05, 'epoch': 0.13}
+{'loss': 2.846, 'learning_rate': 8.6e-05, 'epoch': 0.25}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 0.38}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 0.51}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 0.63}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 0.76}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 0.89}
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 183.8428, 'eval_samples_per_second': 68.537, 'eval_steps_per_second': 1.072, 'epoch': 1.0}
+eval acc = 0.0
+eval acc = 0.0
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.02}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.14}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.27}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.4}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.52}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.65}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.78}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 1.9}
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 180.0887, 'eval_samples_per_second': 69.966, 'eval_steps_per_second': 1.094, 'epoch': 2.0}
+eval acc = 0.0
+eval acc = 0.0
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.03}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.16}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.29}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.41}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.54}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.67}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.79}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 2.92}
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 180.036, 'eval_samples_per_second': 69.986, 'eval_steps_per_second': 1.094, 'epoch': 3.0}
+eval acc = 0.0
+eval acc = 0.0
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.05}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.17}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.3}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.43}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.56}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.68}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.81}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 3.94}
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 180.0808, 'eval_samples_per_second': 69.969, 'eval_steps_per_second': 1.094, 'epoch': 4.0}
+eval acc = 0.0
+eval acc = 0.0
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.06}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.19}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.32}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.44}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.57}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.7}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.83}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 4.95}
+eval acc = 0.0
+eval acc = 0.0
+eval acc = 0.0
+{'eval_loss': nan, 'eval_accuracy': 0.0, 'eval_runtime': 180.1255, 'eval_samples_per_second': 69.951, 'eval_steps_per_second': 1.094, 'epoch': 5.0}
+eval acc = 0.0
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 5.08}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 5.21}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 5.33}
+{'loss': 0.0, 'learning_rate': 8.6e-05, 'epoch': 5.46}

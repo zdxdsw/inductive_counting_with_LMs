@@ -1,0 +1,61 @@
+-------- Preparing model and tokenizer --------
+-------- Preparing data --------
+num train = 12300
+num val = 12300
+
+example data: 
+### Question: What is the most common digit in the string "393319397107838177988771728859723293923129039986318311117985821981248031810379"?
+ ### Answer: 1.</s> 
+-------- Preparing LoRA --------
+Total parameters: 6746812416
+Trainable parameters: 8388608
+response template tokens: ['▁###', '▁Answer', ':']
+{'loss': 2.4592, 'learning_rate': 9.900000000000001e-05, 'epoch': 0.26}
+{'loss': 0.1081, 'learning_rate': 0.0001, 'epoch': 0.52}
+{'loss': 0.0667, 'learning_rate': 0.0001, 'epoch': 0.78}
+{'eval_loss': 0.04311259463429451, 'eval_accuracy': 0.9146341463414634, 'eval_runtime': 75.0364, 'eval_samples_per_second': 163.92, 'eval_steps_per_second': 2.572, 'epoch': 1.0}
+{'loss': 0.0515, 'learning_rate': 0.0001, 'epoch': 1.04}
+{'loss': 0.0457, 'learning_rate': 0.0001, 'epoch': 1.3}
+{'loss': 0.0362, 'learning_rate': 0.0001, 'epoch': 1.56}
+{'loss': 0.0433, 'learning_rate': 0.0001, 'epoch': 1.82}
+{'eval_loss': 0.033415064215660095, 'eval_accuracy': 0.9329268292682927, 'eval_runtime': 74.7722, 'eval_samples_per_second': 164.5, 'eval_steps_per_second': 2.581, 'epoch': 2.0}
+{'loss': 0.0274, 'learning_rate': 0.0001, 'epoch': 2.08}
+{'loss': 0.0317, 'learning_rate': 0.0001, 'epoch': 2.34}
+{'loss': 0.0316, 'learning_rate': 0.0001, 'epoch': 2.6}
+{'loss': 0.031, 'learning_rate': 0.0001, 'epoch': 2.86}
+{'eval_loss': 0.01695183664560318, 'eval_accuracy': 0.9703252032520325, 'eval_runtime': 74.7967, 'eval_samples_per_second': 164.446, 'eval_steps_per_second': 2.58, 'epoch': 3.0}
+{'loss': 0.0304, 'learning_rate': 0.0001, 'epoch': 3.12}
+{'loss': 0.0306, 'learning_rate': 0.0001, 'epoch': 3.38}
+{'loss': 0.0292, 'learning_rate': 0.0001, 'epoch': 3.64}
+{'loss': 0.03, 'learning_rate': 0.0001, 'epoch': 3.9}
+{'eval_loss': 0.01758331060409546, 'eval_accuracy': 0.967479674796748, 'eval_runtime': 74.9277, 'eval_samples_per_second': 164.158, 'eval_steps_per_second': 2.576, 'epoch': 4.0}
+{'loss': 0.021, 'learning_rate': 0.0001, 'epoch': 4.16}
+{'loss': 0.0163, 'learning_rate': 0.0001, 'epoch': 4.42}
+{'loss': 0.0217, 'learning_rate': 0.0001, 'epoch': 4.68}
+{'loss': 0.0229, 'learning_rate': 0.0001, 'epoch': 4.94}
+{'eval_loss': 0.02245248667895794, 'eval_accuracy': 0.9564227642276423, 'eval_runtime': 74.9472, 'eval_samples_per_second': 164.116, 'eval_steps_per_second': 2.575, 'epoch': 5.0}
+{'loss': 0.0191, 'learning_rate': 0.0001, 'epoch': 5.2}
+{'loss': 0.0337, 'learning_rate': 0.0001, 'epoch': 5.46}
+{'loss': 0.0198, 'learning_rate': 0.0001, 'epoch': 5.72}
+{'loss': 0.0224, 'learning_rate': 0.0001, 'epoch': 5.98}
+{'eval_loss': 0.010798743925988674, 'eval_accuracy': 0.9879674796747967, 'eval_runtime': 74.9134, 'eval_samples_per_second': 164.19, 'eval_steps_per_second': 2.576, 'epoch': 6.0}
+{'loss': 0.0214, 'learning_rate': 0.0001, 'epoch': 6.24}
+{'loss': 0.0135, 'learning_rate': 0.0001, 'epoch': 6.5}
+{'loss': 0.0179, 'learning_rate': 0.0001, 'epoch': 6.76}
+{'eval_loss': 0.009982584044337273, 'eval_accuracy': 0.9829268292682927, 'eval_runtime': 74.9102, 'eval_samples_per_second': 164.197, 'eval_steps_per_second': 2.576, 'epoch': 7.0}
+{'loss': 0.0209, 'learning_rate': 0.0001, 'epoch': 7.02}
+{'loss': 0.0188, 'learning_rate': 0.0001, 'epoch': 7.28}
+{'loss': 0.0184, 'learning_rate': 0.0001, 'epoch': 7.54}
+{'loss': 0.0177, 'learning_rate': 0.0001, 'epoch': 7.8}
+{'eval_loss': 0.018743569031357765, 'eval_accuracy': 0.9645528455284553, 'eval_runtime': 74.9124, 'eval_samples_per_second': 164.192, 'eval_steps_per_second': 2.576, 'epoch': 8.0}
+{'loss': 0.014, 'learning_rate': 0.0001, 'epoch': 8.06}
+{'loss': 0.0152, 'learning_rate': 0.0001, 'epoch': 8.32}
+{'loss': 0.0128, 'learning_rate': 0.0001, 'epoch': 8.58}
+{'loss': 0.0191, 'learning_rate': 0.0001, 'epoch': 8.84}
+{'eval_loss': 0.0046247984282672405, 'eval_accuracy': 0.9938211382113821, 'eval_runtime': 74.9248, 'eval_samples_per_second': 164.165, 'eval_steps_per_second': 2.576, 'epoch': 9.0}
+{'loss': 0.0135, 'learning_rate': 0.0001, 'epoch': 9.1}
+{'loss': 0.0143, 'learning_rate': 0.0001, 'epoch': 9.36}
+{'loss': 0.0139, 'learning_rate': 0.0001, 'epoch': 9.62}
+{'loss': 0.0125, 'learning_rate': 0.0001, 'epoch': 9.88}
+{'eval_loss': 0.008613661862909794, 'eval_accuracy': 0.9845528455284552, 'eval_runtime': 74.857, 'eval_samples_per_second': 164.313, 'eval_steps_per_second': 2.578, 'epoch': 10.0}
+{'train_runtime': 3153.8242, 'train_samples_per_second': 39.0, 'train_steps_per_second': 2.438, 'train_loss': 0.0904523953194736, 'epoch': 10.0}

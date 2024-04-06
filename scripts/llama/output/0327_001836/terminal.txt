@@ -1,0 +1,107 @@
+[2024-03-27 00:18:45,025] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-03-27 00:18:45,032] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-03-27 00:18:45,033] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-03-27 00:18:45,035] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+-------- Preparing model and tokenizer --------
+-------- Preparing data --------
+num train = 118000
+num val = 11800
+
+example data: 
+### Question: What is the parity of the string "11111111111110110110110111111111111111101011011011101111110111011111111011111100101"? Output '+' if there are even number of 1s, output '-' if there are odd number of 1s.
+ ### Answer: +.</s> 
+-------- Preparing LoRA --------
+Total parameters: 6746812416
+Trainable parameters: 8388608
+response template tokens: ['▁###', '▁Answer', ':']
+eval acc = 0.0
+eval acc = 0.0
+eval acc = 0.0
+eval acc = 0.0
+{'loss': 1.042, 'learning_rate': 1e-05, 'epoch': 0.27}
+{'loss': 0.1739, 'learning_rate': 1e-05, 'epoch': 0.54}
+{'loss': 0.1736, 'learning_rate': 1e-05, 'epoch': 0.81}
+eval acc = 0.4912
+{'eval_loss': 0.17406615614891052, 'eval_accuracy': 0.4911864406779661, 'eval_runtime': 86.7591, 'eval_samples_per_second': 136.009, 'eval_steps_per_second': 2.132, 'epoch': 1.0}
+eval acc = 0.4912
+eval acc = 0.4912
+eval acc = 0.4912
+{'loss': 0.1735, 'learning_rate': 1e-05, 'epoch': 1.08}
+{'loss': 0.1731, 'learning_rate': 1e-05, 'epoch': 1.36}
+{'loss': 0.1728, 'learning_rate': 1e-05, 'epoch': 1.63}
+{'loss': 0.1716, 'learning_rate': 1e-05, 'epoch': 1.9}
+eval acc = 0.5177
+{'eval_loss': 0.1690845787525177, 'eval_accuracy': 0.5177118644067796, 'eval_runtime': 86.7689, 'eval_samples_per_second': 135.993, 'eval_steps_per_second': 2.132, 'epoch': 2.0}
+eval acc = 0.5177
+eval acc = 0.5177
+eval acc = 0.5177
+{'loss': 0.1685, 'learning_rate': 1e-05, 'epoch': 2.17}
+{'loss': 0.1649, 'learning_rate': 1e-05, 'epoch': 2.44}
+{'loss': 0.161, 'learning_rate': 1e-05, 'epoch': 2.71}
+{'loss': 0.1598, 'learning_rate': 1e-05, 'epoch': 2.98}
+eval acc = 0.5819
+{'eval_loss': 0.1518080234527588, 'eval_accuracy': 0.581864406779661, 'eval_runtime': 86.8493, 'eval_samples_per_second': 135.867, 'eval_steps_per_second': 2.13, 'epoch': 3.0}
+eval acc = 0.5819eval acc = 0.5819
+
+eval acc = 0.5819
+{'loss': 0.1546, 'learning_rate': 1e-05, 'epoch': 3.25}
+{'loss': 0.1552, 'learning_rate': 1e-05, 'epoch': 3.53}
+{'loss': 0.1539, 'learning_rate': 1e-05, 'epoch': 3.8}
+eval acc = 0.5778
+eval acc = 0.5778
+eval acc = 0.5778
+{'eval_loss': 0.1505785584449768, 'eval_accuracy': 0.5777966101694916, 'eval_runtime': 86.8029, 'eval_samples_per_second': 135.94, 'eval_steps_per_second': 2.131, 'epoch': 4.0}
+eval acc = 0.5778
+{'loss': 0.1539, 'learning_rate': 1e-05, 'epoch': 4.07}
+{'loss': 0.1507, 'learning_rate': 1e-05, 'epoch': 4.34}
+{'loss': 0.1484, 'learning_rate': 1e-05, 'epoch': 4.61}
+{'loss': 0.1439, 'learning_rate': 1e-05, 'epoch': 4.88}
+eval acc = 0.6416
+{'eval_loss': 0.12913210690021515, 'eval_accuracy': 0.6416101694915254, 'eval_runtime': 86.8062, 'eval_samples_per_second': 135.935, 'eval_steps_per_second': 2.131, 'epoch': 5.0}
+eval acc = 0.6416
+eval acc = 0.6416
+eval acc = 0.6416
+{'loss': 0.1461, 'learning_rate': 1e-05, 'epoch': 5.15}
+{'loss': 0.1448, 'learning_rate': 1e-05, 'epoch': 5.42}
+{'loss': 0.1413, 'learning_rate': 1e-05, 'epoch': 5.69}
+{'loss': 0.1424, 'learning_rate': 1e-05, 'epoch': 5.97}
+eval acc = 0.6319
+eval acc = 0.6319
+eval acc = 0.6319
+{'eval_loss': 0.13425213098526, 'eval_accuracy': 0.6319491525423728, 'eval_runtime': 87.1884, 'eval_samples_per_second': 135.339, 'eval_steps_per_second': 2.122, 'epoch': 6.0}
+eval acc = 0.6319
+{'loss': 0.1448, 'learning_rate': 1e-05, 'epoch': 6.24}
+{'loss': 0.1339, 'learning_rate': 1e-05, 'epoch': 6.51}
+{'loss': 0.1386, 'learning_rate': 1e-05, 'epoch': 6.78}
+eval acc = 0.6514
+{'eval_loss': 0.13252168893814087, 'eval_accuracy': 0.6513559322033898, 'eval_runtime': 86.7812, 'eval_samples_per_second': 135.974, 'eval_steps_per_second': 2.132, 'epoch': 7.0}
+eval acc = 0.6514
+eval acc = 0.6514
+eval acc = 0.6514
+{'loss': 0.142, 'learning_rate': 1e-05, 'epoch': 7.05}
+{'loss': 0.1325, 'learning_rate': 1e-05, 'epoch': 7.32}
+{'loss': 0.1332, 'learning_rate': 1e-05, 'epoch': 7.59}
+{'loss': 0.1274, 'learning_rate': 1e-05, 'epoch': 7.86}
+eval acc = 0.5508
+eval acc = 0.5508
+{'eval_loss': 0.2369948774576187, 'eval_accuracy': 0.5508474576271186, 'eval_runtime': 86.9345, 'eval_samples_per_second': 135.734, 'eval_steps_per_second': 2.128, 'epoch': 8.0}
+eval acc = 0.5508
+eval acc = 0.5508
+{'loss': 0.1285, 'learning_rate': 1e-05, 'epoch': 8.14}
+{'loss': 0.1299, 'learning_rate': 1e-05, 'epoch': 8.41}
+{'loss': 0.1349, 'learning_rate': 1e-05, 'epoch': 8.68}
+{'loss': 0.1251, 'learning_rate': 1e-05, 'epoch': 8.95}
+eval acc = 0.6602
+eval acc = 0.6602
+eval acc = 0.6602
+{'eval_loss': 0.12774693965911865, 'eval_accuracy': 0.6601694915254237, 'eval_runtime': 86.9238, 'eval_samples_per_second': 135.751, 'eval_steps_per_second': 2.128, 'epoch': 9.0}
+eval acc = 0.6602
+{'loss': 0.1258, 'learning_rate': 1e-05, 'epoch': 9.22}
+{'loss': 0.1232, 'learning_rate': 1e-05, 'epoch': 9.49}
+{'loss': 0.1292, 'learning_rate': 1e-05, 'epoch': 9.76}
+eval acc = 0.6553
+{'eval_loss': 0.12127534300088882, 'eval_accuracy': 0.6553389830508475, 'eval_runtime': 86.8193, 'eval_samples_per_second': 135.914, 'eval_steps_per_second': 2.131, 'epoch': 10.0}
+eval acc = 0.6553
+eval acc = 0.6553
+eval acc = 0.6553
+{'train_runtime': 34905.8242, 'train_samples_per_second': 33.805, 'train_steps_per_second': 2.113, 'train_loss': 0.1716949212543035, 'epoch': 10.0}
