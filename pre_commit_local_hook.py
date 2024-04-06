@@ -1,8 +1,12 @@
 import subprocess
 
 filesize_limit = "8M"
-command = f"find scripts/ -size +{filesize_limit} -print0 | du -h --files0-from=- | sort -h"
-result = subprocess.check_output(command, shell=True, text=True)
+dirs = ["scripts/"]
+
+result = ""
+for d in dirs:
+    command = f"find {d} -size +{filesize_limit} -print0 | du -h --files0-from=- | sort -h"
+    result += subprocess.check_output(command, shell=True, text=True)
 
 
 with open(".gitignore", "r") as f:
