@@ -3,6 +3,7 @@ from dataclasses import dataclass
 @dataclass
 class Basic_Config:
     seed = 1234
+    date = "debug"
     num_hidden_layers = 1
     vocab = []
     hidden_size = 1024
@@ -15,23 +16,26 @@ class Basic_Config:
     resid_pdrop = 0.1
     embd_pdrop = 0.1
     attn_pdrop = 0.1
-    activation_function = 'silu'
+    activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
     output_dir = "output"
     ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
-    per_device_train_batch_size = 128
+    per_device_train_batch_size = 16
     gradient_accumulation_steps = 1
-    per_device_eval_batch_size = 512
+    per_device_eval_batch_size = 2048
     eval_accumulation_steps = 1
-    logging_steps = 200
-    warmup_steps = 200
+    logging_steps = 50
+    warmup_steps = 1000
     learning_rate = 1e-4
-    num_train_epochs = 1
-    load_from_dir = None
+    num_epochs = 5
+    save_every_steps = 20000
+    eval_every_steps = 1000
+    load_from_dir = None #"0406_134007" #
+    init_from_ckpt = None
 
 
 @dataclass
 class counting_samesymbol_Config(Basic_Config):
-    vocab = ['<pad>', 'a'] + [str(i) for i in range(101)]
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
     data_path = "../../data/rasp_primitives/counting_samesymbol"

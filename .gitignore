@@ -4,7 +4,7 @@ venv/
 #scripts/llama/output/
 
 data/
-
+events.out*
 
 
 # ------------- Auto discovered large files -------------

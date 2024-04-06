@@ -26,3 +26,4 @@ scikit-learn
 evaluate
 trl
 pre-commit
+tensorboard

@@ -89,7 +89,7 @@ class Attention(nn.Module):
             }
         
 
-    def _attn(self, q, k, v):
+    def _attn(self, q, k, v, attention_mask=None):
         """
         Taken from:
             https://github.com/huggingface/transformers/blob/v4.5.0/src/transformers/models/gpt2/modeling_gpt2.py#L167
@@ -144,6 +144,10 @@ class Attention(nn.Module):
         mask_value = torch.tensor(mask_value, dtype=w.dtype).to(w.device)
         w = torch.where(mask, w, mask_value)
 
+        # Mask padding positions
+        if attention_mask is not None:
+            w = w + attention_mask
+
         w = nn.Softmax(dim=-1)(w)
 
         # @MERCURY =>> Downcast (if necessary) back to V dtype (fp16 if mixed-precision)!
@@ -169,14 +173,14 @@ class Attention(nn.Module):
         else:
             return x.permute(0, 2, 1, 3)  # (batch, head, seq_length, head_features)
         
-    def forward(self, hidden_states,):
+    def forward(self, hidden_states, attention_mask=None):
         query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
 
         query = self.split_heads(query)
         key = self.split_heads(key, k=True)
         value = self.split_heads(value)
         
-        a = self._attn(query, key, value)
+        a = self._attn(query, key, value, attention_mask)
 
         a = self.merge_heads(a)
         a = self.c_proj(a)
@@ -196,8 +200,8 @@ class Block(nn.Module):
         
         self.mlp = MLP(mlp_inner_dim, config)
 
-    def forward(self, hidden_states):
-        attn_output = self.attn(self.ln_1(hidden_states))
+    def forward(self, hidden_states, attention_mask=None):
+        attn_output = self.attn(self.ln_1(hidden_states), attention_mask)
         hidden_states = attn_output + hidden_states # residual connection
 
         feed_forward_hidden_states = self.mlp(self.ln_2(hidden_states))
@@ -271,6 +275,7 @@ class Causal_Transformer(nn.Module):
     def forward(
         self,
         input_ids,
+        attention_mask=None, 
         position_ids=None,
     ):
 
@@ -292,8 +297,13 @@ class Causal_Transformer(nn.Module):
 
         output_shape = input_shape + (hidden_states.size(-1),) # bs, seq_len, hidden_size
 
+        if attention_mask is not None:
+            attention_mask = attention_mask[:, None, None, :] # bs, num_heads, seq_len, seq_len
+            attention_mask = attention_mask.to(dtype=hidden_states.dtype, device=hidden_states.device)  # fp16 compatibility # to be confirmed
+            attention_mask = (1.0 - attention_mask) * torch.finfo(self.dtype).min
+
         for block in self.h:
-            hidden_states = block(hidden_states)
+            hidden_states = block(hidden_states, attention_mask)
 
         hidden_states = self.ln_f(hidden_states)
         hidden_states = hidden_states.view(*output_shape)
