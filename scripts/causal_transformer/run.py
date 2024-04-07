@@ -16,7 +16,14 @@ config.date = date
 
 if config.output_dir is not None:
   os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
-  os.makedirs(os.path.join(config.output_dir, config.date, "eval_samples"), exist_ok=True)
+  os.makedirs(os.path.join(config.output_dir, config.date), exist_ok=True)
+
+  if config.load_from_dir is not None:
+    resume_from_config = json.load(open(os.path.join(config.output_dir, config.load_from_dir, "config.json"), "r"))
+    for k in resume_from_config:
+      if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps"]:
+        setattr(config, k, resume_from_config[k])
+      args.task = config.data_path.split("/")[-1] ## auto infer task from the incomplete run
 
   # dump config
   C = {k:config.__getattribute__(k) for k in dir(config) if not k.startswith("__")}

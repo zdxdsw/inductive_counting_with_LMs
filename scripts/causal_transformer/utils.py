@@ -11,3 +11,17 @@ def get_acc(logits, labels, ignore_index):
         last_correct += (last_pred == last_label).float().sum().item()
         last_demo += last_label.numel()
     return counting_correct, counting_demo, last_correct, last_demo
+
+
+from prettytable import PrettyTable
+def count_parameters(model):
+    table = PrettyTable(["Modules", "#Params", "Param shape"])
+    total_params = 0
+    for name, parameter in model.named_parameters():
+        #if not parameter.requires_grad: continue
+        params = parameter.numel()
+        param_shape = list(parameter.shape)
+        table.add_row([name, params, param_shape])
+        total_params+=params
+    print(table)
+    print(f"Total Params: {total_params}")

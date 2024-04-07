@@ -34,6 +34,45 @@ class Conv1D(nn.Module):
         x = x.view(*size_out)
         return x
 
+class RotaryEmbedding(nn.Module):
+    """
+    References:
+    https://github.com/huggingface/transformers/blob/v4.39.3/src/transformers/models/llama/modeling_llama.py#L96 
+    """
+    def __init__(self, dim, max_position_embeddings, base=10000, device=None, scaling_factor=1.0):
+        super().__init__()
+        self.scaling_factor = scaling_factor
+        self.dim = dim
+        self.max_position_embeddings = max_position_embeddings
+        self.base = base
+        inv_freq = 1.0 / (self.base ** (torch.arange(0, self.dim, 2, dtype=torch.int64).float().to(device) / self.dim))
+        self.register_buffer("inv_freq", inv_freq, persistent=False)
+        # For BC we register cos and sin cached
+        self.max_seq_len_cached = max_position_embeddings
+        t = torch.arange(self.max_seq_len_cached, device=device, dtype=torch.int64).type_as(self.inv_freq)
+        t = t / self.scaling_factor
+        freqs = torch.outer(t, self.inv_freq)
+        # Different from paper, but it uses a different permutation in order to obtain the same calculation
+        emb = torch.cat((freqs, freqs), dim=-1)
+        self.register_buffer("_cos_cached", emb.cos().to(torch.get_default_dtype()), persistent=False)
+        self.register_buffer("_sin_cached", emb.sin().to(torch.get_default_dtype()), persistent=False)
+
+    @torch.no_grad()
+    def forward(self, x, position_ids):
+        # x: [bs, num_heads, seq_len, head_dim]
+        inv_freq_expanded = self.inv_freq[None, :, None].float().expand(position_ids.shape[0], -1, 1)
+        position_ids_expanded = position_ids[:, None, :].float()
+        # Force float32 since bfloat16 loses precision on long contexts
+        # See https://github.com/huggingface/transformers/pull/29285
+        device_type = x.device.type
+        device_type = device_type if isinstance(device_type, str) and device_type != "mps" else "cpu"
+        with torch.autocast(device_type=device_type, enabled=False):
+            freqs = (inv_freq_expanded.float() @ position_ids_expanded.float()).transpose(1, 2)
+            emb = torch.cat((freqs, freqs), dim=-1)
+            cos = emb.cos()
+            sin = emb.sin()
+        return cos.to(dtype=x.dtype), sin.to(dtype=x.dtype)
+    
 """
 References:
 https://github.com/huggingface/transformers/blob/v4.5.0/src/transformers/models/gpt2/modeling_gpt2.py#L125
@@ -49,7 +88,7 @@ class Attention(nn.Module):
 
         super().__init__()
 
-        #self.config = config
+        self.config = config
         max_positions = config.max_position_embeddings
         self.register_buffer(
             "bias",
@@ -84,12 +123,18 @@ class Attention(nn.Module):
         self.log_activations = log_activations
         if self.log_activations:
             self.activation_stats = {
-                "attention_weight_max": None,
+                "attentiscon_weight_max": None,
                 "attention_weight_min": None,
             }
+
+        if self.config.rotary_posemb:
+            self.rotary_emb = RotaryEmbedding(
+                self.head_dim,
+                max_position_embeddings=self.max_position_embeddings,
+            )
         
 
-    def _attn(self, q, k, v, attention_mask=None):
+    def _attn(self, q, k, v, attention_mask=None, position_ids=None):
         """
         Taken from:
             https://github.com/huggingface/transformers/blob/v4.5.0/src/transformers/models/gpt2/modeling_gpt2.py#L167
