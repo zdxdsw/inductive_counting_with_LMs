@@ -1,3 +1,5 @@
+import warnings
+
 def get_acc(logits, labels, ignore_index):
     pred = logits.argmax(dim=-1)
 
@@ -25,3 +27,9 @@ def count_parameters(model):
         total_params+=params
     print(table)
     print(f"Total Params: {total_params}")
+
+
+def check_config(config):
+    if not (config.absolute_posemb or config.rotary_posemb):
+        warnings.warn("========== No positional embedding is used in the model. Essentially we're doing NoPE! ==========")
+    

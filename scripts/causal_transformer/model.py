@@ -72,7 +72,21 @@ class RotaryEmbedding(nn.Module):
             cos = emb.cos()
             sin = emb.sin()
         return cos.to(dtype=x.dtype), sin.to(dtype=x.dtype)
-    
+
+
+def rotate_half(x):
+    """Rotates half the hidden dims of the input."""
+    x1 = x[..., : x.shape[-1] // 2]
+    x2 = x[..., x.shape[-1] // 2 :]
+    return torch.cat((-x2, x1), dim=-1)
+def apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1):
+    cos = cos.unsqueeze(unsqueeze_dim)
+    sin = sin.unsqueeze(unsqueeze_dim)
+    q_embed = (q * cos) + (rotate_half(q) * sin)
+    k_embed = (k * cos) + (rotate_half(k) * sin)
+    return q_embed, k_embed
+
+
 """
 References:
 https://github.com/huggingface/transformers/blob/v4.5.0/src/transformers/models/gpt2/modeling_gpt2.py#L125
@@ -89,11 +103,11 @@ class Attention(nn.Module):
         super().__init__()
 
         self.config = config
-        max_positions = config.max_position_embeddings
+        self.max_position_embeddings = config.max_position_embeddings
         self.register_buffer(
             "bias",
-            torch.tril(torch.ones((max_positions, max_positions), dtype=torch.bool)).view(
-                1, 1, max_positions, max_positions
+            torch.tril(torch.ones((self.max_position_embeddings, self.max_position_embeddings), dtype=torch.bool)).view(
+                1, 1, self.max_position_embeddings, self.max_position_embeddings
             ),
             persistent=False,
         )
@@ -146,10 +160,15 @@ class Attention(nn.Module):
         # Get QKV Dimensions
         bsz, num_heads, seq_len, dk = q.size()
 
+        # apply rotary positional embedding is needed
+        if self.config.rotary_posemb:
+            cos, sin = self.rotary_emb(v, position_ids)
+            q, k = apply_rotary_pos_emb(q, k, cos, sin)
+
         # @MERCURY =>> Scale by SQRT(head_dim) * layer_number -- taken from Megatron LM!
         scale_factor = 1.0
         if  self.scale_attn_weights:
-            scale_factor /= (float(v.size(-1)) ** 0.5)
+            scale_factor /= (float(v.size(-1)) ** 0.5) # scale by square root of head_dim
         if self.scale_attn_by_inverse_layer_idx:
             scale_factor /= (self.layer_idx + 1)
 
@@ -218,14 +237,14 @@ class Attention(nn.Module):
         else:
             return x.permute(0, 2, 1, 3)  # (batch, head, seq_length, head_features)
         
-    def forward(self, hidden_states, attention_mask=None):
+    def forward(self, hidden_states, attention_mask=None, position_ids=None):
         query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
 
         query = self.split_heads(query)
         key = self.split_heads(key, k=True)
         value = self.split_heads(value)
         
-        a = self._attn(query, key, value, attention_mask)
+        a = self._attn(query, key, value, attention_mask, position_ids)
 
         a = self.merge_heads(a)
         a = self.c_proj(a)
@@ -245,8 +264,8 @@ class Block(nn.Module):
         
         self.mlp = MLP(mlp_inner_dim, config)
 
-    def forward(self, hidden_states, attention_mask=None):
-        attn_output = self.attn(self.ln_1(hidden_states), attention_mask)
+    def forward(self, hidden_states, attention_mask=None, position_ids=None):
+        attn_output = self.attn(self.ln_1(hidden_states), attention_mask, position_ids)
         hidden_states = attn_output + hidden_states # residual connection
 
         feed_forward_hidden_states = self.mlp(self.ln_2(hidden_states))
@@ -279,7 +298,7 @@ class Causal_Transformer(nn.Module):
         self.vocab_size = len(config.vocab)
 
         self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
-        self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
+        if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
 
         self.drop = nn.Dropout(config.embd_pdrop)
         self.h = nn.ModuleList([Block(config, layer_idx=i) for i in range(config.num_hidden_layers)])
@@ -324,20 +343,29 @@ class Causal_Transformer(nn.Module):
         position_ids=None,
     ):
 
-        input_shape = input_ids.size()
+        input_shape = input_ids.size() # bs, seq_len
         input_ids = input_ids.view(-1, input_shape[-1])
-        device = input_ids.device if input_ids is not None else inputs_embeds.device
-
-        if position_ids is not None: position_ids = position_ids.view(-1, input_shape[-1])
-
-        past_length = 0
-        if position_ids is None:
-            position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=device)
-            position_ids = position_ids.unsqueeze(0).view(-1, input_shape[-1])
+        device = input_ids.device
 
         inputs_embeds = self.wte(input_ids)
-        position_embeds = self.wpe(position_ids)
-        hidden_states = inputs_embeds + position_embeds
+        hidden_states = inputs_embeds
+
+        if position_ids is not None: position_ids = position_ids.view(-1, input_shape[-1])
+        
+        past_length = 0        
+        noshift_position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=device)
+        noshift_position_ids = noshift_position_ids.unsqueeze(0).view(-1, input_shape[-1])
+        
+        if self.config.absolute_posemb:
+            _ = position_ids if self.config.absolute_posemb_shift else noshift_position_ids
+            position_embeds = self.wpe(_)
+            hidden_states = inputs_embeds + position_embeds
+
+        if self.config.rotary_posemb:
+            position_ids_for_rotary = position_ids if self.config.rotary_posemb_shift else noshift_position_ids
+        else:
+            position_ids_for_rotary = None
+        
         hidden_states = self.drop(hidden_states)
 
         output_shape = input_shape + (hidden_states.size(-1),) # bs, seq_len, hidden_size
@@ -348,7 +376,7 @@ class Causal_Transformer(nn.Module):
             attention_mask = (1.0 - attention_mask) * torch.finfo(self.dtype).min
 
         for block in self.h:
-            hidden_states = block(hidden_states, attention_mask)
+            hidden_states = block(hidden_states, attention_mask, position_ids_for_rotary)
 
         hidden_states = self.ln_f(hidden_states)
         hidden_states = hidden_states.view(*output_shape)

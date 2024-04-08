@@ -33,6 +33,7 @@ tmp = json.load(open(os.path.join(config.output_dir, args.date, "config.json"), 
 for k, v in tmp.items():
     setattr(config, k, v)
 config.date = args.date
+check_config(config)
 
 # Fix all seeds to ensure reproducibility
 SEED = config.seed
@@ -86,7 +87,11 @@ text_datasets = [load_dataset(
 train_data = concatenate_datasets([D['train'] for D in text_datasets])
 val_data = concatenate_datasets([D['validation'] for D in text_datasets])
 
-collator = partial(sequences_collator, w2i={w:i for i,w in enumerate(config.vocab)}, max_len=config.max_position_embeddings)
+collator = partial(sequences_collator, 
+                    w2i={w:i for i,w in enumerate(config.vocab)}, 
+                    max_len=config.max_position_embeddings,
+                    posemb_shift=config.absolute_posemb_shift or config.rotary_posemb_shift
+                )
 
 train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator)
 val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
@@ -142,9 +147,11 @@ for epoch in range(global_epoch, config.num_epochs):
                 model_to_eval = accelerator.unwrap_model(model)
                 model_to_eval.eval()
                 for i, val_batch in enumerate(val_dataloader):
+                    position_ids = None
+                    if val_batch['position_id'] is not None: position_ids = val_batch['position_id'].to(accelerator.device)
                     logits = model_to_eval(
                         val_batch['input_id'].to(accelerator.device),
-                        #val_batch['attention_mask'].to(accelerator.device),
+                        position_ids = position_ids,
                     )
                     loss = criterion(
                         logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
@@ -170,9 +177,12 @@ for epoch in range(global_epoch, config.num_epochs):
         with accelerator.autocast() as autocast, torch.backends.cuda.sdp_kernel(enable_flash=False) as disable:
             optimizer.zero_grad()
             
+            position_ids = None
+            if batch['position_id'] is not None: position_ids = batch['position_id'].to(accelerator.device)
+            
             logits = model(
                 batch['input_id'].to(accelerator.device),
-                #batch['attention_mask'].to(accelerator.device),
+                position_ids = position_ids,
             )
 
             loss = criterion(
@@ -194,9 +204,9 @@ for epoch in range(global_epoch, config.num_epochs):
         if global_step % config.logging_steps == 0: progress_bar.set_postfix(**logs)
         progress_bar.update(1)
         
-        if accelerator.is_main_process and global_step % config.save_every_steps == 0:
-            save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")
-            torch.save(accelerator.unwrap_model(model).state_dict(), save_path)
+        # if accelerator.is_main_process and global_step % config.save_every_steps == 0:
+        #     save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")
+        #     torch.save(accelerator.unwrap_model(model).state_dict(), save_path)
         #break
     
     
@@ -209,10 +219,15 @@ for epoch in range(global_epoch, config.num_epochs):
             model_to_eval = accelerator.unwrap_model(model)
             model_to_eval.eval()
             for i, val_batch in enumerate(val_dataloader):
+
+                position_ids = None
+                if val_batch['position_id'] is not None: position_ids = val_batch['position_id'].to(accelerator.device)
+
                 logits = model_to_eval(
                     val_batch['input_id'].to(accelerator.device),
-                    #val_batch['attention_mask'].to(accelerator.device),
+                    position_ids = position_ids,
                 )
+                
                 loss = criterion(
                     logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
                     val_batch['label'].view(-1),

@@ -7,6 +7,8 @@ date = datetime.now(timezone).strftime("%m%d_%H%M%S")
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
+parser.add_argument('--accelerator', type=str, default="")
+
 args = parser.parse_args()
 
 """------------- Preparing configs -------------"""
@@ -30,7 +32,8 @@ if config.output_dir is not None:
   with open(os.path.join(config.output_dir, config.date, "config.json"), "w") as f:
     json.dump(C, f, indent=2)
 
-os.system("accelerate launch trainer.py --date {} --task {} | tee {}".format(
+os.system("accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+    args.accelerator,
     config.date,
     args.task,
     os.path.join(config.output_dir, date, "terminal.txt"),
