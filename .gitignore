@@ -3,12 +3,13 @@ venv/
 
 #scripts/llama/output/
 
-data/
+#data/
 events.out*
 .nfs*
 
 
 # ------------- Auto discovered large files -------------
+scripts/causal_transformer/output/0406_145108/tensorboard/events.out.tfevents.1712429481.himalayan.lti.cs.cmu.edu.1242695.0
 scripts/llama/output/0404_220511/eval_samples/0405_023442.txt
 scripts/llama/output/0404_220511/eval_samples/0405_025015.txt
 scripts/llama/output/1206_121802/test_samples/0326_123141.txt
@@ -132,10 +133,55 @@ scripts/llama/output/0404_220511/eval_samples/0405_024229.txt
 scripts/llama/output/0404_220511/eval_samples/0405_025801.txt
 scripts/llama/output/0404_220511/eval_samples/0405_030548.txt
 scripts/llama/output/0404_220511/eval_samples/0405_031333.txt
+scripts/causal_transformer/output/0406_161636/tensorboard/events.out.tfevents.1712434608.himalayan.lti.cs.cmu.edu.1258010.0
 scripts/llama/output/0404_220511/eval_samples/0405_022655.txt
+scripts/causal_transformer/output/0409_221301/tensorboard/events.out.tfevents.1712715191.sphynx.lti.cs.cmu.edu.3263981.0
 scripts/llama/output/1205_152910/test_samples/0326_112257.txt
 scripts/llama/output/1205_200642/test_samples/0326_110216.txt
 scripts/llama/output/1205_200642/test_samples/0326_111335.txt
 scripts/llama/output/1206_121802/test_samples/0326_122524.txt
+scripts/causal_transformer/output/0409_220141/tensorboard/events.out.tfevents.1712714511.panther.lti.cs.cmu.edu.3164778.0
+scripts/causal_transformer/output/0406_205534/tensorboard/events.out.tfevents.1712451345.himalayan.lti.cs.cmu.edu.1302189.0
+scripts/causal_transformer/output/0406_205712/tensorboard/events.out.tfevents.1712451444.sphynx.lti.cs.cmu.edu.2730993.0
+scripts/causal_transformer/output/0407_221926/tensorboard/events.out.tfevents.1712542778.himalayan.lti.cs.cmu.edu.2750101.0
+scripts/causal_transformer/output/0407_223816/tensorboard/events.out.tfevents.1712543905.sphynx.lti.cs.cmu.edu.2918910.0
+scripts/causal_transformer/output/0407_225322/tensorboard/events.out.tfevents.1712544812.panther.lti.cs.cmu.edu.2812178.0
+scripts/causal_transformer/output/0407_225953/tensorboard/events.out.tfevents.1712545205.himalayan.lti.cs.cmu.edu.2755917.0
+scripts/causal_transformer/output/0408_085838/tensorboard/events.out.tfevents.1712581130.himalayan.lti.cs.cmu.edu.2834191.0
+scripts/causal_transformer/output/0408_090254/tensorboard/events.out.tfevents.1712581385.sphynx.lti.cs.cmu.edu.2996265.0
+scripts/causal_transformer/output/0409_151404/tensorboard/events.out.tfevents.1712690056.sphynx.lti.cs.cmu.edu.3216138.0
+scripts/causal_transformer/output/0409_152308/tensorboard/events.out.tfevents.1712690599.panther.lti.cs.cmu.edu.3115625.0
+scripts/causal_transformer/output/0409_152705/tensorboard/events.out.tfevents.1712690838.himalayan.lti.cs.cmu.edu.3080490.0
+scripts/causal_transformer/output/0409_181356/tensorboard/events.out.tfevents.1712700847.panther.lti.cs.cmu.edu.3136459.0
+scripts/causal_transformer/output/0409_184712/tensorboard/events.out.tfevents.1712702845.himalayan.lti.cs.cmu.edu.3107091.0
+scripts/causal_transformer/output/0409_201408/tensorboard/events.out.tfevents.1712708060.himalayan.lti.cs.cmu.edu.3118917.0
 scripts/llama/output/1205_200642/test_samples/0326_131238.txt
 scripts/llama/output/1205_200642/test_samples/0326_131239.txt
+data/finetune/parity/random_labels_large/train.csv
+data/finetune/parity/uniform_split2/train.csv
+data/finetune/mode_2nd/finetune_hard+.json
+data/finetune/mode_2nd/finetune_hard.json
+data/finetune/mode_2nd/finetune.json
+data/finetune/len/finetune.json
+data/finetune/mode/finetune_hard+.json
+data/finetune/mode/finetune_hard.json
+data/finetune/mode/finetune.json
+data/finetune/parity/finetune_1000instances.json
+data/finetune/sort/random_labels_large/train.csv
+data/finetune/sort/random_labels_large/val.csv
+data/finetune/parity/finetune_2000instances.json
+data/finetune/sort/finetune.json
+data/finetune/mode_2nd/length_extrapolation_large/val.csv
+data/finetune/mode/length_extrapolation_large/val.csv
+data/finetune/add/uniform_split2/train.csv
+data/finetune/len/finetune_129_256.json
+data/finetune/mode_2nd/finetune_129_256.json
+data/finetune/mode/finetune_129_256.json
+data/finetune/sort/finetune_129_256.json
+data/finetune/parity/finetune_129_256.json
+data/finetune/add/finetune.json
+data/finetune/add/finetune_129_256.json
+data/rasp_primitives/counting_diffsymbol/train.txt
+data/rasp_primitives/counting_samesymbol/train.txt
+data/rasp_primitives/counting_samesymbol_blankhelper/train.txt
+data/rasp_primitives/counting_samesymbol_padhelper/train.txt

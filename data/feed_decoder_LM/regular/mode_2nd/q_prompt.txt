@@ -1,0 +1,1 @@
+What is the second most frequent digit in the string "{}"?

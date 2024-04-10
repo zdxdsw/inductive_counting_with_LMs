@@ -1,0 +1,1 @@
+What is the parity of the string "{}"? Output '+' if there are even number of 1s, output '-' if there are odd number of 1s.

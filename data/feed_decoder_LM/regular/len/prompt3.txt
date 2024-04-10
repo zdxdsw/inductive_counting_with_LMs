@@ -1,0 +1,1 @@
+We determine the length of the string "{}" as

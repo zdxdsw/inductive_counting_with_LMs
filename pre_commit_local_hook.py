@@ -1,7 +1,7 @@
 import subprocess
 
 filesize_limit = "8M"
-dirs = ["scripts/"]
+dirs = ["scripts/", "data/"]
 
 result = ""
 for d in dirs:

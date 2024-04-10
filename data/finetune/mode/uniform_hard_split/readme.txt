@@ -1,0 +1,1 @@
+the most_common frequency - the third_common frequency <= 10

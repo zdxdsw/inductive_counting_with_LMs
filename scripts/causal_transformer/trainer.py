@@ -152,6 +152,7 @@ for epoch in range(global_epoch, config.num_epochs):
                     logits = model_to_eval(
                         val_batch['input_id'].to(accelerator.device),
                         position_ids = position_ids,
+                        attention_mask = val_batch['attention_mask'].to(accelerator.device),
                     )
                     loss = criterion(
                         logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
@@ -183,6 +184,7 @@ for epoch in range(global_epoch, config.num_epochs):
             logits = model(
                 batch['input_id'].to(accelerator.device),
                 position_ids = position_ids,
+                attention_mask = batch['attention_mask'].to(accelerator.device),
             )
 
             loss = criterion(
@@ -212,41 +214,42 @@ for epoch in range(global_epoch, config.num_epochs):
     
     
 
-    if epoch == config.num_epochs - 1:
-        with accelerator.autocast():
-            counting_correct, counting_demo, last_correct, last_demo, correct, demo = 0, 0, 0, 0, 0, 0
-            val_losses = []
-            model_to_eval = accelerator.unwrap_model(model)
-            model_to_eval.eval()
-            for i, val_batch in enumerate(val_dataloader):
+    #if epoch == config.num_epochs - 1:
+    with accelerator.autocast(): # validate at the end of every epoch
+        counting_correct, counting_demo, last_correct, last_demo, correct, demo = 0, 0, 0, 0, 0, 0
+        val_losses = []
+        model_to_eval = accelerator.unwrap_model(model)
+        model_to_eval.eval()
+        for i, val_batch in enumerate(val_dataloader):
 
-                position_ids = None
-                if val_batch['position_id'] is not None: position_ids = val_batch['position_id'].to(accelerator.device)
+            position_ids = None
+            if val_batch['position_id'] is not None: position_ids = val_batch['position_id'].to(accelerator.device)
 
-                logits = model_to_eval(
-                    val_batch['input_id'].to(accelerator.device),
-                    position_ids = position_ids,
-                )
-                
-                loss = criterion(
-                    logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
-                    val_batch['label'].view(-1),
-                )
-                val_losses.append(loss.detach().item())
-                _counting_correct, _counting_demo, _last_correct, _last_demo = get_acc(logits.detach().cpu(), val_batch['label'].detach().cpu(), ignore_index=-1)
-                counting_correct += _counting_correct
-                counting_demo += _counting_demo
-                last_correct += _last_correct
-                last_demo += _last_demo
-                correct += (_counting_correct + _last_correct)
-                demo += (_counting_demo + _last_demo)
-            Print(f"""Epoch {epoch} Step {global_step} 
-                    | Val Loss: {round(np.mean(val_losses), 4)} 
-                    | Val Acc: {round(correct/demo, 4)} 
-                    | Val Counting Acc: {round(counting_correct/counting_demo, 4)} 
-                    | Val Last Acc: {round(last_correct/last_demo, 4)}"""
-                )
-            model_to_eval.train()
+            logits = model_to_eval(
+                val_batch['input_id'].to(accelerator.device),
+                position_ids = position_ids,
+                attention_mask = val_batch['attention_mask'].to(accelerator.device),
+            )
+            
+            loss = criterion(
+                logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
+                val_batch['label'].view(-1),
+            )
+            val_losses.append(loss.detach().item())
+            _counting_correct, _counting_demo, _last_correct, _last_demo = get_acc(logits.detach().cpu(), val_batch['label'].detach().cpu(), ignore_index=-1)
+            counting_correct += _counting_correct
+            counting_demo += _counting_demo
+            last_correct += _last_correct
+            last_demo += _last_demo
+            correct += (_counting_correct + _last_correct)
+            demo += (_counting_demo + _last_demo)
+        Print(f"""Epoch {epoch} Step {global_step} 
+                | Val Loss: {round(np.mean(val_losses), 4)} 
+                | Val Acc: {round(correct/demo, 4)} 
+                | Val Counting Acc: {round(counting_correct/counting_demo, 4)} 
+                | Val Last Acc: {round(last_correct/last_demo, 4)}"""
+            )
+        model_to_eval.train()
     accelerator.wait_for_everyone()
     
     save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")

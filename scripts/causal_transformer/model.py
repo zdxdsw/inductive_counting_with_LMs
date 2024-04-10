@@ -212,7 +212,9 @@ class Attention(nn.Module):
         if attention_mask is not None:
             w = w + attention_mask
 
-        w = nn.Softmax(dim=-1)(w)
+        w = nn.Softmax(dim=-1)(w) # bs, num_heads, seq_len, seq_len
+        # for i in range(5, 20):
+        #     print(w[0, 0, i, :i+5])
 
         # @MERCURY =>> Downcast (if necessary) back to V dtype (fp16 if mixed-precision)!
         # Note: This is a No-Op if Upcasting is disabled...
@@ -372,8 +374,12 @@ class Causal_Transformer(nn.Module):
 
         if attention_mask is not None:
             attention_mask = attention_mask[:, None, None, :] # bs, num_heads, seq_len, seq_len
+
+            if self.config.must_attend_to_identity:
+                eye = torch.eye(input_shape[1]).unsqueeze(0)[:, None, :, :].to(device=attention_mask.device)
+                attention_mask = (attention_mask.bool() | eye.bool()).long()
             attention_mask = attention_mask.to(dtype=hidden_states.dtype, device=hidden_states.device)  # fp16 compatibility # to be confirmed
-            attention_mask = (1.0 - attention_mask) * torch.finfo(self.dtype).min
+            attention_mask = (1.0 - attention_mask) * torch.finfo(next(self.parameters()).dtype).min
 
         for block in self.h:
             hidden_states = block(hidden_states, attention_mask, position_ids_for_rotary)

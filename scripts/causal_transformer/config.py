@@ -13,9 +13,10 @@ class Basic_Config:
     layer_norm_epsilon = 1e-5
     scale_attn_weights = True
     scale_attn_by_inverse_layer_idx = True
-    resid_pdrop = 0.1
-    embd_pdrop = 0.1
-    attn_pdrop = 0.1
+    resid_pdrop = 0. #0.1
+    embd_pdrop = 0. #0.1
+    attn_pdrop = 0. #0.1
+    must_attend_to_identity = True
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
@@ -30,12 +31,12 @@ class Basic_Config:
     learning_rate = 1e-4
     num_epochs = 10
     #save_every_steps = 20000
-    eval_every_steps = 5000
-    absolute_posemb = True
-    absolute_posemb_shift = True
+    eval_every_steps = 10000
+    absolute_posemb = False
+    absolute_posemb_shift = False
     rotary_posemb = False
     rotary_posemb_shift = False
-    load_from_dir = None #"0406_134007" #
+    load_from_dir = None #"0408_090625" #
     init_from_ckpt = None
 
 
@@ -48,3 +49,15 @@ class counting_samesymbol_Config(Basic_Config):
 class counting_diffsymbol_Config(Basic_Config):
     vocab = [str(i) for i in range(101)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
     data_path = "../../data/rasp_primitives/counting_diffsymbol"
+
+@dataclass
+class counting_samesymbol_blankhelper_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<blk>']
+    data_path = "../../data/rasp_primitives/counting_samesymbol_blankhelper"
+    max_position_embeddings = 256
+
+@dataclass
+class counting_samesymbol_padhelper_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+    data_path = "../../data/rasp_primitives/counting_samesymbol_padhelper"
+    max_position_embeddings = 256
