@@ -158,3 +158,8 @@ Epoch 7 Step 220000
                       | Val Acc: 0.0773 
                       | Val Counting Acc: 0.0464 
                       | Val Last Acc: 0.7275
+Epoch 7 Step 230000 
+                      | Val Loss: 3.5041 
+                      | Val Acc: 0.0814 
+                      | Val Counting Acc: 0.0464 
+                      | Val Last Acc: 0.8174

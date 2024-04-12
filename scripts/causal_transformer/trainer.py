@@ -14,6 +14,8 @@ from utils import *
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
+os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
+
 
 def Print(s):
    if not Accelerator().process_index:

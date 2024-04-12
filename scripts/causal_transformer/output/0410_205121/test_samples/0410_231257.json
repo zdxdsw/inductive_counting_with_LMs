@@ -1,0 +1,1510 @@
+{
+  "test_data_file": "../data/rasp_primitives/counting_diffsymbol_mod10/val.txt",
+  "load_from": "0410_205121/5_187500_transformer.pt",
+  "test_acc": 0.9984,
+  "test_counting_acc": 0.9984,
+  "test_last_acc": 1.0,
+  "test_loss": 0.0099,
+  "testing_output": {
+    "0": {
+      "input": "x",
+      "gth": "1",
+      "pred": "1"
+    },
+    "1": {
+      "input": "h j",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "2": {
+      "input": "f q l",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "3": {
+      "input": "f b e p",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "4": {
+      "input": "m g y n d",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "5": {
+      "input": "b f e a l y",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "6": {
+      "input": "p p f q a w b",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 1 3 4 5 6 7"
+    },
+    "7": {
+      "input": "i p f q d q s b",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8"
+    },
+    "8": {
+      "input": "k b m y s r o e b",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "9": {
+      "input": "i q x p g q j l n w",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "10": {
+      "input": "v a c p z x m o d h u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "11": {
+      "input": "p b v g p z u n a s v t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "12": {
+      "input": "l e h e x g e z u s j c o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "13": {
+      "input": "t e e f w l d b e n t r l u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "14": {
+      "input": "d v p c w s a p m z o f m y c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "15": {
+      "input": "z p q n u f a f k w a f r o w r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "16": {
+      "input": "k i u g l p h b o o o i c f i m q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "17": {
+      "input": "e u l p u f n c s x v h k d j z w u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "18": {
+      "input": "c t z l k q k f c c k z d x q j x q w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "19": {
+      "input": "v p m i n s j l c y c d m b t r k p a s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "20": {
+      "input": "b u f t o l c x u v o a w y u k m k i r b",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "21": {
+      "input": "z q s d q m e j v e i z s k n g z s z d p b",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "22": {
+      "input": "k p h i e i w r d t p n a p f q o j j f y j g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "23": {
+      "input": "z v u h b j j u q p q j f v q w s n s o h c w t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "24": {
+      "input": "d z q z f x x s q p p p b v m u k u c r l g j l a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "25": {
+      "input": "i s o z y u k r h m y m o d w l m h n c q r d e z r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "26": {
+      "input": "d k q z x m t h t b p o p r q n y u y d a a o a t q p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "27": {
+      "input": "u m m c x u f s i q a b r s k s c f g p x q m n i o x m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "28": {
+      "input": "u r x d n c x v c c y v j x e c d q h k j t f c g d f t y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "29": {
+      "input": "x m q u s h s u i o h v q e y v s i i e y d t k z r r l v z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "30": {
+      "input": "t f p h o c s k k r n f m t j p h o a r c t f t c n f t o n x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "31": {
+      "input": "r c m o r m q s o b j r j p c s x k q o a o b a p f z y a g k m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "32": {
+      "input": "b i b g j f l y q u t z y l r x n z z j p l k x d i p d j l o p t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "33": {
+      "input": "s k o d s t n d k a a a u g s t z a x u w c q p i o t y j i u w z g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "34": {
+      "input": "b a y v f v u u k a c q n u v u m i d n w j n q n t d n k q g d s w u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "35": {
+      "input": "l g m v z g k d k o u x s d s u g z m x w n o k p f p u z o z j y p e u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "36": {
+      "input": "o h h z l l c t g r d g a i r y f g h g f s j v c s o l p l h k y w t y r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "37": {
+      "input": "q t v k c h y o z p s f l f p j w o b t j h f t u l u n l v i y d n g q p z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "38": {
+      "input": "z n l d o z x a k d s z j z m m k z f t s u b a d m p d v d c q f h k r r p s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "39": {
+      "input": "t u d l u p y x w g l y t r f z b g y e o x h l a f j w v n n a o m y r n n z c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "40": {
+      "input": "p q w e x n o r z d z l w j t q l x r m x m r h r t y t u j h q z q a p f q f r u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "41": {
+      "input": "w p c q f h w x l v m u h x x n o h y e p y f k d o y h q d k b h p e w c r b d a p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "42": {
+      "input": "f o p g y c l q c z v w p t s y p l f v n o c b l v t e f e z n l y g s z e s k v l h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "43": {
+      "input": "m w f m j p a l k s f v y j r a a w a x t w u j r p w h r n h e i k b r z g k x k a y s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "44": {
+      "input": "b l p b f i j f g r o t i b h n g x y k s t w e v v x e r l z k b o a k z i l h q s l m p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "45": {
+      "input": "w a h o x c i u o f g a o y j j z w t y m u z g e f b y o n o s j f r s u l q k i k k s b y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "46": {
+      "input": "z l m r v a q i u b p b t c m e h v f x q f y w b o a d g i m x n q v n w b t v g x e g q j u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "47": {
+      "input": "q e g d c z o n u i o o j r g r k b m r x i r h h y q t f a h m s p c v i d j o v m n n k s b v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "48": {
+      "input": "f t q a f r n c f e d m e x z f q o k c b j o d v j b q n r p w g w s q p z h d u e z h r l u j s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "49": {
+      "input": "t j y p g u i v h z n o o a z w b x o e e w b h n d n z q u e j a z t f j s y d w j f y b p z e f j",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "50": {
+      "input": "z",
+      "gth": "1",
+      "pred": "1"
+    },
+    "51": {
+      "input": "l c",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "52": {
+      "input": "k z f",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "53": {
+      "input": "i k m m",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "54": {
+      "input": "l h h g d",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "55": {
+      "input": "n r k j p f",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "56": {
+      "input": "f z g i s q v",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7"
+    },
+    "57": {
+      "input": "b b t i c y m k",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 1 3 4 5 6 7 8"
+    },
+    "58": {
+      "input": "y d z g w f h j c",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "59": {
+      "input": "k h j x u s z w b p",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "60": {
+      "input": "a n p o c l u x b k z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "61": {
+      "input": "v a n d h t i r k a s w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "62": {
+      "input": "v c q j z i b d y b q o l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "63": {
+      "input": "g v h i q f u v t b t j l a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "64": {
+      "input": "o w r s i h h y n t h s w t x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "65": {
+      "input": "f b k w n d a z h a z f i g l c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "66": {
+      "input": "i d y h d j z s g z d n n i z h o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "67": {
+      "input": "q h j p l u z i p c d b y b q z u k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "68": {
+      "input": "r i i o m v s i k c h m b i y q f u x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "69": {
+      "input": "c h e g a l i f r e l k r q u x g j r q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "70": {
+      "input": "z n b r p j j c i i r d t i r h v w e b x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "71": {
+      "input": "x i q k g m k i n r t w g d v d d d x p x x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "72": {
+      "input": "m y z y w k a a i q v x w t o a u i e g i h r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "73": {
+      "input": "h w d b z k v g v t f i o u c n z h s r q r g w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "74": {
+      "input": "g c b o y e h o k x s h t c a s t l y w u i y b p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "75": {
+      "input": "a z b o r i y f q l m c a k n b v q d l i q t s t i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "76": {
+      "input": "w f i d t v u a c k b e f i g l s h z d j f q j h b g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "77": {
+      "input": "d u q u m p l m n b u t s n u c i x b v t w u k a l s z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "78": {
+      "input": "l l f p m t n k b b l x o x g o k f i r v d a y g g z g m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "79": {
+      "input": "k f d h f c e d t x l t b f b u s l v a f e a p i r q j s l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "80": {
+      "input": "a r d p i z a y d r z m e f r w c e l q n v h u o p i y y g x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "81": {
+      "input": "s l n d g z o e b x n n v w k v e j w g n w y w a c n b v g j c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "82": {
+      "input": "u t k u v d z o d j v x v h q g j q l y k u t t u y r b u t p d m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "83": {
+      "input": "w w k j m u x d u g b l t y t n j z h c n f l r m u a g t g w n c a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "84": {
+      "input": "o i p j s n y g w j r p e l v p s b m s y u j i n e d c t q s v c x s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "85": {
+      "input": "g r l x u i m n a z j u p o e j d t w c w d p g p t x l c j n j m p s i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "86": {
+      "input": "h r s e r w j e c u z t n g g n v m s a b q a q z n j t g z u t d e v q r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "87": {
+      "input": "p a k u y a g d c r d c a q t m x i z b i s b v v r e v j h l p u k p g s t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "88": {
+      "input": "a b w g j s p d i z w m x v f y s d i y x f j j t t y m l g r p p v g v x r a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "89": {
+      "input": "q l w z h n q w q m d z f q d q n s y f z t k y k e u w d h q g m l p p w z c a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "90": {
+      "input": "n z q t w h y g e m m r z z p s e t v u w z g i g f w c q c t q a g u y z a w o i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "91": {
+      "input": "b d y t g o o j k l g c x e n k m o n c i c k a b s r f z g n b t e q l e z s s t p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "92": {
+      "input": "m w z v j j g m t w t y m r y c e l c z u h l l r s p c q p y s i k y u m j q d k e w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "93": {
+      "input": "s q k g q w x t u t u i s p r j p i s r m d u x o t b l k s h p i w k q c w c v z o j t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "94": {
+      "input": "u l s u k o b c q f x u e l h d c l q v u t m g w x s b t p i x h i u t h d l v f c w r w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "95": {
+      "input": "q j e q t x x g f k h g h m l i x d z y y x y b h l k l f c t o h x p q z v k i t u c k b o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "96": {
+      "input": "w u r w r x g i p r m n o h n f c s x z n g h f u h q g s x a y r h t w c j z j a e y u d r y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "97": {
+      "input": "w s z r q e t n r a n c a i e j h q z h o g c u l l c m d o m k a w w i u y n j g y n e u h m h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "98": {
+      "input": "e i y r v h x y b f s k a p h f k x n g a n m t a n j f u l x s g g o b x v f c p d u b k w x m y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "99": {
+      "input": "o k c i x p v q z j n p s x o q t e i u d l u n v b s h i u m d x n d z y q k i g z o x g g h w a r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "100": {
+      "input": "r",
+      "gth": "1",
+      "pred": "1"
+    },
+    "101": {
+      "input": "n l",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "102": {
+      "input": "d x e",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "103": {
+      "input": "l c c d",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "104": {
+      "input": "s q s d q",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "105": {
+      "input": "u m a v r f",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "106": {
+      "input": "e v f e i x z",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7"
+    },
+    "107": {
+      "input": "n j w f p a m o",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8"
+    },
+    "108": {
+      "input": "r q s j n p m n m",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "109": {
+      "input": "r c b d p w a k p x",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "110": {
+      "input": "v m l a l r k z i t o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "111": {
+      "input": "u v e m j r m w q b s l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "112": {
+      "input": "c y e h d p r y j h c r w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "113": {
+      "input": "c w u l p m h e q t o q d p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "114": {
+      "input": "k a c h n l d z h u e z v b y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "115": {
+      "input": "r n t e f o r f x y a m t i i e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "116": {
+      "input": "o i l i d b v i w l p y m g s r o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "117": {
+      "input": "k l y z o p t r v r k l d m m p b f",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "118": {
+      "input": "g g i x k s c n c p p d d d e g y s g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "119": {
+      "input": "n r p a m f h r i o u v r f r t i j w c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "120": {
+      "input": "h w j w i l s u l j j v c q e y i i y c u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "121": {
+      "input": "c m b t z u h p r x l t z y n v r d v d u t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "122": {
+      "input": "h m t a w s g p s z h f m p a c e k f b q i q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "123": {
+      "input": "n z n a v q o h k m g c i h k w p d p w r a j t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "124": {
+      "input": "u t u d s i e h t j h x f e u u l c f i v z n z s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "125": {
+      "input": "m h z u p q m v q p l u l o x y z u u n m v i k s x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "126": {
+      "input": "i l a o z l e q s y a d e c t q y e d k q r s p n x s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "127": {
+      "input": "j l a p k q t c e l x q l u m b s y s e a v g n e l c u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "128": {
+      "input": "g v i z z h v f k h m z i o o k k v n n y j u y n i y i f",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "129": {
+      "input": "q s n g t x v f n w k f z n l c h k y i u k g x d h t z q z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "130": {
+      "input": "n r h v r v j b s g v q y a g d v j z n i o c p f a b w w e q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "131": {
+      "input": "y y o p f z q i o w y y e z d g s y v h a k z d h d e g t t p x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "132": {
+      "input": "r g n o v y m q c x r i r z j x r y m m f q b g q s l d n r x j p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "133": {
+      "input": "l w w h a o k c c g o r b g g n j w y z y h b u g n t g h r u y y w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "134": {
+      "input": "i v t b n r q u v e u s n e b f i f g y u q g k v i w i y n i e v e r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "135": {
+      "input": "a y c u g w q m h h j m y i l b v i c d f a l i z o o x k z d v t j l n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "136": {
+      "input": "i y j g f s r a a e z z a e e k f z p g q b p q t k d r t h l w o w t d l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "137": {
+      "input": "k j d e t l g h t d y e s w g m n o g q r z s u f t x u s e q p g i p m r j",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "138": {
+      "input": "x s n b k l l i f e k r d e o n u z x g s y q k c e r t s w z u j f f d e q s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "139": {
+      "input": "b f k n h p u b f r d k h k f o j w x g g w h w q b y y h o u g c y l z m c r y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "140": {
+      "input": "g f g r u u g e e m z h u c z f d l o k d l l x f d y d o n w m n x u k k f n j v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "141": {
+      "input": "b x e s b j k v i q j o u m t t y b t j k t c a a f p v p e a z r z g d e a j z g a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "142": {
+      "input": "k g b t o b n h o c f r j a z m r b b g m m c w s x f h j d o r a m v m x r x a k y o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "143": {
+      "input": "g g x j z j a w l y i w h t d w d c a g g m w o v d d l z s q t b x z n v c w p w r y r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "144": {
+      "input": "a x b a i e m z q z b v d w l b u t w i d o f j w z r j p g l l z a x m g s f n d v l m d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "145": {
+      "input": "a x b s s k e n s y j i t y p r e v m b v y o c d o e i k l o t o b l q x h c u y h o g n j",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "146": {
+      "input": "f u b s w r d f a n c r c s t d c f v w i m w k h q i b z p u y q e m h y n q t g e u x d m l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "147": {
+      "input": "g a x m d p m r r v h m c x s d d w x h g j v d m p a n j n a p a t j r i w v j j z s p d y s r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "148": {
+      "input": "c b x c h v q y y x x z m c i c o k m c o n b p a r c i t n b w a c i d h g k l n s s l x r u y g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "149": {
+      "input": "w p p f e q q q v r c t p n j t e q s q b m g t n n h s c j q e h o l i o y k x u c h d b v l d g s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "150": {
+      "input": "k",
+      "gth": "1",
+      "pred": "1"
+    },
+    "151": {
+      "input": "i w",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "152": {
+      "input": "e h p",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "153": {
+      "input": "k a d o",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "154": {
+      "input": "g c q i f",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "155": {
+      "input": "m a l a w a",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "156": {
+      "input": "l y u u v q u",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7"
+    },
+    "157": {
+      "input": "f b g d b z v m",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8"
+    },
+    "158": {
+      "input": "o f b y w c m c h",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "159": {
+      "input": "e g d v t o q d r z",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "160": {
+      "input": "b i j n v f h y f y x",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "161": {
+      "input": "f v d w c g p q p n u o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "162": {
+      "input": "r i e v r d g w g b l j f",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "163": {
+      "input": "m a w w y j b i t y o u x v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "164": {
+      "input": "f t w j n t w c r z t l q o w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "165": {
+      "input": "m w c h s a i s s f u j h n b d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "166": {
+      "input": "a y s v j z g u z j w n d y z f e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "167": {
+      "input": "f h n e x n e x g z n b f e m u n q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "168": {
+      "input": "m g a f u q f j k y y o e d n w z g p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "169": {
+      "input": "u f d x x d x u b s z q n t h w n e a t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "170": {
+      "input": "z q v b q n j c b r m y j k f d o z m c p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "171": {
+      "input": "r a s u r i i y d u g y j p h s b b v a j k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "172": {
+      "input": "v a y u l z g v v i k n k l m k c n z f t f n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "173": {
+      "input": "j q n n s g b t r g e y l p m a c e s s y v d v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "174": {
+      "input": "e c i t u i k s l s v a u t x r q t p i p p e z e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "175": {
+      "input": "f z q s p o d h i t f m s w p f p s x e d m h g d r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "176": {
+      "input": "q b e d v q o x m d y l q t d u x b o i h v e m u o d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "177": {
+      "input": "y x f g m p l l m o h s p v e c m w j o z g t a i d v m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "178": {
+      "input": "d d r k i f x k z q e j p d l p v d w c d x v h y i s l o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "179": {
+      "input": "y s g f p o l s h k a n t g b a z w f x d g h s y a t h s o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "180": {
+      "input": "m y e r w o p r l z d a k h e b e y h c p t l b v v e v t o d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "181": {
+      "input": "g n l h o c o p v b l f w g n y n a l f d j e l t h r h u r n q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "182": {
+      "input": "l z o w p a p p f r f b o k j y g a p z v q x c o e a m s g i e i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "183": {
+      "input": "d k m q l c d q m b l e x u v a q h e i m n z c a s q z k k j p b z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "184": {
+      "input": "n b p u c y z k g f w e a m b v o b r a b q n b o q s t m v j i z a i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "185": {
+      "input": "m s m r l y h r n c y s t s i e k y l u q q n y r e x a g h k u o d a h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "186": {
+      "input": "t o j h q g o h a a r l y b h l y e h n z g n q u h b h s q o n w n o l h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "187": {
+      "input": "h x r f c o z n g r q i p h w x j n k f x o m k c s f f a e u v q m m b j h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "188": {
+      "input": "g p b e m u k s e o s z r s s l s e w h o r l o q x c w l s f r i w y g n m c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "189": {
+      "input": "o p g o o l h u t a g j v s a t k b s k m n i p d u j x y w h y e k u v c p o n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "190": {
+      "input": "k c u z g s h t a j u j k t z o u a l v i y i s w s u l d j i s g z e u z l q g b",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "191": {
+      "input": "k i j u n l z j i o n z l z b q x v m l x k t u p f s j q i i r z x k u p q s p y k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "192": {
+      "input": "p z e v q v x x f l y c w a w a t d k h a q g a h l h x d f h d k s u j b v a p z m r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "193": {
+      "input": "u u o d n m i c s x z j x t h d n y y w c n g m p h q h j x x x f g t q f i g w j x f c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "194": {
+      "input": "v r x u d l e m l m l y j e b g f g i s s k j x u o l t b d b b x y d d b q z z v u b k a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "195": {
+      "input": "i h y x j w m e v o f n v a x m v i c l x w f z k x h y h o r w q j r p v r q q o i h m m w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "196": {
+      "input": "f e o m h f q n o c p n x f x j w q n c w w u s k v d q r t g b e l n e q n r x h d a l y c y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "197": {
+      "input": "m f t f i j g m w f w a a h d q u n x a s v z u v m h j j k y s l z l e h x z q i l n h h g q s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "198": {
+      "input": "p b q x r g n h g a p t z m u s w e u d y r j g j k t s r i s r y u c h m m r e b c a o v x z y r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "199": {
+      "input": "w j p y b i j f t e k d d j a i r l y e y s l l y j u d f d m z z r d j f u d p n n b u e d b c h v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "200": {
+      "input": "a",
+      "gth": "1",
+      "pred": "1"
+    },
+    "201": {
+      "input": "h x",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "202": {
+      "input": "x l f",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "203": {
+      "input": "q l v s",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "204": {
+      "input": "f a l q j",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "205": {
+      "input": "z m q l t d",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "206": {
+      "input": "z u o g t h p",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7"
+    },
+    "207": {
+      "input": "o m a h u p m k",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8"
+    },
+    "208": {
+      "input": "u j k o i h z b y",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "209": {
+      "input": "t w b b e g n u g m",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "210": {
+      "input": "p p d s c j c o o a u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1"
+    },
+    "211": {
+      "input": "u k v c a l g t h d c e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "212": {
+      "input": "o i c y l c z u v t q b m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "213": {
+      "input": "f x a o c l h g q m g n i w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "214": {
+      "input": "y s s c r d o f w r u c j j q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "215": {
+      "input": "z q t x k p n w r n v g r q b s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "216": {
+      "input": "l w e u l j l r u j t u i y r b i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "217": {
+      "input": "u r f x s d p q q u l j m d j o u g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "218": {
+      "input": "j m n h q z g y y i y e j f f p x d w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "219": {
+      "input": "h l k h h v z r q b y m i u w z g o y f",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "220": {
+      "input": "x o q d i l z p o a g j k l y j f n v v w",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "221": {
+      "input": "g m x w v j u l j w h s j t z v e u j k l s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "222": {
+      "input": "t a g j w b o x t o r o a w m f f z n b u d r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "223": {
+      "input": "k w u o g m j a u s m w l c g z s e p q n p a a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "224": {
+      "input": "g g h g c g g m n y c c y a d f l o m k a e n k m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "225": {
+      "input": "x y j a j m a n t f k v n f s j g r i r e d d s d o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "226": {
+      "input": "j h v t m d w f w t s m w h y g b q y z o u p n g t y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "227": {
+      "input": "s c i c i w r a e y s i e b u n k h d k y t z g z t l y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "228": {
+      "input": "g l h l s l j k z v v p y r t r e w b d r k d l q m q o h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "229": {
+      "input": "l i m y m l u k w z y x z c r v u q u p b x h k y h e l p e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "230": {
+      "input": "n q h a z g h z z q k g j d m i q g g d c q s u z l p w w m v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "231": {
+      "input": "s l c y g d g w j a e o q o r b s u w z y y m y u w n o h n u y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "232": {
+      "input": "e b x k n e r c m x p d s l n k d e z e q p j h e t m p b p z i t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "233": {
+      "input": "j g q s d u y g j h z b w o n b x v q d f l u a i r w q s j f a t n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "234": {
+      "input": "j i i d y b b z j q q n t u i i v r h q x g k l r m g l f c h t x o h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "235": {
+      "input": "e l q r u p k r l f x i p c t e w m l j t w v y t t g r f m m x o s p n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "236": {
+      "input": "g n n f x u t v v s o m m l e f k j a t k d x b y m f j t t v f p m b v u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "237": {
+      "input": "s m l s v n o f w p p e z t g p o f f m f m f r b h o r o k v p s e a j f o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "238": {
+      "input": "x y m q n g w f s k y u x o q o f n y g g t s r z f c m x l z u k u y i i v c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "239": {
+      "input": "r s v u b v q l k u b g a y p u r q f t h v x b y u p h g h y u t o j d b b g s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "240": {
+      "input": "c n w x t g v u k p x q w v n c v i a u i r e o i t s e m y v g w m j v s b w k i",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "241": {
+      "input": "u f h v u q a b t o x q p p r j f i c n a f u g y a a f b p u w n j c i n n a g g v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "242": {
+      "input": "h z v c l j o s p p p h t e r x c e q k v g h w v r r v k k y r n b j u m l i m o d k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "243": {
+      "input": "z h w y x t q s c l h b z h v k u l z o i q y o e r y a r u t p n y t h d a h n l q l d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "244": {
+      "input": "g x m v s v v p q e f c r g p j f t l l y k s n l j p j c a b n i h z g r h x i e z x m a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "245": {
+      "input": "e d w m z z u a k z i i r q q a m f k a q d b b k v a x v a z h n v h y u e e f z z l t u y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "246": {
+      "input": "j y v j c z a h a v k q n t a m g u m l b i i i c q x p r s s d s a r r b m v n c n w e v b c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "247": {
+      "input": "p l w i b d a l m f r v n f c s h d q x b g e t g g g h k t d j l b d k q k j q t i h q l p d v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "248": {
+      "input": "v h q q l h k k g m y l q o o h i r a c v z b a f h q h i t r g k d q w l p a f c c l s b j c w k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "249": {
+      "input": "w k e u z y v a h b u k h p m z o h p f g x z x m w b l f l z c r z t y y b a i n o b x w d g r x s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "250": {
+      "input": "j",
+      "gth": "1",
+      "pred": "1"
+    },
+    "251": {
+      "input": "e m",
+      "gth": "1 2",
+      "pred": "1 2"
+    },
+    "252": {
+      "input": "q o m",
+      "gth": "1 2 3",
+      "pred": "1 2 3"
+    },
+    "253": {
+      "input": "n w d u",
+      "gth": "1 2 3 4",
+      "pred": "1 2 3 4"
+    },
+    "254": {
+      "input": "k m o a u",
+      "gth": "1 2 3 4 5",
+      "pred": "1 2 3 4 5"
+    },
+    "255": {
+      "input": "r p d o e q",
+      "gth": "1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6"
+    },
+    "256": {
+      "input": "m s a w r q k",
+      "gth": "1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7"
+    },
+    "257": {
+      "input": "l u l j n y e d",
+      "gth": "1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8"
+    },
+    "258": {
+      "input": "y x w q p d s y c",
+      "gth": "1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9"
+    },
+    "259": {
+      "input": "m v f n h y x y l h",
+      "gth": "1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10"
+    },
+    "260": {
+      "input": "r g y w d n h b g s r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "261": {
+      "input": "r y f u k w w b u r n s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "262": {
+      "input": "n g l l j r w b r b s h p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "263": {
+      "input": "r t j n b m o h y d t t i u",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "264": {
+      "input": "g a s s a y z l l m g y e e m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "265": {
+      "input": "m w k l j d e g i a l q z i m z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "266": {
+      "input": "s b g j a w a m n z h s q o n u v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "267": {
+      "input": "f t n p c x k v j n t w z k r r q m",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "268": {
+      "input": "q u z m y f p t p m k t h w w n r p b",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "269": {
+      "input": "w k v e i e m d d p s f k f a m d q f c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "270": {
+      "input": "l y x j y w g e f b i q v x m t s c s v d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "271": {
+      "input": "e z b u z r w m f o c e d y m d l o y o b k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "272": {
+      "input": "p c k g p d c a h l c r c f s s e w k u r i q",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "273": {
+      "input": "f e c u j j i b m s b r h q t y n r z h t p w t",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "274": {
+      "input": "x c u u e g e n m e x l h w u o b o r l t q p r z",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "275": {
+      "input": "b u n f k f r j i g p r s v v r f r j z g a m i m p",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "276": {
+      "input": "u j k j s j m s u u x e s m c b a n s s i u y h f e o",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "277": {
+      "input": "e f b f n c y k e l r v e l q u q j e e y a o x u x m k",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "278": {
+      "input": "l m m m q r z d q g x m q o b f p b q s d s p q v e s a h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "279": {
+      "input": "s l h i d d z p v s a d k w l j x t x o h y k d x t k y h c",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "280": {
+      "input": "y k f g j f z n r p e l s m l g z z z t f o o u l r t z j y g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "281": {
+      "input": "q h c p t g n m t r j n q x s o e o i d s n p z v t i k y p y h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "282": {
+      "input": "p y y a a t f j a o e s q p h z q h h s v l i g p r q q r g p h r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "283": {
+      "input": "i g i o p v k f s d f q e g l v a g y p m h q w t m f q w s b m p g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "284": {
+      "input": "c r c v z m o m n o r y d s m q n w f t j b v d s j d v t l w h v n s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "285": {
+      "input": "n z w p f o f d q q e t t z d j p q e s s n d y x u b b f d h t l c t h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "286": {
+      "input": "t t q o s l z q w j y t k f w p h o s a y e d f y e p f f t n b h m h v h",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 1 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "287": {
+      "input": "u a k p n h u x o a w b m w c l a e l y y m h q s a f u e b a s l m v j i y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "288": {
+      "input": "u i a m s z h n q d f z b b n y r g q k c y u z w f j l m i h i h c h f n n f",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "289": {
+      "input": "c d x m i g c a v r h f l x l z y u f o e b s r q v u a c o y m e n p n w d o v",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    },
+    "290": {
+      "input": "f x r d m t p e o v d c p i b j m v s e y v a u q v x b r b h o j t x l j z y f y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1"
+    },
+    "291": {
+      "input": "s d o a k u c j b z n k x t t a k j r c u h x c k t c s h u e a a w s k j g k h y y",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2"
+    },
+    "292": {
+      "input": "f t a p j x c n l n f l n b o o s r r m y t d l e c i p p r n b d m x r d p r f q s d",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3"
+    },
+    "293": {
+      "input": "e r t h h f o x p b g e i b r o y z v c i e x j f t k l i c r n z h z p x v w q k r u s",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4"
+    },
+    "294": {
+      "input": "z f f b f f m y p f h p b n n y n f a d y d u h g o v j w a o v j n o j v n r f z d m g l",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5"
+    },
+    "295": {
+      "input": "n o e m z w g y p d z t v c b y y g y y v l j c c z q y d s b r s o i r x e k l b y a f e g",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6"
+    },
+    "296": {
+      "input": "f k w m p z z n p a m b h o q k q x z d t s c k x i q x h s h l b l g s o w x q a j p z u y n",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7"
+    },
+    "297": {
+      "input": "v x g l p y i n i r h w b n p z f o e p r u a a j z z v m h w b w m g k u f j x c d t t u h a a",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8"
+    },
+    "298": {
+      "input": "m w e m x i u a v m e p i g l e m z e e n f n h r r s t y h x p x j u q o a l l i j k a w r n c e",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+    },
+    "299": {
+      "input": "e o z q w g m u n q p p h a m c e l e b b j f s c m e e s c y q d c f o l h y a k h u s k g b t p r",
+      "gth": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10",
+      "pred": "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10"
+    }
+  }
+}
