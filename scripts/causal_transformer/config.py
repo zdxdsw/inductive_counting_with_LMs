@@ -16,7 +16,7 @@ class Basic_Config:
     resid_pdrop = 0. #0.1
     embd_pdrop = 0. #0.1
     attn_pdrop = 0. #0.1
-    must_attend_to_identity = False
+    must_attend_to_identity = True
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
@@ -33,8 +33,8 @@ class Basic_Config:
     #save_every_steps = 20000
     eval_every_steps = 10000
     absolute_posemb = True
-    absolute_posemb_shift = False
-    absolute_posemb_rdmz = True
+    absolute_posemb_shift = True
+    absolute_posemb_rdmz = False
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
@@ -98,6 +98,18 @@ class counting_diffsymbol_mod10_Config(Basic_Config):
 class counting_diffsymbol_mod10_padhelper_Config(Basic_Config):
     vocab = [str(i) for i in range(11)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
     data_path = "../../data/rasp_primitives/counting_diffsymbol_mod10_padhelper"
+    max_position_embeddings = 256
+
+@dataclass
+class counting_samesymbol_mod10_100_200_Config(Basic_Config):
+    vocab = [str(i) for i in range(11)] + ['<pad>', 'a']
+    data_path = "../../data/rasp_primitives/counting_samesymbol_mod10_100_200"
+    max_position_embeddings = 256
+
+@dataclass
+class counting_diffsymbol_mod10_100_200_Config(Basic_Config):
+    vocab = [str(i) for i in range(11)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    data_path = "../../data/rasp_primitives/counting_diffsymbol_mod10_100_200"
     max_position_embeddings = 256
 
 @dataclass

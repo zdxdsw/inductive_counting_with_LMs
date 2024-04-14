@@ -145,6 +145,10 @@ scripts/llama/output/1206_121802/test_samples/0326_122524.txt
 scripts/causal_transformer/output/0409_220141/tensorboard/events.out.tfevents.1712714511.panther.lti.cs.cmu.edu.3164778.0
 scripts/causal_transformer/output/0409_221301/tensorboard/events.out.tfevents.1712715191.sphynx.lti.cs.cmu.edu.3263981.0
 scripts/causal_transformer/output/0410_112119/tensorboard/events.out.tfevents.1712762490.himalayan.lti.cs.cmu.edu.968878.0
+scripts/causal_transformer/output/0413_212403/tensorboard/events.out.tfevents.1713057855.himalayan.lti.cs.cmu.edu.640235.0
+scripts/causal_transformer/output/0413_212455/tensorboard/events.out.tfevents.1713057907.panther.lti.cs.cmu.edu.3861722.0
+scripts/causal_transformer/output/0413_220208/tensorboard/events.out.tfevents.1713060138.sphynx.lti.cs.cmu.edu.3959410.0
+scripts/causal_transformer/output/0413_220452/tensorboard/events.out.tfevents.1713060302.sphynx.lti.cs.cmu.edu.3959868.0
 scripts/causal_transformer/output/0406_205534/tensorboard/events.out.tfevents.1712451345.himalayan.lti.cs.cmu.edu.1302189.0
 scripts/causal_transformer/output/0406_205712/tensorboard/events.out.tfevents.1712451444.sphynx.lti.cs.cmu.edu.2730993.0
 scripts/causal_transformer/output/0407_221926/tensorboard/events.out.tfevents.1712542778.himalayan.lti.cs.cmu.edu.2750101.0
@@ -180,6 +184,8 @@ scripts/causal_transformer/output/0413_004358/tensorboard/events.out.tfevents.17
 scripts/causal_transformer/output/0413_004552/tensorboard/events.out.tfevents.1712983563.sphynx.lti.cs.cmu.edu.3804876.0
 scripts/causal_transformer/output/0413_122016/tensorboard/events.out.tfevents.1713025228.himalayan.lti.cs.cmu.edu.472790.0
 scripts/causal_transformer/output/0413_123647/tensorboard/events.out.tfevents.1713026219.panther.lti.cs.cmu.edu.3800149.0
+scripts/causal_transformer/output/0413_214702/tensorboard/events.out.tfevents.1713059234.himalayan.lti.cs.cmu.edu.647520.0
+scripts/causal_transformer/output/0413_220553/tensorboard/events.out.tfevents.1713060366.himalayan.lti.cs.cmu.edu.653417.0
 scripts/causal_transformer/output/0412_000916/tensorboard/events.out.tfevents.1712894968.himalayan.lti.cs.cmu.edu.484198.0
 scripts/causal_transformer/output/0412_001357/tensorboard/events.out.tfevents.1712895249.himalayan.lti.cs.cmu.edu.484953.0
 scripts/causal_transformer/output/0412_001500/tensorboard/events.out.tfevents.1712895312.panther.lti.cs.cmu.edu.3539978.0
@@ -222,6 +228,8 @@ data/rasp_primitives/counting_samesymbol/train.txt
 data/rasp_primitives/counting_diffsymbol_shiftedstart/train.txt
 data/rasp_primitives/counting_samesymbol_shiftedstart/train.txt
 data/rasp_primitives/counting_selective/train.txt
+data/rasp_primitives/counting_diffsymbol_mod10_100_200/train.txt
+data/rasp_primitives/counting_samesymbol_mod10_100_200/train.txt
 data/rasp_primitives/counting_diffsymbol_mod20/train.txt
 data/rasp_primitives/counting_samesymbol_mod20/train.txt
 data/rasp_primitives/counting_diffsymbol_mod10_padhelper/train.txt
