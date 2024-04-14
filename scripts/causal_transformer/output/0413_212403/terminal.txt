@@ -1,0 +1,40 @@
+------------- Preparing model -------------
+Total parameters: 50696192
+------------- Preparing data -------------
+num train = 1000000
+num val = 300
+------------ Start job 0413_212403 ------------
+[2024-04-13 21:24:34,593] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-13 21:24:34,595] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-13 21:24:34,603] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-13 21:24:34,603] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Epoch 0 Step 0 
+                      | Val Loss: 3.2917 
+                      | Val Acc: 0.0531 
+                      | Val Counting Acc: 0.0536 
+                      | Val Last Acc: 0.0312
+Epoch 0 Step 10000 
+                      | Val Loss: 0.0033 
+                      | Val Acc: 0.9993 
+                      | Val Counting Acc: 0.9993 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 20000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 30000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 31250 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 1 Step 40000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0

@@ -32,4 +32,8 @@ def count_parameters(model):
 def check_config(config):
     if not (config.absolute_posemb or config.rotary_posemb):
         warnings.warn("========== No positional embedding is used in the model. Essentially we're doing NoPE! ==========")
+    if config.absolute_posemb_shift and config.absolute_posemb_rdmz:
+        raise ValueError("========== You cannot use both shift and randomized augmentation for positional embeddings ==========")
+    if config.rotary_posemb_shift and config.rotary_posemb_rdmz:
+        raise ValueError("========== You cannot use both shift and randomized augmentation for positional embeddings ==========")
     

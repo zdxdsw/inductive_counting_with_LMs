@@ -3,7 +3,7 @@ import json, os, sys, random
 import torch
 from typing import List
 
-def sequences_collator(texts, w2i, max_len, posemb_shift=False):
+def sequences_collator(texts, w2i, max_len, augmentation=None):
     input_ids = []
     labels = []
     position_ids = []
@@ -17,9 +17,13 @@ def sequences_collator(texts, w2i, max_len, posemb_shift=False):
         label = [w2i[w] if not w == '-1' else -1 for w in l]
         label += [-1] * (max_len - len(label))
 
-        shift_value = random.randint(0, max_len - len(i))
-        position_id = list(range(shift_value, shift_value + len(i)))
-        position_id += [0] * (max_len - len(position_id))
+        if augmentation == "shift":
+            shift_value = random.randint(0, max_len - len(i))
+            position_id = list(range(shift_value, shift_value + len(i)))
+            position_id += [0] * (max_len - len(position_id))
+        elif augmentation == "randomized":
+            position_id = sorted(random.sample(range(max_len), len(i)))
+            position_id += [0] * (max_len - len(position_id))
 
         attention_mask = [1 if not w == '<pad>' else 0 for w in i]
         attention_mask += [0] * (max_len - len(attention_mask))
@@ -29,8 +33,9 @@ def sequences_collator(texts, w2i, max_len, posemb_shift=False):
         position_ids.append(position_id)
         attention_masks.append(attention_mask)
         
-    if not posemb_shift: position_ids = None
+    if augmentation is None: position_ids = None
     else: position_ids = torch.LongTensor(position_ids)
+    #print(position_ids)
     return {
         'input_id': torch.LongTensor(input_ids),
         'label': torch.LongTensor(labels),

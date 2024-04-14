@@ -89,10 +89,14 @@ text_datasets = [load_dataset(
 train_data = concatenate_datasets([D['train'] for D in text_datasets])
 val_data = concatenate_datasets([D['validation'] for D in text_datasets])
 
+if config.absolute_posemb_shift or config.rotary_posemb_shift:
+    augmentation = "shift"
+elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
+    augmentation = "randomized"
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
                     max_len=config.max_position_embeddings,
-                    posemb_shift=config.absolute_posemb_shift or config.rotary_posemb_shift
+                    augmentation=augmentation,
                 )
 
 train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator)

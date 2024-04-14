@@ -24,7 +24,7 @@ class Basic_Config:
     ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
     per_device_train_batch_size = 8
     gradient_accumulation_steps = 1
-    per_device_eval_batch_size = 256
+    per_device_eval_batch_size = 128
     eval_accumulation_steps = 1
     logging_steps = 100
     warmup_steps = 3000
@@ -34,8 +34,10 @@ class Basic_Config:
     eval_every_steps = 10000
     absolute_posemb = True
     absolute_posemb_shift = False
+    absolute_posemb_rdmz = True
     rotary_posemb = False
     rotary_posemb_shift = False
+    rotary_posemb_rdmz = False
     load_from_dir = None #"0410_142755" #
     init_from_ckpt = None
 
@@ -99,7 +101,31 @@ class counting_diffsymbol_mod10_padhelper_Config(Basic_Config):
     max_position_embeddings = 256
 
 @dataclass
+class counting_samesymbol_mod20_Config(Basic_Config):
+    vocab = [str(i) for i in range(21)] + ['<pad>', 'a']
+    data_path = "../../data/rasp_primitives/counting_samesymbol_mod20"
+    max_position_embeddings = 256
+
+@dataclass
+class counting_diffsymbol_mod20_Config(Basic_Config):
+    vocab = [str(i) for i in range(21)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    data_path = "../../data/rasp_primitives/counting_diffsymbol_mod20"
+    max_position_embeddings = 256
+
+@dataclass
 class counting_raspL_Config(Basic_Config):
     vocab = [str(i) for i in range(156)] + ['<pad>', '<', '<eos>', '<sos>'] 
     data_path = "../../data/rasp_primitives/counting_raspL"
     max_position_embeddings = 256
+
+@dataclass
+class counting_selective_Config(Basic_Config):
+    vocab = [str(i) for i in range(51)] + ['<pad>', 'a', 'b'] 
+    data_path = "../../data/rasp_primitives/counting_selective"
+
+@dataclass
+class counting_selective_padhelper_Config(Basic_Config):
+    vocab = [str(i) for i in range(51)] + ['<pad>', 'a', 'b'] 
+    data_path = "../../data/rasp_primitives/counting_selective_padhelper"
+    max_position_embeddings = 256
+
