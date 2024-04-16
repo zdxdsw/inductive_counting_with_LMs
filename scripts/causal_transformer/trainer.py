@@ -76,14 +76,13 @@ criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
 
 Print("------------- Preparing data -------------")
 
-if isinstance(config.data_path, str): config.data_path = [config.data_path]
+#if isinstance(config.data_path, str): config.data_path = [config.data_path]
 text_datasets = [load_dataset(
                     "text", 
                     data_files={
-                        "train": f"{path}/train.txt",
-                        "validation": f"{path}/val.txt"
+                        "train": f"{config.train_data_path}/{args.task}/train.txt",
+                        "validation": f"{config.eval_data_path}/{args.task}/val.txt"
                         })
-                    for path in config.data_path
                 ]
 
 train_data = concatenate_datasets([D['train'] for D in text_datasets])

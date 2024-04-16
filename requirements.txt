@@ -27,3 +27,4 @@ evaluate
 trl
 pre-commit
 tensorboard
+torchinfo

@@ -30,6 +30,7 @@ if config.output_dir is not None:
     args.task = resume_from_config['data_path'].split("/")[-1] ## auto infer task from the incomplete run
 
   # dump config
+  config.task = args.task
   C = {k:config.__getattribute__(k) for k in dir(config) if not k.startswith("__")}
   with open(os.path.join(config.output_dir, config.date, "config.json"), "w") as f:
     json.dump(C, f, indent=2)
