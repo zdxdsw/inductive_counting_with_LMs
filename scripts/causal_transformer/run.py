@@ -25,9 +25,14 @@ if config.output_dir is not None:
   if config.load_from_dir is not None:
     resume_from_config = json.load(open(os.path.join(config.output_dir, config.load_from_dir, "config.json"), "r"))
     for k in resume_from_config:
-      if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date"]:
+      if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
         setattr(config, k, resume_from_config[k])
-    args.task = resume_from_config['data_path'].split("/")[-1] ## auto infer task from the incomplete run
+    
+    if "task" in resume_from_config:
+      args.task = resume_from_config['task']
+    else:
+      args.task = resume_from_config['data_path'].split("/")[-1] # compatible with old train.txt paths
+      ## auto infer task from the incomplete run
 
   # dump config
   config.task = args.task

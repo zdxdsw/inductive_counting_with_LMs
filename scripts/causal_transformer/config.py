@@ -40,7 +40,7 @@ class Basic_Config:
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
-    load_from_dir = None #"0414_225027" #
+    load_from_dir = None #"0415_164745" #
     init_from_ckpt = None
 
 
@@ -120,6 +120,26 @@ class counting_diffsymbol_mod13_Config(Basic_Config):
     max_position_embeddings = 140
 
 @dataclass
+class counting_samesymbol_mod14_Config(Basic_Config):
+    vocab = [str(i) for i in range(15)] + ['<pad>', 'a']
+    max_position_embeddings = 150
+
+@dataclass
+class counting_diffsymbol_mod14_Config(Basic_Config):
+    vocab = [str(i) for i in range(15)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    max_position_embeddings = 150
+
+@dataclass
+class counting_samesymbol_mod15_Config(Basic_Config):
+    vocab = [str(i) for i in range(16)] + ['<pad>', 'a']
+    max_position_embeddings = 160
+
+@dataclass
+class counting_diffsymbol_mod15_Config(Basic_Config):
+    vocab = [str(i) for i in range(16)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    max_position_embeddings = 160
+
+@dataclass
 class counting_samesymbol_mod16_Config(Basic_Config):
     vocab = [str(i) for i in range(17)] + ['<pad>', 'a']
     max_position_embeddings = 180
@@ -130,14 +150,34 @@ class counting_diffsymbol_mod16_Config(Basic_Config):
     max_position_embeddings = 180
 
 @dataclass
+class counting_samesymbol_mod17_Config(Basic_Config):
+    vocab = [str(i) for i in range(18)] + ['<pad>', 'a']
+    max_position_embeddings = 180
+
+@dataclass
+class counting_diffsymbol_mod17_Config(Basic_Config):
+    vocab = [str(i) for i in range(18)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    max_position_embeddings = 180
+
+@dataclass
+class counting_samesymbol_mod19_Config(Basic_Config):
+    vocab = [str(i) for i in range(20)] + ['<pad>', 'a']
+    max_position_embeddings = 200
+
+@dataclass
+class counting_diffsymbol_mod19_Config(Basic_Config):
+    vocab = [str(i) for i in range(20)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
+    max_position_embeddings = 200
+
+@dataclass
 class counting_samesymbol_mod20_Config(Basic_Config):
     vocab = [str(i) for i in range(21)] + ['<pad>', 'a']
-    max_position_embeddings = 256
+    max_position_embeddings = 210
 
 @dataclass
 class counting_diffsymbol_mod20_Config(Basic_Config):
     vocab = [str(i) for i in range(21)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
-    max_position_embeddings = 256
+    max_position_embeddings = 210
 
 @dataclass
 class counting_raspL_Config(Basic_Config):
