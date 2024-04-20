@@ -104,6 +104,13 @@ val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_devic
 Print(f"num train = {len(train_data)}")
 Print(f"num val = {len(val_data)}")
 
+test_dataloaders = {}
+for ood_test_file in config.test_files:
+    test_data = load_dataset("text",  data_files={ood_test_file: f"{config.eval_data_path}/{args.task}/{ood_test_file}.txt"})
+    test_dataloaders[ood_test_file] = accelerator.prepare(
+        DataLoader(test_data[ood_test_file], shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
+    )
+
 
 """------------ Prepare Initialization ------------"""
 
@@ -177,6 +184,37 @@ for epoch in range(global_epoch, config.num_epochs):
                       | Val Counting Acc: {round(counting_correct/counting_demo, 4)} 
                       | Val Last Acc: {round(last_correct/last_demo, 4)}"""
                     )
+                
+                for ood_test_file, test_dataloader in test_dataloaders.items():
+                    counting_correct, counting_demo, last_correct, last_demo, correct, demo = 0, 0, 0, 0, 0, 0
+                    test_losses = []
+                    for i, test_batch in enumerate(test_dataloader):
+                        position_ids = None
+                        if test_batch['position_id'] is not None: position_ids = test_batch['position_id'].to(accelerator.device)
+                        logits = model_to_eval(
+                            test_batch['input_id'].to(accelerator.device),
+                            position_ids = position_ids,
+                            attention_mask = test_batch['attention_mask'].to(accelerator.device),
+                        )
+                        loss = criterion(
+                            logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
+                            test_batch['label'].view(-1), # 1, bs*seq_len
+                        )
+                        test_losses.append(loss.detach().item())
+                        _counting_correct, _counting_demo, _last_correct, _last_demo = get_acc(logits.detach().cpu(), test_batch['label'].detach().cpu(), ignore_index=-1)
+                        counting_correct += _counting_correct
+                        counting_demo += _counting_demo
+                        last_correct += _last_correct
+                        last_demo += _last_demo
+                        correct += (_counting_correct + _last_correct)
+                        demo += (_counting_demo + _last_demo)
+                    Print(f"""Epoch {epoch} Step {global_step} {ood_test_file}.txt
+                        | Test Loss: {round(np.mean(test_losses), 4)} 
+                        | Test Acc: {round(correct/demo, 4)} 
+                        | Test Counting Acc: {round(counting_correct/counting_demo, 4)} 
+                        | Test Last Acc: {round(last_correct/last_demo, 4)}"""
+                        )
+                
                 model_to_eval.train()
         
         accelerator.wait_for_everyone()
@@ -254,6 +292,35 @@ for epoch in range(global_epoch, config.num_epochs):
                 | Val Counting Acc: {round(counting_correct/counting_demo, 4)} 
                 | Val Last Acc: {round(last_correct/last_demo, 4)}"""
             )
+        for ood_test_file, test_dataloader in test_dataloaders.items():
+            counting_correct, counting_demo, last_correct, last_demo, correct, demo = 0, 0, 0, 0, 0, 0
+            test_losses = []
+            for i, test_batch in enumerate(test_dataloader):
+                position_ids = None
+                if test_batch['position_id'] is not None: position_ids = test_batch['position_id'].to(accelerator.device)
+                logits = model_to_eval(
+                    test_batch['input_id'].to(accelerator.device),
+                    position_ids = position_ids,
+                    attention_mask = test_batch['attention_mask'].to(accelerator.device),
+                )
+                loss = criterion(
+                    logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
+                    test_batch['label'].view(-1), # 1, bs*seq_len
+                )
+                test_losses.append(loss.detach().item())
+                _counting_correct, _counting_demo, _last_correct, _last_demo = get_acc(logits.detach().cpu(), test_batch['label'].detach().cpu(), ignore_index=-1)
+                counting_correct += _counting_correct
+                counting_demo += _counting_demo
+                last_correct += _last_correct
+                last_demo += _last_demo
+                correct += (_counting_correct + _last_correct)
+                demo += (_counting_demo + _last_demo)
+            Print(f"""Epoch {epoch} Step {global_step} {ood_test_file}.txt
+                | Test Loss: {round(np.mean(test_losses), 4)} 
+                | Test Acc: {round(correct/demo, 4)} 
+                | Test Counting Acc: {round(counting_correct/counting_demo, 4)} 
+                | Test Last Acc: {round(last_correct/last_demo, 4)}"""
+                )
         model_to_eval.train()
     accelerator.wait_for_everyone()
     

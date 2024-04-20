@@ -13,3 +13,13 @@ Epoch 0 Step 0
                       | Val Acc: 0.0205 
                       | Val Counting Acc: 0.0201 
                       | Val Last Acc: 0.0391
+Epoch 0 Step 10000 
+                      | Val Loss: 0.0117 
+                      | Val Acc: 0.9972 
+                      | Val Counting Acc: 0.9975 
+                      | Val Last Acc: 0.9844
+Epoch 0 Step 20000 
+                      | Val Loss: 0.0001 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0

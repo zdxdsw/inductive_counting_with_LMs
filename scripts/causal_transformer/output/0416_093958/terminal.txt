@@ -193,3 +193,29 @@ Epoch 8 Step 280000
                       | Val Acc: 1.0 
                       | Val Counting Acc: 1.0 
                       | Val Last Acc: 1.0
+Epoch 8 Step 281250 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 9 Step 290000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 9 Step 300000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 9 Step 310000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 9 Step 312500 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Finish!!! 0416_093958

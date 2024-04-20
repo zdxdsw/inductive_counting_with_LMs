@@ -1,0 +1,310 @@
+------------- Preparing model -------------
+Total parameters: 12839936
+------------- Preparing data -------------
+num train = 1000000
+num val = 300
+------------ Start job 0418_221038 ------------
+[2024-04-18 22:11:10,837] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-18 22:11:10,848] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-18 22:11:10,852] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-18 22:11:10,867] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Epoch 0 Step 0 
+                      | Val Loss: 2.8628 
+                      | Val Acc: 0.0626 
+                      | Val Counting Acc: 0.0619 
+                      | Val Last Acc: 0.0781
+Epoch 0 Step 0 ood_test.txt
+                        | Test Loss: 2.8504 
+                        | Test Acc: 0.0797 
+                        | Test Counting Acc: 0.0799 
+                        | Test Last Acc: 0.0625
+Epoch 0 Step 10000 
+                      | Val Loss: 0.0125 
+                      | Val Acc: 0.9972 
+                      | Val Counting Acc: 0.9971 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 10000 ood_test.txt
+                        | Test Loss: 0.7491 
+                        | Test Acc: 0.8873 
+                        | Test Counting Acc: 0.8919 
+                        | Test Last Acc: 0.5625
+Epoch 0 Step 20000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 20000 ood_test.txt
+                        | Test Loss: 0.5707 
+                        | Test Acc: 0.9266 
+                        | Test Counting Acc: 0.9302 
+                        | Test Last Acc: 0.6719
+Epoch 0 Step 30000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 30000 ood_test.txt
+                        | Test Loss: 0.4693 
+                        | Test Acc: 0.941 
+                        | Test Counting Acc: 0.9444 
+                        | Test Last Acc: 0.7031
+Epoch 0 Step 31250 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 0 Step 31250 ood_test.txt
+                | Test Loss: 0.5379 
+                | Test Acc: 0.9371 
+                | Test Counting Acc: 0.9404 
+                | Test Last Acc: 0.7031
+Epoch 1 Step 40000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 40000 ood_test.txt
+                        | Test Loss: 0.4588 
+                        | Test Acc: 0.9417 
+                        | Test Counting Acc: 0.9442 
+                        | Test Last Acc: 0.7656
+Epoch 1 Step 50000 
+                      | Val Loss: 0.0002 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 50000 ood_test.txt
+                        | Test Loss: 0.5283 
+                        | Test Acc: 0.9369 
+                        | Test Counting Acc: 0.94 
+                        | Test Last Acc: 0.7188
+Epoch 1 Step 60000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 60000 ood_test.txt
+                        | Test Loss: 0.3235 
+                        | Test Acc: 0.962 
+                        | Test Counting Acc: 0.9639 
+                        | Test Last Acc: 0.8281
+Epoch 1 Step 62500 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 1 Step 62500 ood_test.txt
+                | Test Loss: 0.2739 
+                | Test Acc: 0.9679 
+                | Test Counting Acc: 0.9697 
+                | Test Last Acc: 0.8438
+Epoch 2 Step 70000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 2 Step 70000 ood_test.txt
+                        | Test Loss: 0.1735 
+                        | Test Acc: 0.9727 
+                        | Test Counting Acc: 0.9743 
+                        | Test Last Acc: 0.8594
+Epoch 2 Step 80000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 2 Step 80000 ood_test.txt
+                        | Test Loss: 0.2831 
+                        | Test Acc: 0.9572 
+                        | Test Counting Acc: 0.9597 
+                        | Test Last Acc: 0.7812
+Epoch 2 Step 90000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 2 Step 90000 ood_test.txt
+                        | Test Loss: 0.2966 
+                        | Test Acc: 0.9598 
+                        | Test Counting Acc: 0.9615 
+                        | Test Last Acc: 0.8438
+Epoch 2 Step 93750 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 2 Step 93750 ood_test.txt
+                | Test Loss: 0.237 
+                | Test Acc: 0.9644 
+                | Test Counting Acc: 0.9657 
+                | Test Last Acc: 0.875
+Epoch 3 Step 100000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 3 Step 100000 ood_test.txt
+                        | Test Loss: 0.1065 
+                        | Test Acc: 0.9727 
+                        | Test Counting Acc: 0.9741 
+                        | Test Last Acc: 0.875
+Epoch 3 Step 110000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 3 Step 110000 ood_test.txt
+                        | Test Loss: 0.0378 
+                        | Test Acc: 0.9856 
+                        | Test Counting Acc: 0.9863 
+                        | Test Last Acc: 0.9375
+Epoch 3 Step 120000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 3 Step 120000 ood_test.txt
+                        | Test Loss: 0.2204 
+                        | Test Acc: 0.9764 
+                        | Test Counting Acc: 0.9767 
+                        | Test Last Acc: 0.9531
+Epoch 3 Step 125000 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 3 Step 125000 ood_test.txt
+                | Test Loss: 0.1851 
+                | Test Acc: 0.979 
+                | Test Counting Acc: 0.9801 
+                | Test Last Acc: 0.9062
+Epoch 4 Step 130000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 4 Step 130000 ood_test.txt
+                        | Test Loss: 0.119 
+                        | Test Acc: 0.9823 
+                        | Test Counting Acc: 0.9838 
+                        | Test Last Acc: 0.875
+Epoch 4 Step 140000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 4 Step 140000 ood_test.txt
+                        | Test Loss: 0.0375 
+                        | Test Acc: 0.9869 
+                        | Test Counting Acc: 0.988 
+                        | Test Last Acc: 0.9062
+Epoch 4 Step 150000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 4 Step 150000 ood_test.txt
+                        | Test Loss: 0.0315 
+                        | Test Acc: 0.9882 
+                        | Test Counting Acc: 0.9889 
+                        | Test Last Acc: 0.9375
+Epoch 4 Step 156250 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 4 Step 156250 ood_test.txt
+                | Test Loss: 0.036 
+                | Test Acc: 0.9838 
+                | Test Counting Acc: 0.9854 
+                | Test Last Acc: 0.875
+Epoch 5 Step 160000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 5 Step 160000 ood_test.txt
+                        | Test Loss: 0.0365 
+                        | Test Acc: 0.9865 
+                        | Test Counting Acc: 0.9872 
+                        | Test Last Acc: 0.9375
+Epoch 5 Step 170000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 5 Step 170000 ood_test.txt
+                        | Test Loss: 0.033 
+                        | Test Acc: 0.9884 
+                        | Test Counting Acc: 0.9896 
+                        | Test Last Acc: 0.9062
+Epoch 5 Step 180000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 5 Step 180000 ood_test.txt
+                        | Test Loss: 0.038 
+                        | Test Acc: 0.9843 
+                        | Test Counting Acc: 0.9858 
+                        | Test Last Acc: 0.875
+Epoch 5 Step 187500 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 5 Step 187500 ood_test.txt
+                | Test Loss: 0.0334 
+                | Test Acc: 0.9854 
+                | Test Counting Acc: 0.9865 
+                | Test Last Acc: 0.9062
+Epoch 6 Step 190000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 6 Step 190000 ood_test.txt
+                        | Test Loss: 0.0345 
+                        | Test Acc: 0.9856 
+                        | Test Counting Acc: 0.9865 
+                        | Test Last Acc: 0.9219
+Epoch 6 Step 200000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 6 Step 200000 ood_test.txt
+                        | Test Loss: 0.0226 
+                        | Test Acc: 0.9893 
+                        | Test Counting Acc: 0.9894 
+                        | Test Last Acc: 0.9844
+Epoch 6 Step 210000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 6 Step 210000 ood_test.txt
+                        | Test Loss: 0.0293 
+                        | Test Acc: 0.9871 
+                        | Test Counting Acc: 0.9878 
+                        | Test Last Acc: 0.9375
+Epoch 6 Step 218750 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 6 Step 218750 ood_test.txt
+                | Test Loss: 0.0313 
+                | Test Acc: 0.986 
+                | Test Counting Acc: 0.9874 
+                | Test Last Acc: 0.8906
+Epoch 7 Step 220000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 7 Step 220000 ood_test.txt
+                        | Test Loss: 0.0382 
+                        | Test Acc: 0.9856 
+                        | Test Counting Acc: 0.9872 
+                        | Test Last Acc: 0.875
