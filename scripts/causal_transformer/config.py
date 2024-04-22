@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 1234
+    seed = 123
     date = "debug"
     num_hidden_layers = 2
     vocab = []
@@ -16,17 +16,17 @@ class Basic_Config:
     resid_pdrop = 0. #0.1
     embd_pdrop = 0. #0.1
     attn_pdrop = 0. #0.1
-    must_attend_to_identity = True
+    must_attend_to_identity = False
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
     output_dir = "output"
-    ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
-    train_data_path = "/data/yingshac/llms_do_math/data/rasp_primitives/"
+    ckpt_dir = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/scripts/causal_transformer/output"
+    train_data_path = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
     test_files = ["ood_test"]
     per_device_train_batch_size = 8
-    gradient_accumulation_steps = 1
+    gradient_accumulation_steps = 4
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
     logging_steps = 100
@@ -35,8 +35,8 @@ class Basic_Config:
     num_epochs = 10
     #save_every_steps = 20000
     eval_every_steps = 10000
-    absolute_posemb = False
-    absolute_posemb_shift = False
+    absolute_posemb = True
+    absolute_posemb_shift = True
     absolute_posemb_rdmz = False
     rotary_posemb = False
     rotary_posemb_shift = False

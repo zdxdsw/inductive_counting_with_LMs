@@ -147,7 +147,7 @@ if config.init_from_ckpt is not None:
 
 Print(f"------------ Start job {config.date} ------------")
 
-progress_bar = tqdm(total=(config.num_epochs-global_epoch)*len(train_dataloader), disable=not accelerator.is_local_main_process, mininterval=1)
+progress_bar = tqdm(total=(config.num_epochs-global_epoch)*len(train_dataloader), disable=not accelerator.is_local_main_process, mininterval=10)
 for epoch in range(global_epoch, config.num_epochs):
 
     for step, batch in enumerate(train_dataloader):

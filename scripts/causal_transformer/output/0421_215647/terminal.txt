@@ -1,0 +1,6 @@
+------------- Preparing model -------------
+Total parameters: 25536512
+------------- Preparing data -------------
+num train = 1000000
+num val = 600
+------------ Start job 0421_215647 ------------

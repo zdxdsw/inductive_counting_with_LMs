@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
 parser.add_argument('--accelerator', type=str, default="")
-
+parser.add_argument('--turnoff_accelerator', action='store_true')
 args = parser.parse_args()
 
 
@@ -50,9 +50,16 @@ for seed in SEEDS:
     for i in trange(args.sleep, desc="Sleeping"):
       time.sleep(60)
 
-  os.system("accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
-      args.accelerator,
-      config.date,
-      args.task,
-      os.path.join(config.output_dir, date, "terminal.txt"),
-  ))
+  if not args.turnoff_accelerator:
+    os.system("accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+        args.accelerator,
+        config.date,
+        args.task,
+        os.path.join(config.output_dir, date, "terminal.txt"),
+    ))
+  else:
+    os.system("python trainer.py --date {} --task {} | tee {}".format(
+        config.date,
+        args.task,
+        os.path.join(config.output_dir, date, "terminal.txt"),
+    ))
