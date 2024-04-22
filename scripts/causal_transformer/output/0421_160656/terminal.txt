@@ -1,0 +1,80 @@
+------------- Preparing model -------------
+Total parameters: 50544640
+------------- Preparing data -------------
+num train = 1000000
+num val = 300
+------------ Start job 0421_160656 ------------
+[2024-04-21 16:07:14,332] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-21 16:07:14,334] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-21 16:07:14,334] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-21 16:07:14,336] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Epoch 0 Step 0 
+                      | Val Loss: 2.6534 
+                      | Val Acc: 0.052 
+                      | Val Counting Acc: 0.0527 
+                      | Val Last Acc: 0.0391
+Epoch 0 Step 0 ood_test.txt
+                        | Test Loss: 2.6747 
+                        | Test Acc: 0.0585 
+                        | Test Counting Acc: 0.058 
+                        | Test Last Acc: 0.0938
+Epoch 0 Step 10000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 10000 ood_test.txt
+                        | Test Loss: 1.724 
+                        | Test Acc: 0.7264 
+                        | Test Counting Acc: 0.7356 
+                        | Test Last Acc: 0.0781
+Epoch 0 Step 20000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 20000 ood_test.txt
+                        | Test Loss: 3.4209 
+                        | Test Acc: 0.7179 
+                        | Test Counting Acc: 0.7272 
+                        | Test Last Acc: 0.0625
+Epoch 0 Step 30000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 0 Step 30000 ood_test.txt
+                        | Test Loss: 2.8828 
+                        | Test Acc: 0.7402 
+                        | Test Counting Acc: 0.7489 
+                        | Test Last Acc: 0.125
+Epoch 0 Step 31250 
+                | Val Loss: 0.0 
+                | Val Acc: 1.0 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 1.0
+Epoch 0 Step 31250 ood_test.txt
+                | Test Loss: 2.8944 
+                | Test Acc: 0.7402 
+                | Test Counting Acc: 0.7489 
+                | Test Last Acc: 0.125
+Epoch 1 Step 40000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 40000 ood_test.txt
+                        | Test Loss: 2.7114 
+                        | Test Acc: 0.7279 
+                        | Test Counting Acc: 0.7369 
+                        | Test Last Acc: 0.0938
+Epoch 1 Step 50000 
+                      | Val Loss: 0.0 
+                      | Val Acc: 1.0 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 50000 ood_test.txt
+                        | Test Loss: 2.2527 
+                        | Test Acc: 0.738 
+                        | Test Counting Acc: 0.7467 
+                        | Test Last Acc: 0.125

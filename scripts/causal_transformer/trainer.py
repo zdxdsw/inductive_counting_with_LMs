@@ -88,6 +88,7 @@ text_datasets = [load_dataset(
 train_data = concatenate_datasets([D['train'] for D in text_datasets])
 val_data = concatenate_datasets([D['validation'] for D in text_datasets])
 
+augmentation = None
 if config.absolute_posemb_shift or config.rotary_posemb_shift:
     augmentation = "shift"
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:

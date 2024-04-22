@@ -21,16 +21,17 @@ def sequences_collator(texts, w2i, max_len, augmentation=None):
             shift_value = random.randint(0, max_len - len(i))
             position_id = list(range(shift_value, shift_value + len(i)))
             position_id += [0] * (max_len - len(position_id))
+            position_ids.append(position_id)
         elif augmentation == "randomized":
             position_id = sorted(random.sample(range(max_len), len(i)))
             position_id += [0] * (max_len - len(position_id))
+            position_ids.append(position_id)
 
         attention_mask = [1 if not w == '<pad>' else 0 for w in i]
         attention_mask += [0] * (max_len - len(attention_mask))
 
         input_ids.append(input_id)
         labels.append(label)
-        position_ids.append(position_id)
         attention_masks.append(attention_mask)
         
     if augmentation is None: position_ids = None
