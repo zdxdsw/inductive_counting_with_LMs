@@ -82,6 +82,7 @@ def rotate_half(x):
 def apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1):
     cos = cos.unsqueeze(unsqueeze_dim)
     sin = sin.unsqueeze(unsqueeze_dim)
+    
     q_embed = (q * cos) + (rotate_half(q) * sin)
     k_embed = (k * cos) + (rotate_half(k) * sin)
     return q_embed, k_embed
@@ -111,7 +112,7 @@ class Attention(nn.Module):
             ),
             persistent=False,
         )
-        self.register_buffer("masked_bias", torch.tensor(-1e4), persistent=False) # ! -1e4 magic number is important!
+        #self.register_buffer("masked_bias", torch.tensor(-1e4), persistent=False) # ! -1e4 magic number is important!
 
         self.embed_dim = config.hidden_size
         self.num_heads = config.num_attention_heads
@@ -164,6 +165,7 @@ class Attention(nn.Module):
         if self.config.rotary_posemb:
             cos, sin = self.rotary_emb(v, position_ids)
             q, k = apply_rotary_pos_emb(q, k, cos, sin)
+        
 
         # @MERCURY =>> Scale by SQRT(head_dim) * layer_number -- taken from Megatron LM!
         scale_factor = 1.0
@@ -183,6 +185,7 @@ class Attention(nn.Module):
 
         # Upcasting --> Disable autocast AND manually call .float()
         # Reorder via `baddbmm` Time (Scale K by 1 / root(dk) first!)
+        k = k.transpose(2, 3) # transpose k tensors after applying rotary positional embedding
         with autocast(enabled=False):
             q, k = q.reshape(-1, seq_len, dk), k.reshape(-1, dk, seq_len)
             w = torch.baddbmm(
@@ -234,10 +237,10 @@ class Attention(nn.Module):
     def split_heads(self, x, k=False):
         new_x_shape = x.size()[:-1] + (self.num_heads, x.size(-1) // self.num_heads)
         x = x.view(*new_x_shape)  # in Tensorflow implem: fct split_states
-        if k:
-            return x.permute(0, 2, 3, 1)  # (batch, head, head_features, seq_length)
-        else:
-            return x.permute(0, 2, 1, 3)  # (batch, head, seq_length, head_features)
+        # if k:
+        #     return x.permute(0, 2, 3, 1)  # (batch, head, head_features, seq_length)
+        # else:
+        return x.permute(0, 2, 1, 3)  # (batch, head, seq_length, head_features)
         
     def forward(self, hidden_states, attention_mask=None, position_ids=None):
         query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
@@ -299,6 +302,9 @@ class Causal_Transformer(nn.Module):
         self.embed_dim = config.hidden_size
         self.vocab_size = len(config.vocab)
 
+        eye = torch.eye(self.config.max_position_embeddings).unsqueeze(0)
+        self.register_buffer("eye", eye, persistent=False)
+
         self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
         if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
 
@@ -309,6 +315,8 @@ class Causal_Transformer(nn.Module):
 
         # Initialize weights
         self.apply(self._init_weights)
+        if self.config.tie_word_embeddings:
+            self.lm_head.weight = self.wte.weight
 
     def _init_weights(self, module):
         """Initialize the weights."""
@@ -336,6 +344,7 @@ class Causal_Transformer(nn.Module):
             if name == "c_proj.weight":
                 # Special Scaled Initialization --> There are 2 Layer Norms per Transformer Block
                 p.data.normal_(mean=0.0, std=(self.config.initializer_range / math.sqrt(2 * self.config.num_hidden_layers)))
+
 
 
     def forward(
@@ -376,8 +385,8 @@ class Causal_Transformer(nn.Module):
             attention_mask = attention_mask[:, None, None, :] # bs, num_heads, seq_len, seq_len
 
             if self.config.must_attend_to_identity:
-                eye = torch.eye(input_shape[1]).unsqueeze(0)[:, None, :, :].to(device=attention_mask.device)
-                attention_mask = (attention_mask.bool() | eye.bool()).long()
+                #eye = torch.eye(input_shape[1]).unsqueeze(0)[:, None, :, :].to(device=attention_mask.device)
+                attention_mask = (attention_mask.bool() | self.eye[:, None, :, :].bool()).long()
             attention_mask = attention_mask.to(dtype=hidden_states.dtype, device=hidden_states.device)  # fp16 compatibility # to be confirmed
             attention_mask = (1.0 - attention_mask) * torch.finfo(next(self.parameters()).dtype).min
 
@@ -386,6 +395,9 @@ class Causal_Transformer(nn.Module):
 
         hidden_states = self.ln_f(hidden_states)
         hidden_states = hidden_states.view(*output_shape)
+
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.config.tie_word_embeddings: hidden_states = hidden_states * (self.embed_dim**-0.5)
 
         lm_logits = self.lm_head(hidden_states) # loss calculated outside
 

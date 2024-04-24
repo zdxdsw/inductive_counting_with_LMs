@@ -158,3 +158,274 @@ Epoch 3 Step 110000 ood_test.txt
                         | Test Acc: 0.1066 
                         | Test Counting Acc: 0.1065 
                         | Test Last Acc: 0.1094
+Epoch 3 Step 120000 
+                      | Val Loss: 2.2944 
+                      | Val Acc: 0.1203 
+                      | Val Counting Acc: 0.1211 
+                      | Val Last Acc: 0.1016
+Epoch 3 Step 120000 ood_test.txt
+                        | Test Loss: 2.3044 
+                        | Test Acc: 0.1066 
+                        | Test Counting Acc: 0.1065 
+                        | Test Last Acc: 0.1094
+Epoch 3 Step 125000 
+                | Val Loss: 2.2943 
+                | Val Acc: 0.1203 
+                | Val Counting Acc: 0.1211 
+                | Val Last Acc: 0.1016
+Epoch 3 Step 125000 ood_test.txt
+                | Test Loss: 2.3052 
+                | Test Acc: 0.1066 
+                | Test Counting Acc: 0.1065 
+                | Test Last Acc: 0.1094
+Epoch 4 Step 130000 
+                      | Val Loss: 2.2943 
+                      | Val Acc: 0.1203 
+                      | Val Counting Acc: 0.1211 
+                      | Val Last Acc: 0.1016
+Epoch 4 Step 130000 ood_test.txt
+                        | Test Loss: 2.305 
+                        | Test Acc: 0.1066 
+                        | Test Counting Acc: 0.1065 
+                        | Test Last Acc: 0.1094
+Epoch 4 Step 140000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 4 Step 140000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3051                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 4 Step 150000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 4 Step 150000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3047                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094
+Epoch 4 Step 156250                                                                                                                                                                                                
+                | Val Loss: 2.2943                                                                                                                                                                                 
+                | Val Acc: 0.1203                                                                                                                                                                                  
+                | Val Counting Acc: 0.1211                                                                                                                                                                         
+                | Val Last Acc: 0.1016                                                                                                                                                                             
+Epoch 4 Step 156250 ood_test.txt                                                                                                                                                                                   
+                | Test Loss: 2.3051                                                                                                                                                                                
+                | Test Acc: 0.1066                                                                                                                                                                                 
+                | Test Counting Acc: 0.1065                                                                                                                                                                        
+                | Test Last Acc: 0.1094                                                                                                                                                                            
+Epoch 5 Step 160000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 5 Step 160000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3051                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 5 Step 170000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 5 Step 170000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3049                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 5 Step 180000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 5 Step 180000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3049                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 5 Step 187500                                                                                                                                                                                                
+                | Val Loss: 2.2943                                                                                                                                                                                 
+                | Val Acc: 0.1203                                                                                                                                                                                  
+                | Val Counting Acc: 0.1211                                                                                                                                                                         
+                | Val Last Acc: 0.1016
+Epoch 5 Step 187500 ood_test.txt                                                                                                                                                                                   
+                | Test Loss: 2.305                                                                                                                                                                                 
+                | Test Acc: 0.1066                                                                                                                                                                                 
+                | Test Counting Acc: 0.1065                                                                                                                                                                        
+                | Test Last Acc: 0.1094                                                                                                                                                                            
+Epoch 6 Step 190000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 6 Step 190000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3048                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 6 Step 200000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 6 Step 200000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3047                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 6 Step 210000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 6 Step 210000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3052                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 6 Step 218750                                                                                                                                                                                                
+                | Val Loss: 2.2943                                                                                                                                                                                 
+                | Val Acc: 0.1203                                                                                                                                                                                  
+                | Val Counting Acc: 0.1211                                                                                                                                                                         
+                | Val Last Acc: 0.1016                                                                                                                                                                             
+Epoch 6 Step 218750 ood_test.txt                                                                                                                                                                                   
+                | Test Loss: 2.3051                                                                                                                                                                                
+                | Test Acc: 0.1066                                                                                                                                                                                 
+                | Test Counting Acc: 0.1065                                                                                                                                                                        
+                | Test Last Acc: 0.1094
+Epoch 7 Step 220000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 7 Step 220000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3048                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 7 Step 230000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 7 Step 230000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.305                                                                                                                                                                         
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 7 Step 240000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 7 Step 240000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.305                                                                                                                                                                         
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 7 Step 250000                                                                                                                                                                                                
+                | Val Loss: 2.2944                                                                                                                                                                                 
+                | Val Acc: 0.1203                                                                                                                                                                                  
+                | Val Counting Acc: 0.1211                                                                                                                                                                         
+                | Val Last Acc: 0.1016                                                                                                                                                                             
+Epoch 7 Step 250000 ood_test.txt                                                                                                                                                                                   
+                | Test Loss: 2.3047                                                                                                                                                                                
+                | Test Acc: 0.1066                                                                                                                                                                                 
+                | Test Counting Acc: 0.1065                                                                                                                                                                        
+                | Test Last Acc: 0.1094                                                                                                                                                                            
+Epoch 8 Step 250000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016
+Epoch 8 Step 250000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3047                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 8 Step 260000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 8 Step 260000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.305                                                                                                                                                                         
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 8 Step 270000                                                                                                                                                                                                
+                      | Val Loss: 2.2944                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 8 Step 270000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.3046                                                                                                                                                                        
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 8 Step 280000                                                                                                                                                                                                
+                      | Val Loss: 2.2943                                                                                                                                                                           
+                      | Val Acc: 0.1203                                                                                                                                                                            
+                      | Val Counting Acc: 0.1211                                                                                                                                                                   
+                      | Val Last Acc: 0.1016                                                                                                                                                                       
+Epoch 8 Step 280000 ood_test.txt                                                                                                                                                                                   
+                        | Test Loss: 2.305                                                                                                                                                                         
+                        | Test Acc: 0.1066                                                                                                                                                                         
+                        | Test Counting Acc: 0.1065                                                                                                                                                                
+                        | Test Last Acc: 0.1094                                                                                                                                                                    
+Epoch 8 Step 281250                                                                                                                                                                                                
+                | Val Loss: 2.2944                                                                                                                                                                                 
+                | Val Acc: 0.1203                                                                                                                                                                                  
+                | Val Counting Acc: 0.1211                                                                                                                                                                         
+                | Val Last Acc: 0.1016                                                                                                                                                                             
+Epoch 8 Step 281250 ood_test.txt                                                                                                                                                                                   
+                | Test Loss: 2.3046 
+                | Test Acc: 0.1066 
+                | Test Counting Acc: 0.1065 
+                | Test Last Acc: 0.1094
+Epoch 9 Step 290000 
+                      | Val Loss: 2.2944 
+                      | Val Acc: 0.1203 
+                      | Val Counting Acc: 0.1211 
+                      | Val Last Acc: 0.1016
+Epoch 9 Step 290000 ood_test.txt
+                        | Test Loss: 2.3049 
+                        | Test Acc: 0.1066 
+                        | Test Counting Acc: 0.1065  
+                        | Test Last Acc: 0.1094
+Epoch 9 Step 300000 
+                      | Val Loss: 2.2944 
+                      | Val Acc: 0.1203 
+                      | Val Counting Acc: 0.1211 
+                      | Val Last Acc: 0.1016
+Epoch 9 Step 300000 ood_test.txt
+                        | Test Loss: 2.3048 
+                        | Test Acc: 0.1066 
+                        | Test Counting Acc: 0.1065  
+                        | Test Last Acc: 0.1094
+Epoch 9 Step 310000 
+                      | Val Loss: 2.2943 
+                      | Val Acc: 0.1203 
+                      | Val Counting Acc: 0.1211 
+                      | Val Last Acc: 0.1016
+Epoch 9 Step 310000 ood_test.txt
+                        | Test Loss: 2.3049 
+                        | Test Acc: 0.1066 
+                        | Test Counting Acc: 0.1065  
+                        | Test Last Acc: 0.1094
+Epoch 9 Step 312500 
+                | Val Loss: 2.2943 
+                | Val Acc: 0.1203 
+                | Val Counting Acc: 0.1211 
+                | Val Last Acc: 0.1016
+Epoch 9 Step 312500 ood_test.txt
+                | Test Loss: 2.3049 
+                | Test Acc: 0.1066 
+                | Test Counting Acc: 0.1065 
+                | Test Last Acc: 0.1094
+Finish!!! 0421_192036

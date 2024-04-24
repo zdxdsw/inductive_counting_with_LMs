@@ -4,6 +4,9 @@ from tqdm import trange
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
 
+if os.path.exists('/data/yingshac/'): 
+    os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
