@@ -2,7 +2,7 @@ venv/
 *.tar.gz
 
 scripts/llama/output/
-#scripts/causal_transformer/output/
+scripts/causal_transformer/output/
 
 #data/
 slurm/
@@ -320,3 +320,4 @@ scripts/causal_transformer/output/0422_172246/tensorboard/events.out.tfevents.17
 scripts/causal_transformer/output/0422_201148/tensorboard/events.out.tfevents.1713831119.sphynx.lti.cs.cmu.edu.1484284.0
 scripts/causal_transformer/output/0423_205949/tensorboard/events.out.tfevents.1713920405.panther.lti.cs.cmu.edu.1783272.0
 scripts/causal_transformer/output/0423_223253/tensorboard/events.out.tfevents.1713925983.sphynx.lti.cs.cmu.edu.1701086.0
+scripts/causal_transformer/output/0424_155946/tensorboard/events.out.tfevents.1713988796.panther.lti.cs.cmu.edu.2130392.0

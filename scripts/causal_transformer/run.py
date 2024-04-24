@@ -1,5 +1,6 @@
 import random, time, os, pytz, argparse, yaml, sys, json
 from config import *
+from config_taskspecific import *
 from tqdm import trange
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
@@ -11,9 +12,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
 parser.add_argument('--accelerator', type=str, default="")
+parser.add_argument('--cuda', type=str, default="")
 parser.add_argument('--turnoff_accelerator', action='store_true')
 args = parser.parse_args()
-
+if args.cuda: args.cuda = f"CUDA_VISIBLE_DEVICES=\"{args.cuda}\""
 
 """------------- Preparing configs -------------"""
 if len(args.task): config = eval(f"{args.task}_Config")()
@@ -54,7 +56,8 @@ for seed in SEEDS:
       time.sleep(60)
 
   if not args.turnoff_accelerator:
-    os.system("accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+    os.system("{} accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+        args.cuda,
         args.accelerator,
         config.date,
         args.task,

@@ -1,4 +1,4 @@
-import json, os, math, sys, random, re, pytz, argparse
+import json, os, math, sys, random, re, pytz, argparse, warnings
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
 import torch
@@ -19,7 +19,7 @@ if os.path.exists('/data/yingshac/'):
 parser = argparse.ArgumentParser()
 parser.add_argument('--handle', type=str)
 parser.add_argument('--load_from_epochs', type=str, default="all") # str of space separated ints
-parser.add_argument('--test_files', type=str, default="ood_test")
+parser.add_argument('--test_files', type=str, default=None)
 parser.add_argument('--loop', type=int, default=10) # number of times to loop through the test_dataloader
 args = parser.parse_args()
 
@@ -57,9 +57,15 @@ elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
 collator = partial(sequences_collator, 
                 w2i={w:i for i,w in enumerate(config.vocab)}, 
-                max_len=config.max_position_embeddings,
+                max_seq_len=config.max_seq_len,
+                max_position_embeddings=config.max_position_embeddings,
                 augmentation=augmentation,
                 )
+if args.test_files is None:
+    if "test_files" in load_from_config: args.test_files = load_from_config["test_files"]
+    else: 
+        args.test_files = "val ood_test"
+        warnings.warn("No test_files specified, defaulting to 'val ood_test'")
 
 
 """ ----------------------------- Testing ----------------------------- """

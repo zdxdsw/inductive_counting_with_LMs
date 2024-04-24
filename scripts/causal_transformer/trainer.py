@@ -6,6 +6,7 @@ from accelerate import Accelerator
 from torch.utils.data import DataLoader
 from datasets import concatenate_datasets
 from config import *
+from config_taskspecific import *
 from dataset import sequences_collator
 from datasets import load_dataset
 from model import Causal_Transformer
@@ -101,11 +102,12 @@ elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
-                    max_len=config.max_position_embeddings,
+                    max_seq_len=config.max_seq_len,
+                    max_position_embeddings=config.max_position_embeddings,
                     augmentation=augmentation,
                 )
 
-train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator)
+train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator, num_workers=4)
 val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
 
 Print(f"num train = {len(train_data)}")

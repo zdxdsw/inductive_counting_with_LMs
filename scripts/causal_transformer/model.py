@@ -104,11 +104,11 @@ class Attention(nn.Module):
         super().__init__()
 
         self.config = config
-        self.max_position_embeddings = config.max_position_embeddings
+        self.max_seq_len = config.max_seq_len
         self.register_buffer(
             "bias",
-            torch.tril(torch.ones((self.max_position_embeddings, self.max_position_embeddings), dtype=torch.bool)).view(
-                1, 1, self.max_position_embeddings, self.max_position_embeddings
+            torch.tril(torch.ones((self.max_seq_len, self.max_seq_len), dtype=torch.bool)).view(
+                1, 1, self.max_seq_len, self.max_seq_len
             ),
             persistent=False,
         )
@@ -145,7 +145,7 @@ class Attention(nn.Module):
         if self.config.rotary_posemb:
             self.rotary_emb = RotaryEmbedding(
                 self.head_dim,
-                max_position_embeddings=self.max_position_embeddings,
+                max_position_embeddings=self.config.max_position_embeddings,
             )
         
 
@@ -302,7 +302,7 @@ class Causal_Transformer(nn.Module):
         self.embed_dim = config.hidden_size
         self.vocab_size = len(config.vocab)
 
-        eye = torch.eye(self.config.max_position_embeddings).unsqueeze(0)
+        eye = torch.eye(self.config.max_seq_len).unsqueeze(0)
         self.register_buffer("eye", eye, persistent=False)
 
         self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
@@ -361,19 +361,20 @@ class Causal_Transformer(nn.Module):
         inputs_embeds = self.wte(input_ids)
         hidden_states = inputs_embeds
 
-        if position_ids is not None: position_ids = position_ids.view(-1, input_shape[-1])
+        position_ids = position_ids.view(-1, input_shape[-1])
         
-        past_length = 0        
-        noshift_position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=device)
-        noshift_position_ids = noshift_position_ids.unsqueeze(0).view(-1, input_shape[-1])
+        # past_length = 0        
+        # noshift_position_ids = torch.arange(past_length, input_shape[-1] + past_length, dtype=torch.long, device=device)
+        # noshift_position_ids = noshift_position_ids.unsqueeze(0).view(-1, input_shape[-1])
         
         if self.config.absolute_posemb:
-            _ = position_ids if self.config.absolute_posemb_shift else noshift_position_ids
-            position_embeds = self.wpe(_)
+            #_ = position_ids if self.config.absolute_posemb_shift else noshift_position_ids
+            #position_embeds = self.wpe(_)
+            position_embeds = self.wpe(position_ids)
             hidden_states = inputs_embeds + position_embeds
 
         if self.config.rotary_posemb:
-            position_ids_for_rotary = position_ids if self.config.rotary_posemb_shift else noshift_position_ids
+            position_ids_for_rotary = position_ids #if self.config.rotary_posemb_shift else noshift_position_ids
         else:
             position_ids_for_rotary = None
         
