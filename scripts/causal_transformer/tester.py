@@ -29,6 +29,7 @@ device="cuda"
 load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
 for k in load_from_config:
     setattr(config, k, load_from_config[k])
+if not "tie_word_embeddings" in load_from_config: config.tie_word_embeddings = False # for backward compatibility
 model = Causal_Transformer(config)
 model = model.to(device)
 model.eval()
