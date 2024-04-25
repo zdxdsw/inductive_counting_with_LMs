@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 1234
+    seed = [1234, 12]
     date = "debug"
     num_hidden_layers = 1
     vocab = []

@@ -208,3 +208,17 @@ class counting_selective_padhelper_Config(Basic_Config):
 @dataclass
 class counting_selective_10items_Config(Basic_Config):
     vocab = [str(i) for i in range(10)] + ['<pad>'] 
+
+@dataclass
+class counting_selective_10items_padhelper_Config(Basic_Config):
+    vocab = [str(i) for i in range(10)] + ['<pad>'] 
+    max_seq_len = 210
+
+@dataclass
+class counting_selective_10items2_Config(Basic_Config):
+    vocab = [str(i) for i in range(10)] + ['<pad>'] 
+
+@dataclass
+class counting_selective_10items_padhelper2_Config(Basic_Config):
+    vocab = [str(i) for i in range(10)] + ['<pad>'] 
+    max_seq_len = 210

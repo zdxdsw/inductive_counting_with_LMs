@@ -56,7 +56,7 @@ for seed in SEEDS:
       time.sleep(60)
 
   if not args.turnoff_accelerator:
-    os.system("{} accelerate launch --main_process_port {} --num_process 1 trainer.py --date {} --task {} | tee {}".format(
+    os.system("{} accelerate launch --main_process_port {} --num_processes 1 trainer.py --date {} --task {} | tee {}".format(
         args.cuda,
         args.port,
         config.date,
