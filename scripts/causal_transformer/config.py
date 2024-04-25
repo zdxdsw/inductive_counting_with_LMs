@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Basic_Config:
     seed = 1234
     date = "debug"
-    num_hidden_layers = 4
+    num_hidden_layers = 1
     vocab = []
     task = ""
     aux_tasks = []
@@ -20,7 +20,7 @@ class Basic_Config:
     embd_pdrop = 0. #0.1
     attn_pdrop = 0. #0.1
     must_attend_to_identity = False
-    tie_word_embeddings = True
+    tie_word_embeddings = False
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3

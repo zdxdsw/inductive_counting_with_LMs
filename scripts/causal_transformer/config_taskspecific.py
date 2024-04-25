@@ -205,3 +205,6 @@ class counting_selective_padhelper_Config(Basic_Config):
     vocab = [str(i) for i in range(51)] + ['<pad>', 'a', 'b'] 
     max_seq_len = 210
 
+@dataclass
+class counting_selective_10items_Config(Basic_Config):
+    vocab = [str(i) for i in range(10)] + ['<pad>'] 

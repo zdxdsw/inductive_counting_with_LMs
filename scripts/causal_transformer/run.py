@@ -11,7 +11,7 @@ if os.path.exists('/data/yingshac/'):
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
-parser.add_argument('--accelerator', type=str, default="")
+parser.add_argument('--port', type=str, default="29500")
 parser.add_argument('--cuda', type=str, default="")
 parser.add_argument('--turnoff_accelerator', action='store_true')
 args = parser.parse_args()
@@ -56,9 +56,9 @@ for seed in SEEDS:
       time.sleep(60)
 
   if not args.turnoff_accelerator:
-    os.system("{} accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+    os.system("{} accelerate launch --main_process_port {} --num_process 1 trainer.py --date {} --task {} | tee {}".format(
         args.cuda,
-        args.accelerator,
+        args.port,
         config.date,
         args.task,
         os.path.join(config.output_dir, date, "terminal.txt"),
