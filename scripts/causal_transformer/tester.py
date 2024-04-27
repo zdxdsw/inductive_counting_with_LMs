@@ -25,11 +25,19 @@ args = parser.parse_args()
 
 """ ------------------------ Prepare Config ------------------------ """
 config = Basic_Config()
+default_config = Default_Config()
 device="cuda" 
 load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
-for k in load_from_config:
-    setattr(config, k, load_from_config[k])
-if not "tie_word_embeddings" in load_from_config: config.tie_word_embeddings = False # for backward compatibility
+config_keys = dir(config)
+for k in config_keys:
+    if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
+        if k in load_from_config: setattr(config, k, load_from_config[k])
+        else:
+            setattr(config, k, default_config.__getattribute__(k))
+            warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
+
+#if not "tie_word_embeddings" in load_from_config: config.tie_word_embeddings = False # for backward compatibility
+#if not "scaler_posemb" in load_from_config: config.scaler_posemb = False # for backward compatibility
 model = Causal_Transformer(config)
 model = model.to(device)
 model.eval()

@@ -12,6 +12,8 @@ def construct_position_id(i, max_seq_len, max_position_embeddings, augmentation)
         effective_position_id = list(range(shift_value, shift_value + effective_len_i))
     elif augmentation == "randomized":
         effective_position_id = sorted(random.sample(range(max_position_embeddings), effective_len_i))
+    elif augmentation == "zooming":
+        effective_position_id = [x/effective_len_i for x in range(1, effective_len_i+1)]
 
     position_id = []
     effective_p = 0
@@ -44,15 +46,6 @@ def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings, augment
         label += [-1] * (max_seq_len - len(label))
 
         position_ids.append(construct_position_id(i, max_seq_len, max_position_embeddings, augmentation))
-        # if augmentation == "shift":
-        #     shift_value = random.randint(0, max_len - len(i))
-        #     position_id = list(range(shift_value, shift_value + len(i)))
-        #     position_id += [0] * (max_len - len(position_id))
-        #     position_ids.append(position_id)
-        # elif augmentation == "randomized":
-        #     position_id = sorted(random.sample(range(max_len), len(i)))
-        #     position_id += [0] * (max_len - len(position_id))
-        #     position_ids.append(position_id)
 
         attention_mask = [1 if not w == '<pad>' else 0 for w in i]
         attention_mask += [0] * (max_seq_len - len(attention_mask))
@@ -64,7 +57,7 @@ def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings, augment
     return {
         'input_id': torch.LongTensor(input_ids),
         'label': torch.LongTensor(labels),
-        'position_id': torch.LongTensor(position_ids),
+        'position_id': torch.tensor(position_ids),
         'attention_mask': torch.LongTensor(attention_masks),
     }
 

@@ -307,6 +307,7 @@ class Causal_Transformer(nn.Module):
 
         self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
         if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
+        if self.config.scaler_posemb: self.wte = nn.Embedding(self.vocab_size, self.embed_dim-1)
 
         self.drop = nn.Dropout(config.embd_pdrop)
         self.h = nn.ModuleList([Block(config, layer_idx=i) for i in range(config.num_hidden_layers)])
@@ -377,6 +378,9 @@ class Causal_Transformer(nn.Module):
             position_ids_for_rotary = position_ids #if self.config.rotary_posemb_shift else noshift_position_ids
         else:
             position_ids_for_rotary = None
+
+        if self.config.scaler_posemb:
+            hidden_states = torch.cat([hidden_states, position_ids.unsqueeze(-1)], dim=-1)
         
         hidden_states = self.drop(hidden_states)
 

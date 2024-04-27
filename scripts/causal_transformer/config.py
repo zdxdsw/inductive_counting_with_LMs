@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Basic_Config:
     seed = [1234, 12]
     date = "debug"
-    num_hidden_layers = 1
+    num_hidden_layers = 4
     vocab = []
     task = ""
     aux_tasks = []
@@ -39,11 +39,26 @@ class Basic_Config:
     num_epochs = 10
     #save_every_steps = 20000
     eval_every_steps = 40000
-    absolute_posemb = True
-    absolute_posemb_shift = True
+    absolute_posemb = False
+    absolute_posemb_shift = False
     absolute_posemb_rdmz = False
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
+    scaler_posemb = True
     load_from_dir = None #"0423_105639" # 
     init_from_ckpt = None
+
+
+@dataclass
+class Default_Config:
+    seed = 1234
+    must_attend_to_identity = False
+    tie_word_embeddings = False
+    absolute_posemb = False
+    absolute_posemb_shift = False
+    absolute_posemb_rdmz = False
+    rotary_posemb = False
+    rotary_posemb_shift = False
+    rotary_posemb_rdmz = False
+    scaler_posemb = False

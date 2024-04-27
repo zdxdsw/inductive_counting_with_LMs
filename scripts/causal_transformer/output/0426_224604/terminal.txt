@@ -1,0 +1,22 @@
+------------- Preparing model -------------
+Total parameters: 50409461
+------------- Preparing data -------------
+max_seen_len for counting_selective_10items_padhelper2 = 50
+num train = 1000000
+num val = 2000
+------------ Start job 0426_224604 ------------
+[2024-04-26 22:46:16,137] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+k = 2000, last_demo = 2000
+Epoch 0 Step 0 
+                        | Val Loss: 2.6024 
+                        | Val Acc: 0.0404 
+                        | Val Counting Acc: 0.041 
+                        | Val Last Acc: 0.01
+                        | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 2.6919
+                            | Test Acc: 0.0293
+                            | Test Counting Acc: 0.0297
+                            | Test Last Acc: 0.0017
+                            | Test Unseen Len Acc: 0.0009

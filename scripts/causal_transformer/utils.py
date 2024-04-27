@@ -38,12 +38,15 @@ def count_parameters(model):
 
 
 def check_config(config):
-    if not (config.absolute_posemb or config.rotary_posemb):
+    if not (config.absolute_posemb or config.rotary_posemb or config.scaler_posemb):
         warnings.warn("========== No positional embedding is used in the model. Essentially we're doing NoPE! ==========")
     if config.absolute_posemb_shift and config.absolute_posemb_rdmz:
         raise ValueError("========== You cannot use both shift and randomized augmentation for positional embeddings ==========")
     if config.rotary_posemb_shift and config.rotary_posemb_rdmz:
         raise ValueError("========== You cannot use both shift and randomized augmentation for positional embeddings ==========")
+    if config.scaler_posemb:
+        warnings.warn("========== You're using POS/N positional embeddings. ==========")
+        assert (not config.absolute_posemb) and (not config.rotary_posemb), "========== You cannot use both scaler and absolute/rotary positional embeddings =========="
 
 def trim_task(task):
     return task.replace("_addbigram", "").replace("_addtable", "")

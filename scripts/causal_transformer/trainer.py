@@ -100,6 +100,8 @@ if config.absolute_posemb_shift or config.rotary_posemb_shift:
     augmentation = "shift"
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
+elif config.scaler_posemb:
+    augmentation = "zooming"
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
                     max_seq_len=config.max_seq_len,
@@ -107,7 +109,7 @@ collator = partial(sequences_collator,
                     augmentation=augmentation,
                 )
 
-train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator, num_workers=4)
+train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator)
 val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
 
 Print(f"num train = {len(train_data)}")
