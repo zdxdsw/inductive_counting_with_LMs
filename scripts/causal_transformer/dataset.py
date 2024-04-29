@@ -3,7 +3,38 @@ import json, os, sys, random
 import torch
 from typing import List
 
-def sequences_collator(texts, w2i, max_len, augmentation=None):
+def construct_position_id(i, max_seq_len, max_position_embeddings, augmentation):
+    effective_len_i = len([x for x in i if not x in ['<pad>', '<blk>']]) + 1
+    
+    if augmentation is None:  effective_position_id = list(range(effective_len_i))
+    if augmentation == "shift":
+        shift_value = random.randint(0, max_position_embeddings - effective_len_i)
+        effective_position_id = list(range(shift_value, shift_value + effective_len_i))
+    elif augmentation == "randomized":
+        effective_position_id = sorted(random.sample(range(max_position_embeddings), effective_len_i))
+    elif augmentation == "scaler+shift":
+        shift_value = random.randint(0, max_position_embeddings - effective_len_i)
+        effective_position_id = [x/max_position_embeddings for x in range(shift_value, shift_value + effective_len_i)]
+    elif augmentation == "zooming":
+        effective_position_id = [x/effective_len_i for x in range(1, effective_len_i+1)]
+
+    position_id = []
+    effective_p = 0
+    for x in i:
+        #try: 
+        position_id.append(effective_position_id[effective_p])
+        # except: 
+        #     print(i)
+        #     print(effective_len_i, effective_position_id)
+        #     raise
+        if not x in ['<pad>', '<blk>']: effective_p += 1
+    
+    position_id += [0] * (max_seq_len - len(position_id))
+    #print(position_id)
+    return position_id
+
+
+def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings, augmentation=None):
     input_ids = []
     labels = []
     position_ids = []
@@ -12,35 +43,24 @@ def sequences_collator(texts, w2i, max_len, augmentation=None):
         i, l = json.loads(t['text'])
         
         input_id = [w2i[w] for w in i]
-        input_id += [w2i['<pad>']] * (max_len - len(input_id))
+        input_id += [w2i['<pad>']] * (max_seq_len - len(input_id))
 
         label = [w2i[w] if not w == '-1' else -1 for w in l]
-        label += [-1] * (max_len - len(label))
+        label += [-1] * (max_seq_len - len(label))
 
-        if augmentation == "shift":
-            shift_value = random.randint(0, max_len - len(i))
-            position_id = list(range(shift_value, shift_value + len(i)))
-            position_id += [0] * (max_len - len(position_id))
-            position_ids.append(position_id)
-        elif augmentation == "randomized":
-            position_id = sorted(random.sample(range(max_len), len(i)))
-            position_id += [0] * (max_len - len(position_id))
-            position_ids.append(position_id)
+        position_ids.append(construct_position_id(i, max_seq_len, max_position_embeddings, augmentation))
 
         attention_mask = [1 if not w == '<pad>' else 0 for w in i]
-        attention_mask += [0] * (max_len - len(attention_mask))
+        attention_mask += [0] * (max_seq_len - len(attention_mask))
 
         input_ids.append(input_id)
         labels.append(label)
         attention_masks.append(attention_mask)
         
-    if augmentation is None: position_ids = None
-    else: position_ids = torch.LongTensor(position_ids)
-    #print(position_ids)
     return {
         'input_id': torch.LongTensor(input_ids),
         'label': torch.LongTensor(labels),
-        'position_id': position_ids,
+        'position_id': torch.tensor(position_ids),
         'attention_mask': torch.LongTensor(attention_masks),
     }
 

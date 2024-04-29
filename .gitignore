@@ -1,13 +1,16 @@
 venv/
 *.tar.gz
 
-#scripts/llama/output/
+scripts/llama/output/
+scripts/causal_transformer/output/
+run.py
+config.py
 
 #data/
 slurm/
 events.out*
 .nfs*
-
+.gitignore
 
 # ------------- Auto discovered large files -------------
 scripts/causal_transformer/output/0421_215647/tensorboard/events.out.tfevents.1713751011.babel-11-17.2789471.0
