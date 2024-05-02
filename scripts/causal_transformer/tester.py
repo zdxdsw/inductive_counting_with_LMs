@@ -30,7 +30,8 @@ device="cuda"
 load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
 config_keys = dir(config)
 for k in config_keys:
-    if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
+    if k.startswith("__"): continue
+    if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path", "per_device_eval_batch_size"]:
         if k in load_from_config: setattr(config, k, load_from_config[k])
         else:
             setattr(config, k, default_config.__getattribute__(k))
@@ -63,6 +64,9 @@ if config.absolute_posemb_shift or config.rotary_posemb_shift:
         augmentation = "shift"
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
+elif config.scaler_posemb:
+    if config.scaler_posemb_shift: augmentation = "scaler+shift"
+    else: augmentation = "zooming"
 collator = partial(sequences_collator, 
                 w2i={w:i for i,w in enumerate(config.vocab)}, 
                 max_seq_len=config.max_seq_len,

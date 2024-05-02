@@ -101,7 +101,8 @@ if config.absolute_posemb_shift or config.rotary_posemb_shift:
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
 elif config.scaler_posemb:
-    augmentation = "zooming"
+    if config.scaler_posemb_shift: augmentation = "scaler+shift"
+    else: augmentation = "zooming"
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
                     max_seq_len=config.max_seq_len,

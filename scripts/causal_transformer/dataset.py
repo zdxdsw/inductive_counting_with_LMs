@@ -12,6 +12,9 @@ def construct_position_id(i, max_seq_len, max_position_embeddings, augmentation)
         effective_position_id = list(range(shift_value, shift_value + effective_len_i))
     elif augmentation == "randomized":
         effective_position_id = sorted(random.sample(range(max_position_embeddings), effective_len_i))
+    elif augmentation == "scaler+shift":
+        shift_value = random.randint(0, max_position_embeddings - effective_len_i)
+        effective_position_id = [x/max_position_embeddings for x in range(shift_value, shift_value + effective_len_i)]
     elif augmentation == "zooming":
         effective_position_id = [x/effective_len_i for x in range(1, effective_len_i+1)]
 

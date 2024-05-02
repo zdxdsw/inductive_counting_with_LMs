@@ -49,7 +49,7 @@ def check_config(config):
         assert (not config.absolute_posemb) and (not config.rotary_posemb), "========== You cannot use both scaler and absolute/rotary positional embeddings =========="
 
 def trim_task(task):
-    return task.replace("_addbigram", "").replace("_addtable", "")
+    return task.replace("_addbigram", "").replace("_addtablelarge", "").replace("_addtable", "")
 
 def inference(model_to_eval, dataloader, criterion, device, max_seen_len, vocab):
     
