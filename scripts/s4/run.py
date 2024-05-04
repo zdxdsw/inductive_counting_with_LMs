@@ -1,6 +1,7 @@
-import random, time, os, pytz, argparse, yaml, sys, json, warnings
+import random, time, os, pytz, argparse, sys, json, warnings
 from config import *
-from config_taskspecific import *
+sys.path.append("../")
+from causal_transformer.config_taskspecific import *
 from tqdm import trange
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 

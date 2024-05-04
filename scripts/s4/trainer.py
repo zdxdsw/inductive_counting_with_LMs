@@ -6,12 +6,12 @@ from accelerate import Accelerator
 from torch.utils.data import DataLoader
 from datasets import load_dataset, concatenate_datasets
 from functools import partial
-from model import S4Model  # Can use full version instead of minimal S4D standalone below
-from config_taskspecific import *
+from model import S4Model, LSTMModel
 from config import *
+from s4_utils import sequences_collator
 sys.path.append("../")
+from causal_transformer.config_taskspecific import *
 from causal_transformer.utils import trim_task, inference
-from causal_transformer.dataset import sequences_collator
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
@@ -61,9 +61,9 @@ if accelerator.is_main_process:
     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
 
-Print("------------- Preparing model -------------")
+Print(f"------------- Preparing {config.model} model -------------")
 
-model = S4Model(config)
+model = eval(f"{config.model}Model")(config)
 Print(f"Total parameters: {sum(p.numel() for p in model.parameters())}")
 
 def setup_optimizer(model, lr, weight_decay, epochs):
@@ -240,7 +240,7 @@ for epoch in range(global_epoch, config.num_epochs):
         accelerator.wait_for_everyone()
         with accelerator.autocast() as autocast, torch.backends.cuda.sdp_kernel(enable_flash=False) as disable:
             optimizer.zero_grad()
-            
+                        
             logits = model(
                 batch['input_id'].to(accelerator.device),
             )
@@ -255,7 +255,7 @@ for epoch in range(global_epoch, config.num_epochs):
             if (global_step+1) % config.gradient_accumulation_steps == 0:
                 accelerator.clip_grad_norm_(model.parameters(), 1.0)
                 optimizer.step()
-                lr_scheduler.step()
+                #lr_scheduler.step() # Currently disable lr_scheduler
             
         logs = {"loss": loss.detach().item(), "lr": lr_scheduler.get_last_lr()[0], "step": global_step}
         accelerator.log(logs, step=global_step)
@@ -310,7 +310,7 @@ for epoch in range(global_epoch, config.num_epochs):
             model_to_eval.train()
     accelerator.wait_for_everyone()
     
-    save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")
+    save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_{config.model}.pt")
     torch.save(accelerator.unwrap_model(model).state_dict(), save_path)
 
 if accelerator.is_main_process:

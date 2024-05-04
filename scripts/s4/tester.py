@@ -1,12 +1,12 @@
-import json, os, math, sys, random, re, pytz, argparse, warnings
+import json, os, math, sys, random, re, pytz, argparse, warnings, time
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
 import torch
-from model import S4Model  # Can use full version instead of minimal S4D standalone below
+from model import S4Model, LSTMModel
 from config import *
 sys.path.append("../")
-from causal_transformer.utils import trim_task, inference
-from causal_transformer.dataset import sequences_collator
+from causal_transformer.utils import trim_task, get_acc
+from s4_utils import sequences_collator
 
 import numpy as np
 from tqdm import tqdm
@@ -38,7 +38,7 @@ for k in config_keys:
             setattr(config, k, default_config.__getattribute__(k))
             warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
 
-model = S4Model(config)
+model = eval(f"{config.model}Model")(config)
 model = model.to(device)
 model.eval()
 
@@ -48,7 +48,7 @@ if not config.task:
 ckpt_dir = os.path.join(config.ckpt_dir, args.handle, "ckpts")
 avail_ckpts = sorted(os.listdir(ckpt_dir), key=lambda x: int(x.split("_")[1]))
 if args.load_from_epochs != "all":
-    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[1]) in [int(e) for e in args.load_from_epochs.split()]]
+    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[0]) in [int(e) for e in args.load_from_epochs.split()]]
 
 val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
 args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
@@ -76,7 +76,7 @@ if args.test_files is None:
 for load_from_pt in avail_ckpts:
     state_dict = torch.load(os.path.join(ckpt_dir, load_from_pt), map_location=device)
     model.load_state_dict(state_dict, strict=False)
-
+    last_date = ""
     for split in args.test_files.split():
         test_data = load_dataset(
                             "text", 
@@ -90,7 +90,11 @@ for load_from_pt in avail_ckpts:
         testing_output = {}
 
         _date = datetime.now(timezone).strftime("%m%d_%H%M%S") + "_" + load_from_pt.split("_")[0]
-
+        if _date == last_date: 
+            time.sleep(1)
+            _date = datetime.now(timezone).strftime("%m%d_%H%M%S") + "_" + load_from_pt.split("_")[0]
+        last_date = _date
+        
         k = 0
         for loop in range(args.loop):
             for i, batch in enumerate(test_dataloader):

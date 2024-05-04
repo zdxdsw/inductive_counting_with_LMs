@@ -26,6 +26,18 @@ class counting_diffsymbol_addbigram_Config(Basic_Config):
     test_files = ["ood_test", "addbigram_test"]
 
 @dataclass
+class counting_samesymbol_plain_addbigram_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+    aux_tasks = ['addbigram']
+    test_files = ["ood_test", "addbigram_test"]
+
+@dataclass
+class counting_samesymbol_plain2_addbigram_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+    aux_tasks = ['addbigram']
+    test_files = ["ood_test", "addbigram_test"]
+
+@dataclass
 class counting_samesymbol_blankhelper_Config(Basic_Config):
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<blk>']
     max_seq_len = 210
@@ -266,3 +278,9 @@ class counting_selective_10items2_Config(Basic_Config):
 class counting_selective_10items_padhelper2_Config(Basic_Config):
     vocab = [str(i) for i in range(10)] + ['<pad>'] 
     max_seq_len = 210
+
+@dataclass
+class counting_selective_modular_4items_Config(Basic_Config):
+    vocab = [str(i) for i in range(4)] + ['<pad>'] 
+    max_position_embeddings = 130
+    max_seq_len = 130

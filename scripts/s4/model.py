@@ -1,4 +1,9 @@
-"""Standalone version of Structured State Space sequence model (S4)."""
+"""
+Standalone version of Structured State Space sequence model (S4).
+References: 
+    https://github.com/state-spaces/s4/blob/main/example.py
+    https://github.com/state-spaces/s4/blob/main/models/s4/s4.py
+"""
 from collections import defaultdict
 from typing import Optional, Mapping, Tuple, Union
 import logging
@@ -9,7 +14,6 @@ from scipy import special as ss
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-#from pytorch_lightning.utilities import rank_zero_only
 from einops import rearrange, repeat
 
 import warnings
@@ -24,20 +28,6 @@ if tuple(map(int, torch.__version__.split('.')[:2])) >= (1, 10):
 else:
     _resolve_conj = lambda x: x.conj()
 
-
-# def get_logger(name=__name__, level=logging.INFO) -> logging.Logger:
-#     """Initializes multi-GPU-friendly python logger."""
-
-#     logger = logging.getLogger(name)
-#     logger.setLevel(level)
-
-#     # this ensures all logging levels get marked with the rank zero decorator
-#     # otherwise logs would get multiplied for each GPU process in multi-GPU setup
-#     for level in ("debug", "info", "warning", "error", "exception", "fatal", "critical"):
-#         setattr(logger, level, rank_zero_only(getattr(logger, level)))
-
-#     return logger
-# log = get_logger(__name__)
 
 """Structured matrix kernels"""
 
@@ -683,7 +673,7 @@ class Kernel(nn.Module):
         l_max: Optional[int] = None,
         lr: Union[float, Optional[Mapping]] = None,
         wd: Union[float, Optional[Mapping]] = 0.0,
-        verbose: bool = True,
+        verbose: bool = False,
         **kwargs,
     ):
         """General interface.
@@ -1968,7 +1958,8 @@ class S4Model(nn.Module):
         config,
     ):
         super().__init__()
-
+        self.config = config
+        self.embed_dim = config.hidden_size
         self.prenorm = True # https://arxiv.org/pdf/2002.04745 Prenorm will make the gradients more stable
 
         # Linear encoder (d_input = 1 for grayscale and 3 for RGB)
@@ -1988,12 +1979,16 @@ class S4Model(nn.Module):
 
         # Linear decoder
         self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
+        
+        if self.config.tie_word_embeddings:
+            warnings.warn("=========== tie_word_embeddings = True! ==========")
+            self.decoder.weight = self.encoder.weight
 
     def forward(self, x, **kwargs):
         """
         Input x is shape (B, L, d_input)
         """
-        x = self.encoder(x)  # (B, L, d_input) -> (B, L, d_model)
+        x = self.encoder(x)  # (B, L) -> (B, L, d_model)
 
         x = x.transpose(-1, -2)  # (B, L, d_model) -> (B, d_model, L)
         for layer, norm, dropout in zip(self.s4_layers, self.norms, self.dropouts):
@@ -2022,6 +2017,62 @@ class S4Model(nn.Module):
         # Pooling: average pooling over the sequence length
         # x = x.mean(dim=1)
 
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.config.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
+        
+        # Decode the outputs
+        x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
+
+        return x
+    
+
+class LSTMModel(nn.Module):
+
+    def __init__(
+        self,
+        config,
+    ):
+        super().__init__()
+        self.config = config
+        self.embed_dim = config.hidden_size
+        
+        self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
+
+        self.lstm = nn.LSTM(
+            input_size=config.hidden_size, 
+            hidden_size=config.hidden_size,
+            num_layers=config.num_hidden_layers, 
+            dropout=config.dropout,
+            batch_first=True
+        )
+
+        # Linear decoder
+        self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
+        
+        self.apply(self._init_weights)
+        if self.config.tie_word_embeddings:
+            warnings.warn("=========== tie_word_embeddings = True! ==========")
+            self.decoder.weight = self.encoder.weight
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            # Slightly different from the TF version which uses truncated_normal for initialization
+            # cf https://github.com/pytorch/pytorch/pull/5617
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        if isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+
+    def forward(self, x, **kwargs):
+        x = self.encoder(x)
+        x, _ = self.lstm(x)
+
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.config.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
+        
         # Decode the outputs
         x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
 

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 1234
+    seed = [1234, 12, 123]
     date = "debug"
     num_hidden_layers = 2
     vocab = []
@@ -20,7 +20,7 @@ class Basic_Config:
     embd_pdrop = 0. #0.1
     attn_pdrop = 0. #0.1
     must_attend_to_identity = False
-    tie_word_embeddings = True
+    tie_word_embeddings = False
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
@@ -34,20 +34,20 @@ class Basic_Config:
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
     logging_steps = 100
-    warmup_steps = 0 #3000
+    warmup_steps = 3000
     learning_rate = 1e-4
-    num_epochs = 20
+    num_epochs = 10
     #save_every_steps = 20000
     eval_every_steps = 40000
-    absolute_posemb = True
-    absolute_posemb_shift = True
+    absolute_posemb = False
+    absolute_posemb_shift = False
     absolute_posemb_rdmz = False
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
-    scaler_posemb = False
-    scaler_posemb_shift = False
-    load_from_dir = "0427_131257" # None #
+    scaler_posemb = True
+    scaler_posemb_shift = True
+    load_from_dir = None #"0427_131257" # 
     init_from_ckpt = None
 
 
