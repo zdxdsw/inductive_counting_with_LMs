@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [1234, 12, 123]
+    seed = 1234
     date = "debug"
-    num_hidden_layers = 2
+    num_hidden_layers = 1
     vocab = []
     task = ""
     aux_tasks = []
@@ -34,9 +34,9 @@ class Basic_Config:
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
     logging_steps = 100
-    warmup_steps = 3000
+    warmup_steps = 0 #3000
     learning_rate = 1e-4
-    num_epochs = 10
+    num_epochs = 20
     #save_every_steps = 20000
     eval_every_steps = 40000
     absolute_posemb = False
@@ -45,9 +45,11 @@ class Basic_Config:
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
-    scaler_posemb = True
-    scaler_posemb_shift = True
-    load_from_dir = None #"0427_131257" # 
+    scaler_posemb = False
+    scaler_posemb_shift = False
+    sinusoidal_posemb = True
+    sinusoidal_posemb_shift = True
+    load_from_dir = "0505_125135" # None #
     init_from_ckpt = None
 
 
@@ -64,3 +66,5 @@ class Default_Config:
     rotary_posemb_rdmz = False
     scaler_posemb = False
     scaler_posemb_shift = False
+    sinusoidal_posemb = False
+    sinusoidal_posemb_shift = False

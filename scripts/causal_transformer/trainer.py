@@ -96,7 +96,7 @@ args.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>
 Print(f"max_seen_len for {args.task} = {args.max_seen_len}")
 
 augmentation = None
-if config.absolute_posemb_shift or config.rotary_posemb_shift:
+if config.absolute_posemb_shift or config.rotary_posemb_shift or config.sinusoidal_posemb_shift:
     augmentation = "shift"
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"

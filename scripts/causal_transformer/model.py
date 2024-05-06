@@ -5,6 +5,7 @@ import torch.nn as nn
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 from torch.cuda.amp import autocast
 from transformers.activations import ACT2FN
+torch.set_printoptions(profile="full")
 
 class Conv1D(nn.Module):
     """
@@ -87,7 +88,32 @@ def apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1):
     k_embed = (k * cos) + (rotate_half(k) * sin)
     return q_embed, k_embed
 
+class SinusoidalEmbedding(nn.Module):
+    """
+    Reference: https://github.com/butsugiri/shape/blob/main/onmt/modules/embeddings.py
+    """
 
+    def __init__(self, dim, max_position_embeddings):
+        
+        pe = torch.zeros(max_position_embeddings, dim)
+        position = torch.arange(0, max_position_embeddings).unsqueeze(1)
+        div_term = torch.exp((torch.arange(0, dim, 2, dtype=torch.float) *
+                             -(math.log(10000.0) / dim)))
+        
+        pe[:, 0::2] = torch.sin(position.float() * div_term)
+        pe[:, 1::2] = torch.cos(position.float() * div_term)
+        #pe = pe.unsqueeze(1)
+        super(SinusoidalEmbedding, self).__init__()
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        # x: position_ids (bs, seq_len)
+        pe = torch.stack([self.pe[_x] for _x in x])
+        #print(pe.size())
+        #print(pe[:5, :30, 6])
+        return pe
+   
+    
 """
 References:
 https://github.com/huggingface/transformers/blob/v4.5.0/src/transformers/models/gpt2/modeling_gpt2.py#L125
@@ -308,6 +334,7 @@ class Causal_Transformer(nn.Module):
         self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
         if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
         if self.config.scaler_posemb: self.wte = nn.Embedding(self.vocab_size, self.embed_dim-1)
+        if self.config.sinusoidal_posemb: self.sine = SinusoidalEmbedding(self.embed_dim, config.max_position_embeddings)
 
         self.drop = nn.Dropout(config.embd_pdrop)
         self.h = nn.ModuleList([Block(config, layer_idx=i) for i in range(config.num_hidden_layers)])
@@ -381,6 +408,11 @@ class Causal_Transformer(nn.Module):
 
         if self.config.scaler_posemb:
             hidden_states = torch.cat([hidden_states, position_ids.unsqueeze(-1)], dim=-1)
+
+        if self.config.sinusoidal_posemb:
+            position_embeds = self.sine(position_ids)
+            hidden_states = hidden_states * math.sqrt(self.embed_dim) + position_embeds
+            #print(position_embeds[:5, :30, 6])
         
         hidden_states = self.drop(hidden_states)
 

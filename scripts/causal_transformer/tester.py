@@ -49,7 +49,7 @@ if not config.task:
 ckpt_dir = os.path.join(config.ckpt_dir, args.handle, "ckpts")
 avail_ckpts = sorted(os.listdir(ckpt_dir), key=lambda x: int(x.split("_")[1]))
 if args.load_from_epochs != "all":
-    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[1]) in [int(e) for e in args.load_from_epochs.split()]]
+    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[0]) in [int(e) for e in args.load_from_epochs.split()]]
 
 val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
 args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
@@ -60,8 +60,8 @@ print(f"max_seen_len for {config.task} = {args.max_seen_len}")
 data_path = f"{config.eval_data_path}/{trim_task(config.task)}"
 criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
 augmentation = None
-if config.absolute_posemb_shift or config.rotary_posemb_shift:
-        augmentation = "shift"
+if config.absolute_posemb_shift or config.rotary_posemb_shift or config.sinusoidal_posemb_shift:
+    augmentation = "shift"
 elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
     augmentation = "randomized"
 elif config.scaler_posemb:
@@ -152,7 +152,7 @@ for load_from_pt in avail_ckpts:
             """)
 
         save_dir = "test_samples" if "test" in split else "val_samples"
-        os.makedirs(f"{config.output_dir}/{args.handle}/{save_dir}", exist_ok=True)
+        os.makedirs(f"{config.ckpt_dir}/{args.handle}/{save_dir}", exist_ok=True)
         json.dump({
                 "test_data_file":  f"{data_path}/{split}.txt",
                 "load_from": f"{args.handle}/{load_from_pt}",
@@ -163,5 +163,5 @@ for load_from_pt in avail_ckpts:
                 "test_loss": round(np.mean(test_losses), 4),
                 "testing_output": testing_output,
             }, 
-            open(f"{config.output_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
+            open(f"{config.ckpt_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
     
