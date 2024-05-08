@@ -26,7 +26,8 @@ args = parser.parse_args()
 """ ------------------------ Prepare Config ------------------------ """
 config = Basic_Config()
 default_config = Default_Config()
-device="cuda" 
+device="cuda"
+print(f"\n\n---------------------- {args.handle} ----------------------")
 load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
 config_keys = dir(config)
 for k in config_keys:

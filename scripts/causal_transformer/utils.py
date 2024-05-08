@@ -51,7 +51,7 @@ def check_config(config):
         warnings.warn("========== You're using Sinusoidal positional embeddings. ==========")
 
 def trim_task(task):
-    return task.replace("_addbigram", "").replace("_addtablelarge", "").replace("_addtable", "")
+    return task.replace("_blkseq", "").replace("_nullseq", "").replace("_addbigram", "").replace("_addtablelarge", "").replace("_addtable", "")
 
 def inference(model_to_eval, dataloader, criterion, device, max_seen_len, vocab):
     

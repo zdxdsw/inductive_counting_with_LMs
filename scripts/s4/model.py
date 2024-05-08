@@ -2025,6 +2025,26 @@ class S4Model(nn.Module):
 
         return x
     
+class Embedding_with_null(nn.Module):
+    """
+    Reference: https://stackoverflow.com/questions/60615832/freeze-only-some-lines-of-a-torch-nn-embedding-object
+    """
+    def __init__(
+        self,
+        num_embeddings,
+        embedding_dim
+    ):
+        super().__init__()
+        self.weight_train = nn.Parameter(torch.empty((num_embeddings-1, embedding_dim)))
+        self.weight_freeze = nn.Parameter(torch.empty((1, embedding_dim)), requires_grad=False)
+        #self.weight = torch.cat((self.weight_freeze, self.weight_train), 0)
+        self.padding_idx = 0
+
+    def forward(self, x):
+        weight = torch.cat((self.weight_freeze, self.weight_train), 0)
+        return F.embedding(x, weight)
+
+
 
 class LSTMModel(nn.Module):
 
@@ -2036,7 +2056,10 @@ class LSTMModel(nn.Module):
         self.config = config
         self.embed_dim = config.hidden_size
         
-        self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
+        if config.freeze_null_emb: 
+            self.encoder = Embedding_with_null(len(config.vocab), config.hidden_size)
+            assert config.vocab[0] == '<null>'
+        else: self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
 
         self.lstm = nn.LSTM(
             input_size=config.hidden_size, 
@@ -2050,9 +2073,11 @@ class LSTMModel(nn.Module):
         self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
         
         self.apply(self._init_weights)
+
         if self.config.tie_word_embeddings:
             warnings.warn("=========== tie_word_embeddings = True! ==========")
             self.decoder.weight = self.encoder.weight
+
 
     def _init_weights(self, module):
         if isinstance(module, nn.Linear):
@@ -2065,6 +2090,9 @@ class LSTMModel(nn.Module):
             module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
             if module.padding_idx is not None:
                 module.weight.data[module.padding_idx].zero_()
+        if isinstance(module, Embedding_with_null):
+            module.weight_train.data.normal_(mean=0.0, std=self.config.initializer_range)
+            module.weight_freeze.data.zero_()
 
     def forward(self, x, **kwargs):
         x = self.encoder(x)

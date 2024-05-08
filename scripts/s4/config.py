@@ -2,15 +2,16 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 123
+    seed = [1234, 12, 123]
     model = "S4"
     date = "debug"
-    num_hidden_layers = 4
+    num_hidden_layers = 1
     vocab = []
     task = ""
     aux_tasks = []
-    hidden_size = 1024
+    hidden_size = 128
     max_seq_len = 128
+    freeze_null_emb = False
     dropout = 0.1
     tie_word_embeddings = False
     initializer_range = 0.02
@@ -23,7 +24,7 @@ class Basic_Config:
     gradient_accumulation_steps = 1
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
-    logging_steps = 500
+    logging_steps = 200
     #warmup_steps = 0 #3000
     learning_rate = 0.01
     weight_decay = 0.01
@@ -39,3 +40,4 @@ class Default_Config:
     tie_word_embeddings = False
     initializer_range = 0.02
     model = "S4"
+    freeze_null_emb = False

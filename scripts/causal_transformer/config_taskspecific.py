@@ -38,6 +38,45 @@ class counting_samesymbol_plain2_addbigram_Config(Basic_Config):
     test_files = ["ood_test", "addbigram_test"]
 
 @dataclass
+class counting_samesymbol_plain2_addbigram_blkseq_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    aux_tasks = ['addbigram_blkseq']
+    test_files = ["ood_test", "addbigram_blkseq_test"]
+
+@dataclass
+class counting_samesymbol_plain2_addbigram_nullseq_Config(Basic_Config):
+    vocab = ['<null>'] + [str(i) for i in range(101)] + ['<pad>', 'a']
+    aux_tasks = ['addbigram_nullseq']
+    test_files = ["ood_test", "addbigram_nullseq_test"]
+    freeze_null_emb = True
+
+@dataclass
+class counting_samesymbol_plain3_addbigram_blkseq_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    aux_tasks = ['addbigram_blkseq']
+    test_files = ["ood_test", "addbigram_blkseq_test"]
+
+@dataclass
+class counting_samesymbol_plain3_addbigram_nullseq_Config(Basic_Config):
+    vocab = ['<null>'] + [str(i) for i in range(101)] + ['<pad>', 'a']
+    aux_tasks = ['addbigram_nullseq']
+    test_files = ["ood_test", "addbigram_nullseq_test"]
+    freeze_null_emb = True
+
+@dataclass
+class counting_samesymbol_shiftedstart4_addbigram_blkseq_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    aux_tasks = ['addbigram_shiftedblkseq']
+    test_files = ["ood_test", "addbigram_shiftedblkseq_test"]
+
+@dataclass
+class counting_samesymbol_shiftedstart4_addbigram_nullseq_Config(Basic_Config):
+    vocab = ['<null>'] + [str(i) for i in range(101)] + ['<pad>', 'a']
+    aux_tasks = ['addbigram_shiftednullseq']
+    test_files = ["ood_test", "addbigram_shiftednullseq_test"]
+    freeze_null_emb = True
+
+@dataclass
 class counting_samesymbol_blankhelper_Config(Basic_Config):
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<blk>']
     max_seq_len = 210

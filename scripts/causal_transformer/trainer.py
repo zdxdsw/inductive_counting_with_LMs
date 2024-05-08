@@ -66,7 +66,8 @@ Print("------------- Preparing model -------------")
 
 model = Causal_Transformer(config)
 Print(f"Total parameters: {sum(p.numel() for p in model.parameters())}")
-#Print(f"Trainable parameters: {model.num_parameters(only_trainable=True)}")
+print(f"Trainable parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
+
 optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
 
 lr_scheduler = get_constant_schedule_with_warmup(

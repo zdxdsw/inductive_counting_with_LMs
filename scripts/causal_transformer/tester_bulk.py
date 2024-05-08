@@ -7,7 +7,7 @@ os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
 output_dir = "output"
 commands = []
 for handle in sorted(os.listdir(output_dir)):
-    if handle > "0427_052555" or handle < "0427_050919": continue
+    if handle >= "0506_115349" or handle < "0505_124121": continue
     config = json.load(open(f"{output_dir}/{handle}/config.json", "r"))
     if 'task' in config:
         task = config['task']
@@ -16,10 +16,10 @@ for handle in sorted(os.listdir(output_dir)):
     else:
         print("Cannot find task from the config file: ", handle)
         continue
-    if 'rotary_posemb' in config and config['rotary_posemb']: continue
-    if task in ["counting_samesymbol_mod10", "counting_samesymbol_mod10_padhelper", "counting_selective_10items2", "counting_selective_10items_padhelper2"]:
+    #if 'rotary_posemb' in config and config['rotary_posemb']: continue
+    if task in ["counting_samesymbol_mod10", "counting_samesymbol_mod10_padhelper","counting_samesymbol_shiftedstart3", "counting_selective_10items2", "counting_selective_10items_padhelper2"]:
         loop10 = False
-        for k in ['rotary_posemb_shift', 'rotary_posemb_rdmz', 'absolute_posemb_shift', 'absolute_posemb_rdmz']:
+        for k in ['rotary_posemb_shift', 'rotary_posemb_rdmz', 'absolute_posemb_shift', 'absolute_posemb_rdmz', 'sinusoidal_posemb_shift']:
             if k in config and config[k]: loop10 = True
         loop = 10 if loop10 else 1
         test_files = ["ood_test"]

@@ -3,6 +3,7 @@ from typing import Optional, Tuple, Union
 import torch
 import torch.nn as nn
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
+import torch.nn.functional as F
 from torch.cuda.amp import autocast
 from transformers.activations import ACT2FN
 torch.set_printoptions(profile="full")
@@ -113,6 +114,24 @@ class SinusoidalEmbedding(nn.Module):
         #print(pe[:5, :30, 6])
         return pe
    
+class Embedding_with_null(nn.Module):
+    """
+    Reference: https://stackoverflow.com/questions/60615832/freeze-only-some-lines-of-a-torch-nn-embedding-object
+    """
+    def __init__(
+        self,
+        num_embeddings,
+        embedding_dim
+    ):
+        super().__init__()
+        self.weight_train = nn.Parameter(torch.empty((num_embeddings-1, embedding_dim)))
+        self.weight_freeze = nn.Parameter(torch.empty((1, embedding_dim)), requires_grad=False)
+        #self.weight = torch.cat((self.weight_freeze, self.weight_train), 0)
+        self.padding_idx = 0
+
+    def forward(self, x):
+        weight = torch.cat((self.weight_freeze, self.weight_train), 0)
+        return F.embedding(x, weight)
     
 """
 References:
@@ -331,11 +350,16 @@ class Causal_Transformer(nn.Module):
         eye = torch.eye(self.config.max_seq_len).unsqueeze(0)
         self.register_buffer("eye", eye, persistent=False)
 
-        self.wte = nn.Embedding(self.vocab_size, self.embed_dim)
-        if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
-        if self.config.scaler_posemb: self.wte = nn.Embedding(self.vocab_size, self.embed_dim-1)
+        num_embeddings = self.embed_dim-1 if config.scaler_posemb else self.embed_dim
+        if config.freeze_null_emb: 
+            self.wte = Embedding_with_null(len(config.vocab), num_embeddings)
+            assert config.vocab[0] == '<null>'
+        else: self.wte = nn.Embedding(self.vocab_size, num_embeddings)
+
+        if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)        
         if self.config.sinusoidal_posemb: self.sine = SinusoidalEmbedding(self.embed_dim, config.max_position_embeddings)
 
+        
         self.drop = nn.Dropout(config.embd_pdrop)
         self.h = nn.ModuleList([Block(config, layer_idx=i) for i in range(config.num_hidden_layers)])
         self.ln_f = nn.LayerNorm(self.embed_dim, eps=config.layer_norm_epsilon)

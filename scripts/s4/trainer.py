@@ -65,6 +65,7 @@ Print(f"------------- Preparing {config.model} model -------------")
 
 model = eval(f"{config.model}Model")(config)
 Print(f"Total parameters: {sum(p.numel() for p in model.parameters())}")
+print(f"Trainable parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
 
 def setup_optimizer(model, lr, weight_decay, epochs):
     """
@@ -81,7 +82,7 @@ def setup_optimizer(model, lr, weight_decay, epochs):
     all_parameters = list(model.parameters())
 
     # General parameters don't contain the special _optim key
-    params = [p for p in all_parameters if not hasattr(p, "_optim")]
+    params = [p for p in all_parameters if (not hasattr(p, "_optim")) and (p.requires_grad)]
 
     # Create an optimizer with the general parameters
     optimizer = torch.optim.AdamW(params, lr=lr, weight_decay=weight_decay)
