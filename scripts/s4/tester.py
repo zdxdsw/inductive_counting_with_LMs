@@ -1,11 +1,12 @@
-import json, os, math, sys, random, re, pytz, argparse, warnings
+import json, os, math, sys, random, re, pytz, argparse, warnings, time
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
 import torch
-from model import Causal_Transformer
+from model import S4Model, LSTMModel, RNNModel
 from config import *
-from dataset import sequences_collator
-from utils import get_acc, trim_task
+sys.path.append("../")
+from causal_transformer.utils import trim_task, get_acc
+from s4_utils import sequences_collator
 
 import numpy as np
 from tqdm import tqdm
@@ -20,7 +21,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--handle', type=str)
 parser.add_argument('--load_from_epochs', type=str, default="all") # str of space separated ints
 parser.add_argument('--test_files', type=str, default=None)
-parser.add_argument('--loop', type=int, default=10) # number of times to loop through the test_dataloader
+parser.add_argument('--loop', type=int, default=1) # number of times to loop through the test_dataloader
 args = parser.parse_args()
 
 """ ------------------------ Prepare Config ------------------------ """
@@ -37,9 +38,7 @@ for k in config_keys:
             setattr(config, k, default_config.__getattribute__(k))
             warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
 
-#if not "tie_word_embeddings" in load_from_config: config.tie_word_embeddings = False # for backward compatibility
-#if not "scaler_posemb" in load_from_config: config.scaler_posemb = False # for backward compatibility
-model = Causal_Transformer(config)
+model = eval(f"{config.model}Model")(config)
 model = model.to(device)
 model.eval()
 
@@ -49,7 +48,7 @@ if not config.task:
 ckpt_dir = os.path.join(config.ckpt_dir, args.handle, "ckpts")
 avail_ckpts = sorted(os.listdir(ckpt_dir), key=lambda x: int(x.split("_")[1]))
 if args.load_from_epochs != "all":
-    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[1]) in [int(e) for e in args.load_from_epochs.split()]]
+    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[0]) in [int(e) for e in args.load_from_epochs.split()]]
 
 val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
 args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
@@ -59,19 +58,12 @@ print(f"max_seen_len for {config.task} = {args.max_seen_len}")
 """ -------------------- Prepare Reusable Variables -------------------- """
 data_path = f"{config.eval_data_path}/{trim_task(config.task)}"
 criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
-augmentation = None
-if config.absolute_posemb_shift or config.rotary_posemb_shift or config.sinusoidal_posemb_shift:
-    augmentation = "shift"
-elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
-    augmentation = "randomized"
-elif config.scaler_posemb:
-    if config.scaler_posemb_shift: augmentation = "scaler+shift"
-    else: augmentation = "zooming"
+
 collator = partial(sequences_collator, 
                 w2i={w:i for i,w in enumerate(config.vocab)}, 
                 max_seq_len=config.max_seq_len,
-                max_position_embeddings=config.max_position_embeddings,
-                augmentation=augmentation,
+                max_position_embeddings=config.max_seq_len,
+                augmentation=None,
                 )
 if args.test_files is None:
     if "test_files" in load_from_config: args.test_files = load_from_config["test_files"]
@@ -84,7 +76,7 @@ if args.test_files is None:
 for load_from_pt in avail_ckpts:
     state_dict = torch.load(os.path.join(ckpt_dir, load_from_pt), map_location=device)
     model.load_state_dict(state_dict, strict=False)
-
+    last_date = ""
     for split in args.test_files.split():
         test_data = load_dataset(
                             "text", 
@@ -98,18 +90,17 @@ for load_from_pt in avail_ckpts:
         testing_output = {}
 
         _date = datetime.now(timezone).strftime("%m%d_%H%M%S") + "_" + load_from_pt.split("_")[0]
-
+        if _date == last_date: 
+            time.sleep(1)
+            _date = datetime.now(timezone).strftime("%m%d_%H%M%S") + "_" + load_from_pt.split("_")[0]
+        last_date = _date
+        
         k = 0
         for loop in range(args.loop):
             for i, batch in enumerate(test_dataloader):
-                position_ids = None
-                if batch['position_id'] is not None: position_ids = batch['position_id'].to(device)
                 
-                logits = model(
-                    batch['input_id'].to(device),
-                    position_ids = position_ids,
-                    attention_mask = batch['attention_mask'].to(device),
-                )
+                logits = model(batch['input_id'].to(device))
+
                 loss = criterion(
                     logits.view(-1, logits.size(-1)), # bs*seq_len, vocab_size
                     batch['label'].view(-1).to(device), # 1, bs*seq_len

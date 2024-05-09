@@ -4,14 +4,14 @@ from tqdm import tqdm
 import torch
 from accelerate import Accelerator
 from torch.utils.data import DataLoader
-from datasets import concatenate_datasets
-from config import *
-from config_taskspecific import *
-from dataset import sequences_collator
-from datasets import load_dataset
-from model import Causal_Transformer
+from datasets import load_dataset, concatenate_datasets
 from functools import partial
-from utils import *
+from model import S4Model, LSTMModel, RNNModel
+from config import *
+from s4_utils import sequences_collator
+sys.path.append("../")
+from causal_transformer.config_taskspecific import *
+from causal_transformer.utils import trim_task, inference
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
@@ -38,7 +38,6 @@ tmp = json.load(open(os.path.join(config.output_dir, args.date, "config.json"), 
 for k, v in tmp.items():
     setattr(config, k, v)
 config.date = args.date
-check_config(config)
 
 # Fix all seeds to ensure reproducibility
 SEED = config.seed
@@ -62,20 +61,62 @@ if accelerator.is_main_process:
     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
 
-Print("------------- Preparing model -------------")
+Print(f"------------- Preparing {config.model} model -------------")
 
-model = Causal_Transformer(config)
+model = eval(f"{config.model}Model")(config)
 Print(f"Total parameters: {sum(p.numel() for p in model.parameters())}")
 print(f"Trainable parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
 
-optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
+def setup_optimizer(model, lr, weight_decay, epochs):
+    """
+    S4 requires a specific optimizer setup.
 
-lr_scheduler = get_constant_schedule_with_warmup(
-    optimizer=optimizer,
-    num_warmup_steps=config.warmup_steps * accelerator.num_processes / config.gradient_accumulation_steps,
-)
+    The S4 layer (A, B, C, dt) parameters typically
+    require a smaller learning rate (typically 0.001), with no weight decay.
+
+    The rest of the model can be trained with a higher learning rate (e.g. 0.004, 0.01)
+    and weight decay (if desired).
+    """
+
+    # All parameters in the model
+    all_parameters = list(model.parameters())
+
+    # General parameters don't contain the special _optim key
+    params = [p for p in all_parameters if not hasattr(p, "_optim")]
+
+    # Create an optimizer with the general parameters
+    optimizer = torch.optim.AdamW(params, lr=lr, weight_decay=weight_decay)
+
+    # Add parameters with special hyperparameters
+    hps = [getattr(p, "_optim") for p in all_parameters if hasattr(p, "_optim")]
+    hps = [
+        dict(s) for s in sorted(list(dict.fromkeys(frozenset(hp.items()) for hp in hps)))
+    ]  # Unique dicts
+    for hp in hps:
+        params = [p for p in all_parameters if getattr(p, "_optim", None) == hp]
+        optimizer.add_param_group(
+            {"params": params, **hp}
+        )
+
+    # Create a lr scheduler
+    # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=patience, factor=0.2)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs)
+
+    # Print optimizer info
+    keys = sorted(set([k for hp in hps for k in hp.keys()]))
+    for i, g in enumerate(optimizer.param_groups):
+        group_hps = {k: g.get(k, None) for k in keys}
+        print(' | '.join([
+            f"Optimizer group {i}",
+            f"{len(g['params'])} tensors",
+        ] + [f"{k} {v}" for k, v in group_hps.items()]))
+
+    return optimizer, scheduler
 
 criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
+optimizer, lr_scheduler = setup_optimizer(
+    model, lr=config.learning_rate, weight_decay=config.weight_decay, epochs=config.num_epochs
+)
 
 
 Print("------------- Preparing data -------------")
@@ -96,23 +137,15 @@ val_data = load_dataset(
 args.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>"]) for l in val_data])
 Print(f"max_seen_len for {args.task} = {args.max_seen_len}")
 
-augmentation = None
-if config.absolute_posemb_shift or config.rotary_posemb_shift or config.sinusoidal_posemb_shift:
-    augmentation = "shift"
-elif config.absolute_posemb_rdmz or config.rotary_posemb_rdmz:
-    augmentation = "randomized"
-elif config.scaler_posemb:
-    if config.scaler_posemb_shift: augmentation = "scaler+shift"
-    else: augmentation = "zooming"
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
                     max_seq_len=config.max_seq_len,
-                    max_position_embeddings=config.max_position_embeddings,
-                    augmentation=augmentation,
+                    max_position_embeddings=config.max_seq_len,
+                    augmentation=None,
                 )
 
-train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator)
-val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
+train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
+val_dataloader = DataLoader(val_data, shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
 
 Print(f"num train = {len(train_data)}")
 Print(f"num val = {len(val_data)}")
@@ -120,9 +153,6 @@ Print(f"num val = {len(val_data)}")
 test_dataloaders = {}
 for ood_test_file in config.test_files:
     test_data = load_dataset("text",  data_files={ood_test_file: f"{config.eval_data_path}/{trim_task(args.task)}/{ood_test_file}.txt"})
-    # test_dataloaders[ood_test_file] = accelerator.prepare(
-    #     DataLoader(test_data[ood_test_file], shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
-    # )
     test_dataloaders[ood_test_file] = DataLoader(test_data[ood_test_file], shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
 
 
@@ -211,14 +241,9 @@ for epoch in range(global_epoch, config.num_epochs):
         accelerator.wait_for_everyone()
         with accelerator.autocast() as autocast, torch.backends.cuda.sdp_kernel(enable_flash=False) as disable:
             optimizer.zero_grad()
-            
-            position_ids = None
-            if batch['position_id'] is not None: position_ids = batch['position_id'].to(accelerator.device)
-            
+                        
             logits = model(
                 batch['input_id'].to(accelerator.device),
-                position_ids = position_ids,
-                attention_mask = batch['attention_mask'].to(accelerator.device),
             )
 
             loss = criterion(
@@ -231,7 +256,7 @@ for epoch in range(global_epoch, config.num_epochs):
             if (global_step+1) % config.gradient_accumulation_steps == 0:
                 accelerator.clip_grad_norm_(model.parameters(), 1.0)
                 optimizer.step()
-                lr_scheduler.step()
+                #lr_scheduler.step() # Currently disable lr_scheduler
             
         logs = {"loss": loss.detach().item(), "lr": lr_scheduler.get_last_lr()[0], "step": global_step}
         accelerator.log(logs, step=global_step)
@@ -240,11 +265,6 @@ for epoch in range(global_epoch, config.num_epochs):
         if global_step % config.logging_steps == 0: progress_bar.set_postfix(**logs)
         progress_bar.update(1)
         
-        # if accelerator.is_main_process and global_step % config.save_every_steps == 0:
-        #     save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")
-        #     torch.save(accelerator.unwrap_model(model).state_dict(), save_path)
-        #break
-    
     
 
     with accelerator.autocast(): # validate at the end of every epoch
@@ -291,7 +311,7 @@ for epoch in range(global_epoch, config.num_epochs):
             model_to_eval.train()
     accelerator.wait_for_everyone()
     
-    save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_transformer.pt")
+    save_path = os.path.join(config.ckpt_dir, config.date, f"ckpts/{epoch}_{global_step}_{config.model}.pt")
     torch.save(accelerator.unwrap_model(model).state_dict(), save_path)
 
 if accelerator.is_main_process:

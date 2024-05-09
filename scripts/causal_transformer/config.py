@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [1234, 12, 123]
+    seed = 1234
     date = "debug"
     num_hidden_layers = 4
     vocab = []
@@ -13,6 +13,7 @@ class Basic_Config:
     mlp_dim_multipler = 4
     max_position_embeddings = 128
     max_seq_len = 128
+    freeze_null_emb = False
     layer_norm_epsilon = 1e-5
     scale_attn_weights = True
     scale_attn_by_inverse_layer_idx = True
@@ -34,20 +35,22 @@ class Basic_Config:
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
     logging_steps = 100
-    warmup_steps = 3000
+    warmup_steps = 0 #3000
     learning_rate = 1e-4
-    num_epochs = 10
+    num_epochs = 50
     #save_every_steps = 20000
     eval_every_steps = 130000
     absolute_posemb = False
     absolute_posemb_shift = False
     absolute_posemb_rdmz = False
-    rotary_posemb = True
-    rotary_posemb_shift = True
+    rotary_posemb = False
+    rotary_posemb_shift = False
     rotary_posemb_rdmz = False
-    scaler_posemb = False
+    scaler_posemb = True
     scaler_posemb_shift = False
-    load_from_dir = None # "0428_173023" #
+    sinusoidal_posemb = False
+    sinusoidal_posemb_shift = False
+    load_from_dir = "0507_204806" #None # 
     init_from_ckpt = None
 
 
@@ -64,3 +67,6 @@ class Default_Config:
     rotary_posemb_rdmz = False
     scaler_posemb = False
     scaler_posemb_shift = False
+    sinusoidal_posemb = False
+    sinusoidal_posemb_shift = False
+    freeze_null_emb = False

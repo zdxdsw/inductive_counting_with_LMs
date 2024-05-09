@@ -16,7 +16,8 @@ def construct_position_id(i, max_seq_len, max_position_embeddings, augmentation)
         shift_value = random.randint(0, max_position_embeddings - effective_len_i)
         effective_position_id = [x/max_position_embeddings for x in range(shift_value, shift_value + effective_len_i)]
     elif augmentation == "zooming":
-        effective_position_id = [x/effective_len_i for x in range(1, effective_len_i+1)]
+        #effective_position_id = [x/effective_len_i for x in range(1, effective_len_i+1)] # Was used before 0507_235900
+        effective_position_id = [x/max_position_embeddings for x in range(1, effective_len_i+1)]
 
     position_id = []
     effective_p = 0
