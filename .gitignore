@@ -5,9 +5,9 @@ scripts/llama/output/
 scripts/causal_transformer/output/
 scripts/s4/output/
 mamba/
-
+slurm/logs/
 #data/
-slurm/
+#slurm/
 events.out*
 .nfs*
 
