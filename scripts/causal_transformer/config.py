@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 1234
+    seed = [42, 319]
     date = "debug"
     num_hidden_layers = 4
     vocab = []
@@ -35,7 +35,7 @@ class Basic_Config:
     per_device_eval_batch_size = 64
     eval_accumulation_steps = 1
     logging_steps = 100
-    warmup_steps = 0 #3000
+    warmup_steps = 3000
     learning_rate = 1e-4
     num_epochs = 50
     #save_every_steps = 20000
@@ -46,11 +46,11 @@ class Basic_Config:
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False
-    scaler_posemb = True
+    scaler_posemb = False
     scaler_posemb_shift = False
-    sinusoidal_posemb = False
-    sinusoidal_posemb_shift = False
-    load_from_dir = "0507_204806" #None # 
+    sinusoidal_posemb = True
+    sinusoidal_posemb_shift = True
+    load_from_dir = None # "0509_145603" #
     init_from_ckpt = None
 
 
