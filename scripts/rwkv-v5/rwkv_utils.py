@@ -1,11 +1,14 @@
-import json, time, random, os
-#import numpy as np
+import json, time, random, os, sys
+import numpy as np
 import torch
 #from torch.nn import functional as F
+from datasets import load_dataset, concatenate_datasets
+from functools import partial
+sys.path.append("../")
+from causal_transformer.utils import trim_task
 
 # --------------------------------- moved from trainer.py from the original repo -------------------------------------
 import os, math, time, datetime, subprocess
-import torch
 from torch.utils.data import DataLoader
 import pytorch_lightning as pl
 from pytorch_lightning.utilities import rank_zero_info, rank_zero_only
@@ -33,48 +36,34 @@ class train_callback(pl.Callback):
         super().__init__()
         self.args = args
 
+        val_data = load_dataset(
+                        "text", 
+                        data_files={"validation": f"{args.eval_data_path}/{trim_task(args.task)}/val.txt"}
+                        )['validation']
+    
+        self.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>"]) for l in val_data])
+        print(f"max_seen_len for {args.task} = {args.max_seen_len}")
+
+        collator = partial(sequences_collator, 
+                            w2i={w:i for i,w in enumerate(args.vocab)}, 
+                            max_seq_len=args.ctx_len,
+                        )
+
+        val_dataloader = DataLoader(val_data, shuffle=False, batch_size=64, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
+
+        self.val_dataloaders = {"val": val_dataloader}
+        for ood_test_file in args.test_files:
+            test_data = load_dataset("text",  data_files={ood_test_file: f"{args.eval_data_path}/{trim_task(args.task)}/{ood_test_file}.txt"})
+            self.val_dataloaders[ood_test_file] = DataLoader(test_data[ood_test_file], shuffle=False, batch_size=args.per_device_eval_batch_size, collate_fn=collator)
+
+
     def on_train_batch_start(self, trainer, pl_module, batch, batch_idx):
         args = self.args
-        # if args.cuda_cleanup > 0:
-        #     torch.cuda.empty_cache()
-        #real_step = trainer.global_step + args.epoch_begin * args.epoch_steps
-
+       
         # LR schedule (disable decay)
         w_step = args.warmup_steps
-        #if args.lr_final == args.lr_init or args.epoch_count == 0:
         lr = args.lr_init
-        # else:
-        #     decay_step = real_step
-        #     decay_total = (args.epoch_count) * args.epoch_steps
-        #     progress = (decay_step - w_step + 1) / (decay_total - w_step)
-        #     progress = min(1, max(0, progress))
-
-        #     if args.lr_final == 0 or args.lr_init == 0:  # linear decay
-        #         lr = args.lr_init + (args.lr_final - args.lr_init) * progress
-        #     else:  # exp decay
-        #         lr = args.lr_init * math.exp(math.log(args.lr_final / args.lr_init) * pow(progress, 1))
-        #     # if trainer.is_global_zero:
-            #     print(trainer.global_step, decay_step, decay_total, w_step, progress, lr)
-
-        # if args.my_exit_tokens != 0: # cosine decay
-        #     real_tokens = real_step * args.ctx_len * args.real_bsz
-        #     warmup_tokens = w_step * args.ctx_len * args.real_bsz
-        #     progress = (real_tokens - warmup_tokens) / (abs(args.my_exit_tokens) - warmup_tokens)
-        #     progress = max(0, min(1, progress))
-        #     lr_final_factor = args.lr_final / args.lr_init                
-        #     lr_mult = (0.5 + lr_final_factor / 2) + (0.5 - lr_final_factor / 2) * math.cos(math.pi * progress)
-        #     if args.my_exit_tokens > 0:
-        #         lr = args.lr_init * lr_mult
-        #     else:
-        #         lr = (lr + args.lr_init * lr_mult) / 2
-        #     if progress >= 1:
-        #         if (trainer.is_global_zero) or ('deepspeed_stage_3' in args.strategy):
-        #             my_save(
-        #                 args, trainer,
-        #                 pl_module.state_dict(),
-        #                 f"{args.proj_dir}/rwkv-final.pth",
-        #             )
-        #             exit(0)
+        
         if trainer.global_step < w_step:
             lr = lr * (0.2 + 0.8 * trainer.global_step / w_step)
 
@@ -88,13 +77,11 @@ class train_callback(pl.Callback):
                 param_group["weight_decay"] = wd_now
             if args.layerwise_lr > 0:
                 param_group["lr"] = lr * param_group["my_lr_scale"]
-                # print(param_group["lr"], param_group["my_lr_scale"])
             else:
                 param_group["lr"] = lr
 
         trainer.my_lr = lr
         trainer.my_wd = wd_now
-        # rank_zero_info(f"{real_step} {lr}")
 
         if trainer.global_step == 0:
             if trainer.is_global_zero:  # logging
@@ -106,21 +93,13 @@ class train_callback(pl.Callback):
                 print(f"{trainer.strategy.config}\n\n")
                 trainer.my_log.write(f"{trainer.strategy.config}\n")
                 trainer.my_log.flush()
-                # if len(args.wandb) > 0:
-                #     print("Login to wandb...")
-                #     import wandb
-                #     wandb.init(
-                #         project=args.wandb,
-                #         name=args.run_name + " " + args.my_timestamp,
-                #         config=args,
-                #         save_code=False,
-                #     )
-                #     trainer.my_wandb = wandb
+                
 
     def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx):
         args = self.args
         token_per_step = args.ctx_len * args.real_bsz
         real_step = trainer.global_step + args.epoch_begin * args.epoch_steps
+        real_epoch = args.epoch_begin + trainer.current_epoch
         if trainer.is_global_zero and real_step % args.logging_steps == 0:  # logging
             t_now = time.time_ns()
             kt_s = 0
@@ -143,48 +122,120 @@ class train_callback(pl.Callback):
             self.log("loss", trainer.my_epoch_loss, prog_bar=True, on_step=True)
             self.log("s", float(real_step), prog_bar=True, on_step=True)
 
-            # if len(args.wandb) > 0:
-            #     lll = {"loss": trainer.my_loss, "lr": trainer.my_lr, "wd": trainer.my_wd, "Gtokens": real_step * token_per_step / 1e9}
-            #     if kt_s > 0:
-            #         lll["kt/s"] = kt_s
-            #     trainer.my_wandb.log(lll, step=int(real_step))
-        # Disable save_model in the middle of an epoch
-        # if (trainer.is_global_zero) or ('deepspeed_stage_3' in args.strategy): # save pth
-        #     if args.magic_prime > 0:
-        #         expand_factor = 1
-        #         if int(real_step) == int(args.magic_prime * expand_factor // args.real_bsz) - 1 + int(args.my_random_steps):
-        #             to_save_dict = pl_module.state_dict()
-        #             my_save(
-        #                 args, trainer,
-        #                 to_save_dict,
-        #                 f"{args.proj_dir}/rwkv-final.pth",
-        #             )
+        if trainer.is_global_zero and real_step % args.eval_every_steps == 0:  # inference
+            pl_module.eval()
+            with torch.no_grad():
+                # Inference on validation set
+                avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc = self.inference(
+                    pl_module,
+                    self.val_dataloaders['val']
+                )
+
+                print(f"""Epoch {real_epoch} Step {real_step} 
+                        | Val Loss: {avg_loss} 
+                        | Val Acc: {avg_acc} 
+                        | Val Counting Acc: {avg_counting_acc} 
+                        | Val Last Acc: {avg_last_acc}
+                        | Val Unseen Len Acc: {avg_unseen_len_acc}"""
+                    )
                 
+                # Inference on testing sets
+                for ood_test_file, test_dataloader in self.val_dataloaders.items():
+                    if ood_test_file == 'val': continue
+                    avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc = self.inference(
+                        pl_module,
+                        test_dataloader,
+                    )
+                    print(f"""Epoch {real_epoch} Step {real_step} {ood_test_file}.txt
+                        | Test Loss: {avg_loss}
+                        | Test Acc: {avg_acc}
+                        | Test Counting Acc: {avg_counting_acc}
+                        | Test Last Acc: {avg_last_acc}
+                        | Test Unseen Len Acc: {avg_unseen_len_acc}"""
+                    )
+                    
+            pl_module.train()
+
+
+    def inference(self, pl_module, dataloader):
+        counting_correct, counting_demo, last_correct, last_demo, unseen_len_correct, unseen_len_demo, correct, demo = 0, 0, 0, 0, 0, 0, 0, 0
+        losses = []
+        testing_output = {}
+        k = 0
+        for batch_idx, batch in enumerate(dataloader):
+            (loss, 
+                logits, 
+                _counting_correct, 
+                _counting_demo, 
+                _last_correct, 
+                _last_demo, 
+                _unseen_len_correct,
+            _unseen_len_demo) = pl_module.predict_step(batch, batch_idx)
+
+            losses.append(loss)
+
+            counting_correct += _counting_correct
+            counting_demo += _counting_demo
+            last_correct += _last_correct
+            last_demo += _last_demo
+            unseen_len_correct += _unseen_len_correct
+            unseen_len_demo += _unseen_len_demo
+            correct += (_counting_correct + _last_correct)
+            demo += (_counting_demo + _last_demo)
+
+            for input_id, gth_id, pred_id in zip(batch['input_id'], batch['label'], logits.argmax(dim=-1)):
+                input_seq = [self.args.vocab[i] for i in input_id if self.args.vocab[i]!='<pad>']
+                gth_seq = [self.args.vocab[gth_id[i]] for i in range(len(gth_id)) if gth_id[i]!=-1]
+                pred_seq = [self.args.vocab[pred_id[i]] for i in range(len(gth_id)) if gth_id[i]!=-1][:len(gth_seq)]
+                testing_output[k] = {
+                    "input": " ".join(input_seq),
+                    "gth": " ".join(gth_seq),
+                    "pred": " ".join(pred_seq),
+                }
+                k+=1
+        
+        avg_loss = round(np.mean(losses), 4)
+        avg_acc = round(correct/demo, 4)
+        avg_counting_acc = round(counting_correct/counting_demo, 4)
+        avg_last_acc = round(last_correct/last_demo, 4)
+        if unseen_len_demo == 0:
+            avg_unseen_len_acc = -1
+        else:
+            avg_unseen_len_acc = round(unseen_len_correct/unseen_len_demo, 4)
+        print(f"inference loop {k} examples") 
+
+        return avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc 
+    
 
     def on_train_epoch_start(self, trainer, pl_module):
         args = self.args
-        # if pl.__version__[0]=='2':
-        #     dataset = trainer.train_dataloader.dataset
-        # else:
-        #     dataset = trainer.train_dataloader.dataset.datasets
         dataset = trainer.train_dataloader.dataset.datasets
         dataset.global_rank = trainer.global_rank
         dataset.real_epoch = int(args.epoch_begin + trainer.current_epoch)
         dataset.world_size = trainer.world_size
-        # print(f'########## world_size {dataset.world_size} global_rank {dataset.global_rank} real_epoch {dataset.real_epoch} ##########')
+
+        # # Inference on validation set
+        # avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc = inference(
+        #     pl_module,
+        #     self.val_dataloader,
+        #     criterion,
+        #     accelerator.device,
+        #     max_seen_len=self.args.max_seen_len,
+        #     vocab=self.args.vocab,
+        # )
+        # print(f"""Epoch {epoch} Step {global_step} 
+        #     | Val Loss: {avg_loss} 
+        #     | Val Acc: {avg_acc} 
+        #     | Val Counting Acc: {avg_counting_acc} 
+        #     | Val Last Acc: {avg_last_acc}
+        #     | Val Unseen Len Acc: {avg_unseen_len_acc}"""
+        # )
 
     def on_train_epoch_end(self, trainer, pl_module):
         args = self.args
         to_save_dict = {}
         if (trainer.is_global_zero) or ('deepspeed_stage_3' in args.strategy):  # save pth
             if (args.epoch_save > 0 and trainer.current_epoch % args.epoch_save == 0) or (trainer.current_epoch == args.epoch_count - 1):
-                # if args.data_type == 'wds_img':
-                #     raw_dict = pl_module.state_dict()
-                #     for k in raw_dict:
-                #         if k.startswith('encoder.') or k.startswith('decoder.'):
-                #             to_save_dict[k] = raw_dict[k]
-                # else:
-                #     to_save_dict = pl_module.state_dict()
                 to_save_dict = pl_module.state_dict()
                 try:
                     my_save(
@@ -201,9 +252,43 @@ class train_callback(pl.Callback):
 
             trainer.my_loss_sum = 0
             trainer.my_loss_count = 0
-            # if (args.epoch_begin + trainer.current_epoch) >= args.my_exit:
-            #     exit(0)
 
+        real_step = trainer.global_step + args.epoch_begin * args.epoch_steps
+        real_epoch = args.epoch_begin + trainer.current_epoch
+        if trainer.is_global_zero: # inference
+            pl_module.eval()
+            with torch.no_grad():
+                # Inference on validation set
+                avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc = self.inference(
+                    pl_module,
+                    self.val_dataloaders['val']
+                )
+
+                print(f"""Epoch {real_epoch} Step {real_step} 
+                        | Val Loss: {avg_loss} 
+                        | Val Acc: {avg_acc} 
+                        | Val Counting Acc: {avg_counting_acc} 
+                        | Val Last Acc: {avg_last_acc}
+                        | Val Unseen Len Acc: {avg_unseen_len_acc}"""
+                    )
+                
+                # Inference on testing sets
+                for ood_test_file, test_dataloader in self.val_dataloaders.items():
+                    if ood_test_file == 'val': continue
+                    avg_loss, avg_acc, avg_counting_acc, avg_last_acc, avg_unseen_len_acc = self.inference(
+                        pl_module,
+                        test_dataloader,
+                    )
+                    print(f"""Epoch {real_epoch} Step {real_step} {ood_test_file}.txt
+                        | Test Loss: {avg_loss}
+                        | Test Acc: {avg_acc}
+                        | Test Counting Acc: {avg_counting_acc}
+                        | Test Last Acc: {avg_last_acc}
+                        | Test Unseen Len Acc: {avg_unseen_len_acc}"""
+                    )
+                    
+            pl_module.train()
+            
 
 @rank_zero_only
 def generate_init_weight(model, init_weight_name):
@@ -211,11 +296,10 @@ def generate_init_weight(model, init_weight_name):
 
     print(f"Save to {init_weight_name}...")
     torch.save(mm, init_weight_name)
-# -------------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------------------------------------------------
 
 
-
-# -------------------------------------------------------------------------------------
 
 def sequences_collator(texts, w2i, max_seq_len):
     input_ids = []
@@ -237,130 +321,3 @@ def sequences_collator(texts, w2i, max_seq_len):
         'label': torch.LongTensor(labels),
     }
 
-# -------------------------------------------------------------------------------------
-
-# time_slot = {}
-# time_ref = time.time_ns()
-
-# def record_time(name):
-#     if name not in time_slot:
-#         time_slot[name] = 1e20
-#     tt = (time.time_ns() - time_ref) / 1e9
-#     if tt < time_slot[name]:
-#         time_slot[name] = tt
-
-# class TOKENIZER():
-#     def __init__(self, WORD_NAME, UNKNOWN_CHAR='\ue083'):
-#         if 'list' in str(type(WORD_NAME)):
-#             self.charMode = False
-#             if WORD_NAME[0] == WORD_NAME[1]:
-#                 from transformers import PreTrainedTokenizerFast
-#                 self.tokenizer = PreTrainedTokenizerFast(tokenizer_file=WORD_NAME[0])
-#             else:
-#                 from transformers import GPT2TokenizerFast
-#                 self.tokenizer = GPT2TokenizerFast(WORD_NAME[0], WORD_NAME[1])
-#             self.vocab_size = len(self.tokenizer)
-#         else:
-#             self.charMode = True
-#             with open(WORD_NAME + '.json', "r", encoding="utf-16") as result_file:
-#                 self.word_table = json.load(result_file)
-
-#             self.vocab_size = len(self.word_table)
-
-#             self.stoi = {v: int(k) for k, v in self.word_table.items()}
-#             self.itos = {int(k): v for k, v in self.word_table.items()}
-
-#             self.UNKNOWN_CHAR = self.stoi[UNKNOWN_CHAR]
-
-#     def refine_context(self, context):
-#         context = context.strip().split('\n')
-#         for c in range(len(context)):
-#             context[c] = context[c].strip().strip('\u3000').strip('\r')
-#         context = list(filter(lambda c: c != '', context))
-#         context = '\n' + ('\n'.join(context)).strip()
-#         if context == '':
-#             context = '\n'
-#         return context
-
-#     def sample_logits(self, out, x, ctx_len, temperature=1.0, top_p_usual=None, top_p_newline=None):
-#         # out[self.UNKNOWN_CHAR] = -float('Inf')
-#         lastChar = int(x[-1])
-
-#         probs = F.softmax(out, dim=-1)
-
-#         if self.charMode:
-#             if self.itos[lastChar] == '\n':
-#                 top_p = top_p_newline
-#             else:
-#                 top_p = top_p_usual
-#         else:
-#             top_p = top_p_usual
-
-#         if os.environ["RWKV_RUN_DEVICE"] == "cpu":
-#             probs = probs.numpy()
-#             sorted_probs = np.sort(probs)[::-1]
-#             cumulative_probs = np.cumsum(sorted_probs)
-#             cutoff = float(sorted_probs[np.argmax(cumulative_probs > top_p)])
-#             probs[probs < cutoff] = 0
-#             if temperature != 1.0:
-#                 probs = probs.pow(1.0 / temperature)
-#             probs = probs / np.sum(probs)
-#             out = np.random.choice(a=len(probs), p=probs)
-#             return out
-#         else:
-#             sorted_probs = torch.sort(probs, descending=True)[0]
-#             cumulative_probs = torch.cumsum(sorted_probs, dim=-1).cpu().numpy()
-#             cutoff = float(sorted_probs[np.argmax(cumulative_probs > top_p)])
-#             probs[probs < cutoff] = 0
-#             if temperature != 1.0:
-#                 probs = probs.pow(1.0 / temperature)
-#             out = torch.multinomial(probs, num_samples=1)[0]
-#             return out
-
-# def MaybeIsPrime(number):
-#     if FermatPrimalityTest(number) and MillerRabinPrimalityTest(number):
-#         return True
-#     else:
-#         return False
-
-
-# def FermatPrimalityTest(number):
-#     if number > 1:
-#         for time in range(3):
-#             randomNumber = random.randint(2, number) - 1
-#             if pow(randomNumber, number - 1, number) != 1:
-#                 return False
-#         return True
-#     else:
-#         return False
-
-
-# def MillerRabinPrimalityTest(number):
-#     if number == 2:
-#         return True
-#     elif number == 1 or number % 2 == 0:
-#         return False
-#     oddPartOfNumber = number - 1
-#     timesTwoDividNumber = 0
-#     while oddPartOfNumber % 2 == 0:
-#         oddPartOfNumber = oddPartOfNumber // 2
-#         timesTwoDividNumber = timesTwoDividNumber + 1
-
-#     for time in range(3):
-#         while True:
-#             randomNumber = random.randint(2, number) - 1
-#             if randomNumber != 0 and randomNumber != 1:
-#                 break
-
-#         randomNumberWithPower = pow(randomNumber, oddPartOfNumber, number)
-
-#         if (randomNumberWithPower != 1) and (randomNumberWithPower != number - 1):
-#             iterationNumber = 1
-
-#             while (iterationNumber <= timesTwoDividNumber - 1) and (randomNumberWithPower != number - 1):
-#                 randomNumberWithPower = pow(randomNumberWithPower, 2, number)
-#                 iterationNumber = iterationNumber + 1
-#             if randomNumberWithPower != (number - 1):
-#                 return False
-
-#     return True

@@ -10,14 +10,14 @@
 #######################################################################################################################
 #
 # MODEL_TYPE="x052" # x052 => rwkv-5.2 (rwkv-5 final)
-MODEL_TYPE="x060" # x060 => rwkv-6.0
+#MODEL_TYPE="x060" # x060 => rwkv-6.0
 # MODEL_TYPE="mamba" # pip install mamba_ssm --upgrade
 #
-N_LAYER="1"
-N_EMBD="128"
+#N_LAYER="1"
+#N_EMBD="128"
 #
 #CTX_LEN="512" # !!! change magic_prime if you change ctx_len !!!
-PROJ_DIR="out/L"$N_LAYER"-D"$N_EMBD"-"$MODEL_TYPE # set output folder
+#PROJ_DIR="out/L"$N_LAYER"-D"$N_EMBD"-"$MODEL_TYPE # set output folder
 #
 #######################################################################################################################
 #
@@ -38,12 +38,12 @@ PROJ_DIR="out/L"$N_LAYER"-D"$N_EMBD"-"$MODEL_TYPE # set output folder
 # use https://www.dcode.fr/prime-numbers-search
 #
 #N_NODE=1 # number of nodes
-GPU_PER_NODE=1 # number of GPUs per node
+#GPU_PER_NODE=1 # number of GPUs per node
 #
 #DS_BUCKET_MB=2 
 #
-python trainer.py --load_model ""  --my_testing $MODEL_TYPE \
-    --strategy deepspeed_stage_2 --accelerator gpu --devices $GPU_PER_NODE --precision bf16 \
+python trainer.py --load_model ""  --my_testing x060 --task counting_samesymbol_plain3_addbigram_blkseq \
+    --strategy deepspeed_stage_2 --accelerator gpu --devices 1 --precision bf16 \
   
 # --proj_dir $PROJ_DIR
 # --lr_init $LR_INIT --warmup_steps 10 --weight_decay 0.001 --epoch_save $EPOCH_SAVE --epoch_count 3 --epoch_begin 0

@@ -2,7 +2,7 @@
 # The RWKV Language Model - https://github.com/BlinkDL/RWKV-LM
 ########################################################################################################
 
-import os, math, gc, importlib
+import os, math, gc, importlib, sys
 import torch
 # torch._C._jit_set_profiling_executor(True)
 # torch._C._jit_set_profiling_mode(True)
@@ -16,6 +16,8 @@ if importlib.util.find_spec('deepspeed'):
     from deepspeed.ops.adam import DeepSpeedCPUAdam, FusedAdam
 
 # from deepspeed.runtime.fp16.onebit.zoadam import ZeroOneAdam
+sys.path.append("../")
+from causal_transformer.utils import get_acc
 
 try:
     print('RWKV_MY_TESTING', os.environ["RWKV_MY_TESTING"])
@@ -1061,11 +1063,25 @@ class RWKV(pl.LightningModule):
         
         return L2Wrap.apply(loss, logits)
 
+    def predict_step(self, batch, batch_idx):
+        #print("self.device = ", self.device)
+        idx, targets = batch['input_id'].to(self.device), batch['label'].to(self.device)
+        logits = self(idx)
+        loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
+        _counting_correct, _counting_demo, _last_correct, _last_demo, _unseen_len_correct, _unseen_len_demo = get_acc(
+            logits.detach().cpu(), 
+            batch['label'].detach().cpu(), 
+            ignore_index=-1,
+            max_seen_len=self.args.max_seen_len
+        )
+        return loss.detach().item(), logits, _counting_correct, _counting_demo, _last_correct, _last_demo, _unseen_len_correct, _unseen_len_demo
+
     def training_step_end(self, batch_parts):
         if pl.__version__[0]!='2':
             all = self.all_gather(batch_parts)
             if self.trainer.is_global_zero:
                 self.trainer.my_loss_all = all
+
 
     def generate_init_weight(self):
         

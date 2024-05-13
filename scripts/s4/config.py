@@ -2,10 +2,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [1234, 12, 123]
-    model = "S4"
+    seed = [12, 123]
+    model = "RNN"
     date = "debug"
-    num_hidden_layers = 1
+    num_hidden_layers = 2
     vocab = []
     task = ""
     aux_tasks = []
@@ -28,9 +28,9 @@ class Basic_Config:
     #warmup_steps = 0 #3000
     learning_rate = 0.001
     weight_decay = 0.01
-    num_epochs = 10
+    num_epochs = 50
     eval_every_steps = 10000
-    load_from_dir = None #"0509_142104" # 
+    load_from_dir = None # "0509_134910" #
     init_from_ckpt = None
 
 

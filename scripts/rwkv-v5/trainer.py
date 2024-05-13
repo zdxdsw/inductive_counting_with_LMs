@@ -1,12 +1,16 @@
 ########################################################################################################
-# The RWKV Language Model - https://github.com/BlinkDL/RWKV-LM
+# Reference: The RWKV Language Model - https://github.com/BlinkDL/RWKV-LM
 ########################################################################################################
 
-import logging, os
+import logging, os, json, sys
 logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     from config import *
+    sys.path.append("../")
+    from causal_transformer.config_taskspecific import *
+    from causal_transformer.utils import trim_task
+    
     config = Basic_Config()
 
     from argparse import ArgumentParser
@@ -14,11 +18,34 @@ if __name__ == "__main__":
     from pytorch_lightning.utilities import rank_zero_info, rank_zero_only
     import pytorch_lightning as pl
 
-    rank_zero_info("########## work in progress ##########")
-
     parser = ArgumentParser()
+    assert pl.__version__[0]=='1'
+    parser = Trainer.add_argparse_args(parser)
+
+    parser.add_argument('--date', type=str, default="debug")
+    parser.add_argument('--task', type=str)
+    """ Will take care of these later """
+    parser.add_argument("--load_model", default="", type=str)  # full path, with .pth
+    parser.add_argument("--epoch_begin", default=0, type=int)  # if you load a model trained for x "epochs", set epoch_begin = x
+    parser.add_argument("--my_testing", default='x060', type=str)
+
+    args = parser.parse_args()
+    
+    config = eval(f"{args.task}_Config")()
+
+    tmp = json.load(open(os.path.join(config.output_dir, args.date, "config.json"), "r"))
+    for k, v in tmp.items():
+        setattr(config, k, v)
+    config.date = args.date
+
+
+    parser.add_argument('--train_data_path', type=str, default=config.train_data_path)
+    parser.add_argument('--eval_data_path', type=str, default=config.eval_data_path)
+    parser.add_argument('--per_device_eval_batch_size', type=int, default=config.per_device_eval_batch_size)
+    parser.add_argument('--test_files', type=str, default=config.test_files)
 
     parser.add_argument("--logging_steps", default=config.logging_steps, type=int)
+    parser.add_argument("--eval_every_steps", default=config.eval_every_steps, type=int)
     parser.add_argument("--proj_dir", default=os.path.join(config.output_dir, config.date), type=str)
     parser.add_argument("--ckpt_dir", default=os.path.join(config.ckpt_dir, config.date, "ckpts"), type=str)
     parser.add_argument("--random_seed", default=config.seed, type=int)
@@ -32,31 +59,7 @@ if __name__ == "__main__":
     parser.add_argument("--warmup_steps", default=config.warmup_steps, type=int)  # try 50 if you load a model
     parser.add_argument("--weight_decay", default=config.weight_decay, type=float) # try 0.1 / 0.01 / 0.001
     parser.add_argument("--dropout", default=config.dropout, type=float) # try 0.01 / 0.02 / 0.05 / 0.1
-    #parser.add_argument("--epoch_steps", default=1000, type=int)  # a mini "epoch" has [epoch_steps] steps
-    #parser.add_argument("--wandb", default="", type=str)  # wandb project name. if "" then don't use wandb
-    #parser.add_argument("--data_file", default="", type=str)
-    #parser.add_argument("--data_type", default="utf-8", type=str)
-    #parser.add_argument("--vocab_size", default=0, type=int)  # vocab_size = 0 means auto (for char-level LM and .txt data)
-    #parser.add_argument("--dim_att", default=0, type=int)
-    #parser.add_argument("--dim_ffn", default=0, type=int)
-    #parser.add_argument("--tiny_att_dim", default=0, type=int)  # tiny attention dim
-    #parser.add_argument("--tiny_att_layer", default=-999, type=int)  # tiny attention @ which layer
-    #parser.add_argument("--lr_final", default=1e-5, type=float)
     
-    """ Will take care of these later """
-    parser.add_argument("--load_model", default="", type=str)  # full path, with .pth
-    parser.add_argument("--epoch_begin", default=0, type=int)  # if you load a model trained for x "epochs", set epoch_begin = x
-    parser.add_argument("--my_testing", default='x052', type=str)
-    #parser.add_argument("--my_pile_version", default=1, type=int)  # my special pile version
-    #parser.add_argument("--my_pile_stage", default=0, type=int)  # my special pile mode
-    #parser.add_argument("--my_pile_shift", default=-1, type=int)  # my special pile mode - text shift
-    #parser.add_argument("--my_pile_edecay", default=0, type=int)
-    # parser.add_argument("--cuda_cleanup", default=0, type=int)  # extra cuda cleanup (sometimes helpful)
-    #parser.add_argument("--my_sample_len", default=0, type=int)
-    #parser.add_argument("--my_ffn_shift", default=1, type=int)
-    #parser.add_argument("--my_att_shift", default=1, type=int)
-    
-    #parser.add_argument("--my_random_steps", default=0, type=int) # it seems to be related to save_every_step
     
     """ Don't change, use default value according to the original repo """
     parser.add_argument("--grad_cp", default=0, type=int)  # gradient checkpt: saves VRAM, but slower
@@ -65,11 +68,6 @@ if __name__ == "__main__":
     parser.add_argument("--head_size_divisor", default=8, type=int)
     parser.add_argument("--layerwise_lr", default=1, type=int)  # layerwise lr for faster convergence (but slower it/s)
     parser.add_argument("--my_pos_emb", default=0, type=int)
-    #parser.add_argument("--load_partial", default=0, type=int)
-    #parser.add_argument("--magic_prime", default=0, type=int)
-    #parser.add_argument("--my_qa_mask", default=0, type=int)
-    #parser.add_argument("--my_exit", default=99999999, type=int)
-    #parser.add_argument("--my_exit_tokens", default=0, type=int)
     parser.add_argument("--pre_ffn", default=0, type=int)  # replace first att layer by ffn (sometimes better)
     parser.add_argument("--head_qk", default=0, type=int)  # my headQK trick
     parser.add_argument("--train_type", default="", type=str) # ""/"states"
@@ -78,20 +76,8 @@ if __name__ == "__main__":
     parser.add_argument("--beta2", default=0.99, type=float)  # use 0.999 when your model is close to convergence
     parser.add_argument("--adam_eps", default=1e-8, type=float)
     
+    
 
-    assert pl.__version__[0]=='1'
-    # if pl.__version__[0]=='2':
-    #     parser.add_argument("--accelerator", default="gpu", type=str)
-    #     parser.add_argument("--strategy", default="auto", type=str)
-    #     parser.add_argument("--devices", default=1, type=int)
-    #     parser.add_argument("--num_nodes", default=1, type=int)
-    #     parser.add_argument("--precision", default="fp16", type=str)
-    #     parser.add_argument("--accumulate_grad_batches", default=1, type=int)
-    # else:
-    #     parser = Trainer.add_argparse_args(parser)
-    parser = Trainer.add_argparse_args(parser)
-
-    #parser.add_argument("--devices", default=1, type=str) # gpu_per_node
     args = parser.parse_args()
 
     ########################################################################################################
@@ -105,18 +91,11 @@ if __name__ == "__main__":
     from rwkv_utils import sequences_collator, train_callback, generate_init_weight
     from functools import partial
     
-    sys.path.append("../")
-    #from causal_transformer.config_taskspecific import *
-    from causal_transformer.utils import trim_task
     
-
-    if "deepspeed" in args.strategy:
-        import deepspeed
+    if "deepspeed" in args.strategy: import deepspeed
     from pytorch_lightning import seed_everything
 
-    if args.random_seed >= 0:
-        print(f"########## WARNING: GLOBAL SEED {args.random_seed} THIS WILL AFFECT MULTIGPU SAMPLING ##########\n" * 3)
-        seed_everything(args.random_seed)
+    if args.random_seed >= 0: seed_everything(args.random_seed)
 
     np.set_printoptions(precision=4, suppress=True, linewidth=200)
     warnings.filterwarnings("ignore", ".*Consider increasing the value of the `num_workers` argument*")
@@ -139,99 +118,32 @@ if __name__ == "__main__":
     os.environ["RWKV_HEAD_SIZE_A"] = str(args.head_size_a)
     os.environ["RWKV_TRAIN_TYPE"] = args.train_type
 
-    # ---------------------------------------------------------------------------
-    # The following is also handled in RWKV.__init__()
-    #if args.dim_att <= 0:
-    #args.dim_att = args.n_embd
-    #if args.dim_ffn <= 0:
-        #if '-f4' in os.environ["RWKV_MY_TESTING"]:
-            #args.dim_ffn = int((args.n_embd * 4) // 32 * 32)
-        #else:
-    #args.dim_ffn = int((args.n_embd * 3.5) // 32 * 32) # default = 3.5x emb size
-    # ---------------------------------------------------------------------------
-
-    # if args.data_type == "wds_img":
-    #     args.run_name = f"v{args.my_img_version}-{args.my_img_size}-{args.my_img_bit}bit-{args.my_img_clip}x{args.my_img_clip_scale}"
-    #     args.proj_dir = f"{args.proj_dir}-{args.run_name}"
-    # else:
-    #     args.run_name = f"{args.vocab_size} ctx{args.ctx_len} L{args.n_layer} D{args.n_embd}"
-    # args.run_name = f"{args.vocab_size} ctx{args.ctx_len} L{args.n_layer} D{args.n_embd}"
-
+    
     if not os.path.exists(args.proj_dir): os.makedirs(args.proj_dir)
     if not os.path.exists(args.ckpt_dir): os.makedirs(args.ckpt_dir)
 
-    # if args.my_pile_stage > 0:
-    #     magic_prime_bak = args.magic_prime
-
-    #     if args.my_pile_shift < 0:
-    #         args.my_pile_shift = 0
-
-    #     if magic_prime_bak > 0:
-    #         args.magic_prime = magic_prime_bak
-        
-    #     args.epoch_count = args.magic_prime // 40320
-
-    #     args.epoch_steps = 40320 // args.real_bsz
-    #     assert args.epoch_steps * args.real_bsz == 40320
-    #     # if args.my_pile_stage == 2:
-    #     #     assert args.lr_final == args.lr_init
-    #     if args.my_pile_stage >= 2:  # find latest saved model
-    #         list_p = []
-    #         for p in os.listdir(args.proj_dir):
-    #             if p.startswith("rwkv") and p.endswith(".pth"):
-    #                 p = ((p.split("-"))[1].split("."))[0]
-    #                 if p != "final":
-    #                     if p == "init":
-    #                         p = -1
-    #                     else:
-    #                         p = int(p)
-    #                     list_p += [p]
-    #         list_p.sort()
-    #         max_p = list_p[-1]
-    #         if len(list_p) > 1:
-    #             args.my_pile_prev_p = list_p[-2]  # in case max_p is corrupted
-    #         if max_p == -1:
-    #             args.load_model = f"{args.proj_dir}/rwkv-init.pth"
-    #         else:
-    #             args.load_model = f"{args.proj_dir}/rwkv-{max_p}.pth"
-    #             if args.warmup_steps < 0:
-    #                 if args.my_pile_stage == 2:
-    #                     args.warmup_steps = 10
-    #                 else:
-    #                     args.warmup_steps = 30
-    #         args.epoch_begin = max_p + 1
-
-    #samples_per_epoch = args.epoch_steps * args.real_bsz
-    #tokens_per_epoch = samples_per_epoch * args.ctx_len
-    try:
-        deepspeed_version = deepspeed.__version__
-    except:
-        deepspeed_version = None
-        pass
     rank_zero_info(
         f"""
-############################################################################
-#
-# RWKV-5 {args.precision.upper()} on {args.num_nodes}x{args.devices} {args.accelerator.upper()}, bsz {args.num_nodes}x{args.devices}x{args.micro_bsz}={args.real_bsz}, {args.strategy} {'with grad_cp' if args.grad_cp > 0 else ''}
-#
-# Data = <log data file here>, ProjDir = {args.proj_dir}
-#
-# Epoch = {args.epoch_begin} to {args.epoch_begin + args.epoch_count - 1} (inclusive) , save every {args.epoch_save} epoch
-#
-# Model = {args.n_layer} n_layer, {args.n_embd} n_embd, <log max_seq_len here> ctx_len
-#
-# Adam = lr {args.lr_init} to {args.lr_final}, warmup {args.warmup_steps} steps, beta {args.betas}, eps {args.adam_eps}
-#
-# Found torch {torch.__version__}, recommend latest torch
-# Found deepspeed {deepspeed_version}, recommend latest deepspeed
-# Found pytorch_lightning {pl.__version__}, recommend 1.9.5
-#
-############################################################################
-"""
+        ############################################################################
+        #
+        # RWKV-5 {args.precision.upper()} on {args.num_nodes}x{args.devices} {args.accelerator.upper()}, bsz {args.num_nodes}x{args.devices}x{args.micro_bsz}={args.real_bsz}, {args.strategy} {'with grad_cp' if args.grad_cp > 0 else ''}
+        #
+        # Data = <log data file here>, ProjDir = {args.proj_dir}
+        #
+        # Epoch = {args.epoch_begin} to {args.epoch_begin + args.epoch_count - 1} (inclusive) , save every {args.epoch_save} epoch
+        #
+        # Model = {args.n_layer} n_layer, {args.n_embd} n_embd, <log max_seq_len here> ctx_len
+        #
+        # Adam = lr {args.lr_init} to {args.lr_final}, warmup {args.warmup_steps} steps, beta {args.betas}, eps {args.adam_eps}
+        #
+        # Found torch {torch.__version__}, recommend latest torch
+        # Found deepspeed {deepspeed.__version__}, recommend latest deepspeed
+        # Found pytorch_lightning {pl.__version__}, recommend 1.9.5
+        #
+        ############################################################################
+        """
     )
-    #rank_zero_info(str(vars(args)) + "\n") # print all args in terminal
 
-    #assert args.data_type in ["utf-8", "utf-16le", "numpy", "binidx", "dummy", "uint16"]
 
     if args.lr_final == 0 or args.lr_init == 0:
         rank_zero_info("\n\nNote: lr_final = 0 or lr_init = 0. Using linear LR schedule instead.\n\n")
@@ -267,22 +179,25 @@ if __name__ == "__main__":
     ########################################################################################################
 
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    args.vocab = vocab
     args.vocab_size = len(vocab)
 
     # --------------------------------------------------------------------------
+    tasks = [trim_task(args.task)] + config.aux_tasks
+
     train_data = concatenate_datasets(
                         [load_dataset(
                                 "text", 
-                                data_files={"train": "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/data/rasp_primitives/counting_samesymbol_plain3/train.txt"}
-                                )['train'] for task in [1]]
+                                data_files={"train": f"{config.train_data_path}/{task}/train.txt"}
+                                )['train'] for task in tasks]
                     )
-    # val_data = load_dataset(
-    #                     "text", 
-    #                     data_files={"validation": "/yingshac/workspace/llms_do_math/data/rasp_primitives/counting_samesymbol_plain3/val.txt"}
-    #                     )['validation']
-
-    # args.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>"]) for l in val_data])
-    # print(f"max_seen_len for {args.task} = {args.max_seen_len}")
+    val_data = load_dataset(
+                        "text", 
+                        data_files={"validation": f"{config.eval_data_path}/{trim_task(args.task)}/val.txt"}
+                        )['validation']
+    
+    args.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>"]) for l in val_data])
+    print(f"max_seen_len for {config.task} = {args.max_seen_len}")
 
     collator = partial(sequences_collator, 
                         w2i={w:i for i,w in enumerate(vocab)}, 
@@ -291,7 +206,13 @@ if __name__ == "__main__":
 
     train_dataloader = DataLoader(train_data, shuffle=True, batch_size=args.micro_bsz, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
     args.epoch_steps = len(train_dataloader)
-    #val_dataloader = DataLoader(val_data, shuffle=False, batch_size=64, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
+    val_dataloader = DataLoader(val_data, shuffle=False, batch_size=64, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
+
+    val_dataloaders = {"val": val_dataloader}
+    for ood_test_file in config.test_files:
+        test_data = load_dataset("text",  data_files={ood_test_file: f"{config.eval_data_path}/{trim_task(args.task)}/{ood_test_file}.txt"})
+        val_dataloaders[ood_test_file] = DataLoader(test_data[ood_test_file], shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
+
 
     # --------------------------------------------------------------------------
 
@@ -316,37 +237,22 @@ if __name__ == "__main__":
 
 
     rank_zero_info(f"\n\n----------------------- Create Trainer... -----------------------\n")
-    # if pl.__version__[0]=='2':
-    #     trainer = Trainer(accelerator=args.accelerator,strategy=args.strategy,devices=args.devices,num_nodes=args.num_nodes,precision=args.precision,
-    #     logger=args.logger,callbacks=[train_callback(args)],max_epochs=args.max_epochs,check_val_every_n_epoch=args.check_val_every_n_epoch,num_sanity_val_steps=args.num_sanity_val_steps,
-    #     log_every_n_steps=args.log_every_n_steps,enable_checkpointing=args.enable_checkpointing,accumulate_grad_batches=args.accumulate_grad_batches,gradient_clip_val=args.gradient_clip_val)
-    # else:
 
     from pytorch_lightning.callbacks import TQDMProgressBar
-
+    args.max_epochs = args.epoch_count
     trainer = Trainer.from_argparse_args(
         args,
-        callbacks=[train_callback(args), TQDMProgressBar(refresh_rate=args.logging_steps)],
+        callbacks=[train_callback(args), TQDMProgressBar(refresh_rate=0)], #args.logging_steps)],
     )
-
-    # if trainer.global_rank == 0:
-    #     for n in model.state_dict():
-    #         shape = model.state_dict()[n].shape
-    #         shape = [i for i in shape if i != 1]
-    #         if len(shape) > 2:
-    #             print(f"{str(shape[0]).ljust(5)} {str(shape[1]).ljust(5)} {str(shape[2]).ljust(5)} {n}")
-    #         elif len(shape) > 1:
-    #             print(f"{str(shape[0]).ljust(5)} {str(shape[1]).ljust(5)}       {n}")
-    #         else:
-    #             print(f"{str(shape[0]).ljust(5)}             {n}")
 
     if "deepspeed" in args.strategy:
         trainer.strategy.config["zero_optimization"]["allgather_bucket_size"] = args.ds_bucket_mb * 1000 * 1000
         trainer.strategy.config["zero_optimization"]["reduce_bucket_size"] = args.ds_bucket_mb * 1000 * 1000
 
-    # must set shuffle=False, persistent_workers=False (because worker is in another thread)
-    
-    
-    #data_loader = DataLoader(train_data, shuffle=False, pin_memory=True, batch_size=args.micro_bsz, num_workers=1, persistent_workers=False, drop_last=True)
 
     trainer.fit(model, train_dataloader)
+
+    print("\n\n\n----------------------- Start Inference -----------------------\n\n")
+    infr_command = "python tester.py --handle {} --test_files \"{}\"".format(config.date, " ".join(["val"]+config.test_files))
+    os.system(infr_command)
+    print(f"Finish!!! {config.date}")

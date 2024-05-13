@@ -50,7 +50,7 @@ class Basic_Config:
     scaler_posemb_shift = False
     sinusoidal_posemb = True
     sinusoidal_posemb_shift = True
-    load_from_dir = None # "0509_145603" #
+    load_from_dir = None # "0507_141854" #
     init_from_ckpt = None
 
 
