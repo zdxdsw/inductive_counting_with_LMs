@@ -2,17 +2,17 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [12, 123]
+    seed = [1234, 12, 123]
     model = "RNN"
     date = "debug"
-    num_hidden_layers = 2
+    num_hidden_layers = 4
     vocab = []
     task = ""
     aux_tasks = []
-    hidden_size = 128
+    hidden_size = 1024
     max_seq_len = 128
     freeze_null_emb = False
-    dropout = 0.1
+    dropout = 0.0
     tie_word_embeddings = False
     initializer_range = 0.02
     output_dir = "output"

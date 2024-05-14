@@ -122,7 +122,7 @@ class train_callback(pl.Callback):
             self.log("loss", trainer.my_epoch_loss, prog_bar=True, on_step=True)
             self.log("s", float(real_step), prog_bar=True, on_step=True)
 
-        if trainer.is_global_zero and real_step % args.eval_every_steps == 0:  # inference
+        if trainer.is_global_zero and real_step % args.eval_every_steps == 1:  # inference
             pl_module.eval()
             with torch.no_grad():
                 # Inference on validation set

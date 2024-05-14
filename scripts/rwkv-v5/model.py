@@ -901,6 +901,7 @@ class RWKV(pl.LightningModule):
         assert args.dim_att % 32 == 0
         assert args.dim_ffn % 32 == 0
 
+        print("args.vocab = ", args.vocab)
         self.emb = nn.Embedding(args.vocab_size, args.n_embd)
 
         self.blocks = nn.ModuleList([Block(args, i) for i in range(args.n_layer)])

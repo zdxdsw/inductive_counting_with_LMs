@@ -138,9 +138,9 @@ if __name__ == "__main__":
 
     ########################################################################################################
 
-    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
-    args.vocab = vocab
-    args.vocab_size = len(vocab)
+    #vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    args.vocab = config.vocab
+    args.vocab_size = len(args.vocab)
 
     # --------------------------------------------------------------------------
     val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     print(f"\nmax_seen_len for {config.task} = {args.max_seen_len}\n")
 
     collator = partial(sequences_collator, 
-                        w2i={w:i for i,w in enumerate(vocab)}, 
+                        w2i={w:i for i,w in enumerate(args.vocab)}, 
                         max_seq_len=config.max_seq_len,
                     )
 
@@ -215,8 +215,9 @@ if __name__ == "__main__":
                     correct += (_counting_correct + _last_correct)
                     demo += (_counting_demo + _last_demo)
 
-                
+                    #print(logits.shape)
                     for input_id, gth_id, pred_id in zip(batch['input_id'], batch['label'], logits.argmax(dim=-1)):
+                        #print(input_id)
                         input_seq = [config.vocab[i] for i in input_id if config.vocab[i]!='<pad>']
                         gth_seq = [config.vocab[gth_id[i]] for i in range(len(gth_id)) if gth_id[i]!=-1]
                         pred_seq = [config.vocab[pred_id[i]] for i in range(len(gth_id)) if gth_id[i]!=-1][:len(gth_seq)]

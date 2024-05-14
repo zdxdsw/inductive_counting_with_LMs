@@ -178,9 +178,8 @@ if __name__ == "__main__":
 
     ########################################################################################################
 
-    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
-    args.vocab = vocab
-    args.vocab_size = len(vocab)
+    args.vocab = config.vocab
+    args.vocab_size = len(args.vocab)
 
     # --------------------------------------------------------------------------
     tasks = [trim_task(args.task)] + config.aux_tasks
@@ -200,7 +199,7 @@ if __name__ == "__main__":
     print(f"max_seen_len for {config.task} = {args.max_seen_len}")
 
     collator = partial(sequences_collator, 
-                        w2i={w:i for i,w in enumerate(vocab)}, 
+                        w2i={w:i for i,w in enumerate(args.vocab)}, 
                         max_seq_len=config.max_seq_len,
                     )
 
@@ -249,7 +248,7 @@ if __name__ == "__main__":
         trainer.strategy.config["zero_optimization"]["allgather_bucket_size"] = args.ds_bucket_mb * 1000 * 1000
         trainer.strategy.config["zero_optimization"]["reduce_bucket_size"] = args.ds_bucket_mb * 1000 * 1000
 
-
+    print(f"\n\n\n----------------------- Start Training {config.date} -----------------------\n\n")
     trainer.fit(model, train_dataloader)
 
     print("\n\n\n----------------------- Start Inference -----------------------\n\n")

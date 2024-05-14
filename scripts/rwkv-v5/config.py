@@ -23,7 +23,7 @@ class Basic_Config:
     warmup_steps = 0
     learning_rate = 0.0001
     weight_decay = 0.01
-    num_epochs = 50
+    num_epochs = 10
     eval_every_steps = 10000
     load_from_dir = None #"0509_142104" # 
     init_from_ckpt = None
