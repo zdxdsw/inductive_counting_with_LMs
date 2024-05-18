@@ -3,7 +3,8 @@
 ########################################################################################################
 
 import logging, os, json, sys
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR) #INFO) #logging.getLogger("lightning.pytorch").setLevel(logging.ERROR)
+
 
 if __name__ == "__main__":
     from config import *
@@ -197,6 +198,7 @@ if __name__ == "__main__":
     
     args.max_seen_len = max([len([x for x in json.loads(l['text'])[0] if x != "<pad>"]) for l in val_data])
     print(f"max_seen_len for {config.task} = {args.max_seen_len}")
+    print(f"\n-------------------------------\n------ #training = {len(train_data)} ------\n-------------------------------\n")
 
     collator = partial(sequences_collator, 
                         w2i={w:i for i,w in enumerate(args.vocab)}, 
@@ -238,10 +240,24 @@ if __name__ == "__main__":
     rank_zero_info(f"\n\n----------------------- Create Trainer... -----------------------\n")
 
     from pytorch_lightning.callbacks import TQDMProgressBar
+    from pytorch_lightning.callbacks.progress.tqdm_progress import Tqdm
+    class MyTQDMProgressBar(TQDMProgressBar):
+        def init_train_tqdm(self):
+            return Tqdm(
+                desc=self.train_description,
+                position=(2 * self.process_position),
+                disable=self.is_disabled,
+                leave=True,
+                dynamic_ncols=True,
+                file=sys.stderr,
+                smoothing=0,
+                #bar_format=self.BAR_FORMAT,
+            )
+
     args.max_epochs = args.epoch_count
     trainer = Trainer.from_argparse_args(
         args,
-        callbacks=[train_callback(args), TQDMProgressBar(refresh_rate=0)], #args.logging_steps)],
+        callbacks=[train_callback(args), MyTQDMProgressBar(refresh_rate=args.logging_steps)],
     )
 
     if "deepspeed" in args.strategy:

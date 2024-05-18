@@ -52,7 +52,10 @@ if args.load_from_epochs != "all":
 
 val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
 args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
-print(f"max_seen_len for {config.task} = {args.max_seen_len}")
+messages = []
+msg = f"max_seen_len for {config.task} = {args.max_seen_len}"
+messages.append(msg)
+print(msg)
 
 
 """ -------------------- Prepare Reusable Variables -------------------- """
@@ -133,14 +136,16 @@ for load_from_pt in avail_ckpts:
                         "pred": " ".join(pred_seq),
                     }
                     k+=1
-            
-        print(f""" {split} acc, load from {load_from_pt}
+        
+        msg = f""" {split} acc, load from {load_from_pt}
                 | Test Loss: {round(np.mean(test_losses), 4)} 
                 | Test Acc: {round(correct/demo, 4)} 
                 | Test Counting Acc: {round(counting_correct/counting_demo, 4)} 
                 | Test Last Acc: {round(last_correct/last_demo, 4)}
                 | Test Unseen Len Acc: {round(unseen_len_correct/unseen_len_demo, 4) if unseen_len_demo != 0 else -1}
-            """)
+            """
+        messages.append(msg)
+        print(msg)
 
         save_dir = "test_samples" if "test" in split else "val_samples"
         os.makedirs(f"{config.output_dir}/{args.handle}/{save_dir}", exist_ok=True)
@@ -155,4 +160,8 @@ for load_from_pt in avail_ckpts:
                 "testing_output": testing_output,
             }, 
             open(f"{config.output_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
+    messages.append("\n")
+messages.append(f"Finish testing {args.handle}!")
+with open(f"{config.output_dir}/{args.handle}/terminal_tester.txt", "w") as f:
+    f.write("".join(messages))
     

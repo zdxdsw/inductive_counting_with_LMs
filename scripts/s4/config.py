@@ -5,7 +5,7 @@ class Basic_Config:
     seed = [1234, 12, 123]
     model = "RNN"
     date = "debug"
-    num_hidden_layers = 4
+    num_hidden_layers = 1
     vocab = []
     task = ""
     aux_tasks = []
@@ -30,7 +30,7 @@ class Basic_Config:
     weight_decay = 0.01
     num_epochs = 50
     eval_every_steps = 10000
-    load_from_dir = None # "0509_134910" #
+    load_from_dir = None # "0514_183327" #
     init_from_ckpt = None
 
 

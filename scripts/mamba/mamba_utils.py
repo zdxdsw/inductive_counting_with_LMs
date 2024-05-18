@@ -1,5 +1,6 @@
-import torch, json
-def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings=None, augmentation=None):
+
+import json, torch
+def sequences_collator(texts, w2i, max_seq_len):
     input_ids = []
     labels = []
     for t in texts:
@@ -17,6 +18,4 @@ def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings=None, au
     return {
         'input_id': torch.LongTensor(input_ids),
         'label': torch.LongTensor(labels),
-        'position_id': torch.LongTensor([[]]),
-        'attention_mask': torch.tensor([[]]),
     }
