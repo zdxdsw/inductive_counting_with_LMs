@@ -25,6 +25,7 @@ default_config = Default_Config()
 
 SEEDS = config.seed
 if isinstance(SEEDS, int): SEEDS = [SEEDS]
+if config.load_from_dir is not None: SEEDS = [0]
 for seed in SEEDS:
   date = datetime.now(timezone).strftime("%m%d_%H%M%S")
   config.date = date
@@ -39,7 +40,7 @@ for seed in SEEDS:
       config_keys = dir(config)
       for k in config_keys:
         if k.startswith("__"): continue
-        if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
+        if k not in ["warmup_steps", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
           if k in resume_from_config:
             setattr(config, k, resume_from_config[k])
           else:

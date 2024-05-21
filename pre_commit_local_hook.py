@@ -15,6 +15,9 @@ with open(".gitignore", "r") as f:
     for line in lines:
         top_lines.append(line)
         #if "Auto discovered large files" in line: break
+if len(result) == 0:
+    print("No large files found")
+    exit()
 with open(".gitignore", "a") as f:
     #f.write("".join(top_lines))
     for r in result.strip().split("\n"):

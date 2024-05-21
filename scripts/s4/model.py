@@ -2157,3 +2157,81 @@ class RNNModel(nn.Module):
         x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
 
         return x
+
+ACT_TO_FUNC = {
+        'relu': nn.ReLU(),
+        'leaky_relu': nn.LeakyReLU(),
+        'sigmoid': nn.Sigmoid(),
+        'tanh': nn.Tanh(),
+        'elu': nn.ELU(),
+        'gelu': nn.GELU(),
+        'softmax': nn.Softmax(dim=1),
+        'log_softmax': nn.LogSoftmax(dim=1),
+        'selu': nn.SELU(),
+        'relu6': nn.ReLU6(),
+        'identity': nn.Identity(),  # Added Identity function
+    }
+
+class MyRNNModel(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.config = config
+        self.embed_dim = config.hidden_size
+        
+        if config.freeze_null_emb: 
+            self.encoder = Embedding_with_null(len(config.vocab), config.hidden_size)
+            assert config.vocab[0] == '<null>'
+        else: self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
+
+        self.i2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2o = nn.Linear(config.hidden_size, config.hidden_size)
+        self.actv = ACT_TO_FUNC[config.rnn_actv]
+
+        # Linear decoder
+        self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
+        
+        self.apply(self._init_weights)
+        if self.config.tie_word_embeddings:
+            warnings.warn("=========== tie_word_embeddings = True! ==========")
+            self.decoder.weight = self.encoder.weight
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            # Slightly different from the TF version which uses truncated_normal for initialization
+            # cf https://github.com/pytorch/pytorch/pull/5617
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        if isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+
+    def initHidden(self):
+        return torch.zeros(1, self.hidden_size)
+    
+    def forward_rnn(self, input, hidden):
+        hidden = self.actv(self.i2h(input) + self.h2h(hidden))
+        output = self.h2o(hidden)
+        return output, hidden
+
+    def forward(self, x, **kwargs):
+        x = self.encoder(x)
+
+        #x, _ = self.lstm(x)
+        hidden = self.initHidden()
+        outputs = []
+        for i in range(x.size(1)):
+            input = x[:, i, :]
+            output, hidden = self.forward_rnn(input, hidden)
+            outputs.append(output)
+        x = torch.stack(outputs, dim=1)
+
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.config.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
+        
+        # Decode the outputs
+        x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
+
+        return x

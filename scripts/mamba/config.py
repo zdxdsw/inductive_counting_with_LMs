@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [12, 123, 42, 319]
+    seed = [123, 42, 319]
     date = "debug"
     model = "mamba"
     num_hidden_layers = 4
@@ -22,11 +22,11 @@ class Basic_Config:
     eval_accumulation_steps = 1
     logging_steps = 500
     warmup_steps = 0 #3000
-    learning_rate = 1e-4
+    learning_rate = 5e-5
     weight_decay = 0# 0.01
-    num_epochs = 50
-    eval_every_steps = 5000
-    load_from_dir = None # "0514_183327" #
+    num_epochs = 10
+    eval_every_steps = 10000
+    load_from_dir = None # "0520_081118" #
     init_from_ckpt = None
     precision = "fp32"
 
