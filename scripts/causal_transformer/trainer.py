@@ -52,13 +52,13 @@ ddp_kwargs = DistributedDataParallelKwargs()
 accelerator = Accelerator(
     mixed_precision="fp16",
     gradient_accumulation_steps=config.gradient_accumulation_steps,
-    log_with="tensorboard",
+    #log_with="tensorboard",
     kwargs_handlers=[ddp_kwargs],
     project_dir=os.path.join(config.output_dir, config.date),
 )
 accelerator.wait_for_everyone()
 if accelerator.is_main_process:
-    accelerator.init_trackers("tensorboard")
+    #accelerator.init_trackers("tensorboard")
     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
 
