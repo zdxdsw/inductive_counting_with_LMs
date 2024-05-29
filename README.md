@@ -6,9 +6,9 @@ In `/scripts`, we maintain separate folders for different architecture types. No
 
 ## Python Environments
 
-To support reproducibility for different sets of experiments, separate environments are used for `mamba` and `rwkv`. `causal_transformer` and `s4` share the same env. Thus, we provide instructions for building three environments.
+To support reproducibility for individual sets of experiments, `mamba` and `rwkv` have their own environments, while `causal_transformer` and `s4` use a shared env. Thus, we provide instructions for building three environments.
 
-Here's how you setup the environment for `causal_transformer` and `s4`. 
+Here's how you setup the shared environment for `causal_transformer` and `s4`. 
 ```
 cd <path_to_this_repo> &&
 python3 -m venv venv &&
