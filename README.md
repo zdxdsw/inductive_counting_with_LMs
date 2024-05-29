@@ -1,5 +1,5 @@
 
-&#x1f31f; This is the code repo for experiments performed in *Language Models Need Inductive Bias to Count Inductively* &#x1f31f;
+## &#x1f31f; This is the code repo for experiments performed in *Language Models Need Inductive Bias to Count Inductively* &#x1f31f;
 
 ## File Structure
 In `/scripts`, we maintain separate folders for different architecture types. Note, LSTM and RNN are subsumed in `/scripts/s4`.
