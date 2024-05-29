@@ -17,6 +17,18 @@ pip3 install causal-conv1d==1.0.0
 pip install -r mamba-requirements.txt
 ```
 
+## Train Models
+```
+python run.py --cuda 0 --port 29500 --task <task_name>
+```
+`<task_name>` can be choosen from [`scripts/causal_transformer/config_taskspecific.py`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/causal_transformer/config_taskspecific.py), e.g. `counting_samesymbol_mod10bos`.
+
+## Test Models
+```
+python tester.py --handle <timestamp>
+```
+E.g., timestamp = 0522_103640
+
 ## Troubleshooting
 1. `ImportError: ....../mamba/venv/lib64/python3.9/site-packages/selective_scan_cuda.cpython-39-x86_64-linux-gnu.so: undefined symbol: _ZN2at4_ops10zeros_like4callERKNS_6TensorEN3c108optionalINS5_10ScalarTypeEEENS6_INS5_6LayoutEEENS6_INS5_6DeviceEEENS6_IbEENS6_INS5_12MemoryFormatEEE`
 This may happen at `import causal_conv1d_cuda`; Or `ImportError: ....../mamba/venv/lib64/python3.9/site-packages/selective_scan_cuda.cpython-39-x86_64-linux-gnu.so: undefined symbol: _ZNK3c1017SymbolicShapeMeta18init_is_contiguousEv` This may happen at `import selective_scan_cuda` &#x2794; Check your cuda version. mamba requires cuda >= 11. We used cuda 11.8

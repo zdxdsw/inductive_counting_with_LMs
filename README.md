@@ -1,5 +1,5 @@
 
-## &#x1f31f; This is the code repo for experiments performed in *Language Models Need Inductive Bias to Count Inductively* &#x1f31f;
+## &#x1f31f; This is the code repo for experiments performed in [*Language Models Need Inductive Biases to Count Inductively*]() &#x1f31f;
 
 ## File Structure
 In `/scripts`, we maintain separate folders for different architecture types. Note, LSTM and RNN are subsumed in `/scripts/s4`.
@@ -43,23 +43,28 @@ use_cpu: false
 
 Remember to specify `output_dir, ckpt_dir, hf_cache_dir` in `config.py`.
 
-Training command:
+**Training command:**
 ```
 cd scripts/<architecture_type>
 python run.py --task <task_name> --cuda 0 --port 29500
 ```
 
-`<task_name>` can be choosen from [`scripts/causal_transformer/config_taskspecific.py`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/causal_transformer/config_taskspecific.py), e.g. `counting_samesymbol_mod10bos`.
+**Notes**
 
-Model ckpts will be saved to `ckpt_dir` specified in `config.py`
+- `<task_name>` can be choosen from [`scripts/causal_transformer/config_taskspecific.py`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/causal_transformer/config_taskspecific.py), e.g. `counting_samesymbol_mod10bos`.
+
+- Model ckpts will be saved to `ckpt_dir` specified in `config.py`
 Model outputs during validation will be saved to `output_dir`. Specifically, each run will create its own folder under `output_dir` named by the timestamp, which can be passed to `tester.py` through the argument "handle".
+
+- If you're running multiple jobs on the same machine, use different ports. Otherwise, accelerator will complain about busy port.
 
 ## Test Models
 
-Testing command:
 ```
-python tester.py --handle 0522_103640
+python tester.py --handle <timestamp>
 ```
+E.g., timestamp = 0522_103640
+
 
 ## Cite Us &#x1f64f;
 ```

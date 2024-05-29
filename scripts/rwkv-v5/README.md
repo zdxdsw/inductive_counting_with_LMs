@@ -10,6 +10,18 @@ pip install pytorch-lightning==1.9.5 deepspeed==0.7.0 wandb ninja
 pip install -r rwkv-v5_requirements.txt
 ```
 
+## Train Models
+```
+python run.py --cuda 0 --task <task_name>
+```
+`<task_name>` can be choosen from [`scripts/causal_transformer/config_taskspecific.py`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/causal_transformer/config_taskspecific.py), e.g. `counting_samesymbol_mod10bos`.
+
+## Test Models
+```
+python tester.py --handle <timestamp>
+```
+E.g., timestamp = 0522_103640
+
 ## Troubleshooting
 1. deepspeed `no module named 'torch._six'` &#x2794; pip uninstall, then install deepspeed
 2. deepspeed `no torch module` error &#x2794; pip3 install pytorch-lightning==1.9.5 deepspeed==0.7.0 wandb ninja **--no-build-isolation**
