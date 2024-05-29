@@ -45,7 +45,7 @@ Remember to specify `output_dir, ckpt_dir, hf_cache_dir` in `config.py`.
 
 **Training command:**
 ```
-cd scripts/<architecture_type>
+cd scripts/causal_transformer && # or cd scripts/s4
 python run.py --task <task_name> --cuda 0 --port 29500
 ```
 
