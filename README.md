@@ -41,6 +41,8 @@ tpu_use_sudo: false
 use_cpu: false
 ```
 
+Remember to specify `output_dir, ckpt_dir, hf_cache_dir` in `config.py`.
+
 Training command:
 ```
 cd scripts/<architecture_type>

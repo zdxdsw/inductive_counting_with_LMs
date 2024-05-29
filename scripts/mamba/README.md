@@ -14,6 +14,7 @@ pip3 install accelerate==0.25.0 &&
 pip3 install bitsandbytes==0.41.3 && 
 pip3 install scipy==1.11.4 &&
 pip3 install causal-conv1d==1.0.0
+pip install -r mamba-requirements.txt
 ```
 
 ## Troubleshooting
