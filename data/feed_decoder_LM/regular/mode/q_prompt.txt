@@ -1,1 +1,0 @@
-What is the most common digit in the string "{}"?

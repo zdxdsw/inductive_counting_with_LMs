@@ -4,7 +4,7 @@ sys.path.append("../")
 from causal_transformer.config_taskspecific import *
 from tqdm import trange
 from datetime import datetime
-timezone = pytz.timezone('America/New_York') 
+timezone = pytz.timezone('America/Los_Angeles') 
 
 if os.path.exists('/data/yingshac/'): 
     os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
@@ -12,9 +12,7 @@ if os.path.exists('/data/yingshac/'):
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
-parser.add_argument('--port', type=str, default="")
 parser.add_argument('--cuda', type=str, default="")
-#parser.add_argument('--turnoff_accelerator', action='store_true')
 args = parser.parse_args()
 if args.cuda: args.cuda = f"CUDA_VISIBLE_DEVICES=\"{args.cuda}\""
 
@@ -51,8 +49,6 @@ for seed in SEEDS:
       else:
         args.task = resume_from_config['data_path'].split("/")[-1] # compatible with old train.txt paths
         ## auto infer task from the incomplete run
-      #if "tie_word_embeddings" not in resume_from_config: config.tie_word_embeddings = False # for backward compatibility
-      #if not "scaler_posemb" in resume_from_config: config.scaler_posemb = False # for backward compatibility
 
 
     # dump config
@@ -66,10 +62,12 @@ for seed in SEEDS:
     for i in trange(args.sleep, desc="Sleeping"):
       time.sleep(60)
 
-  os.system("{} accelerate launch --main_process_port {} --num_processes 1 trainer.py --date {} --task {} | tee {}".format(
-    args.cuda,
-    args.port,
-    config.date,
-    args.task,
-    os.path.join(config.output_dir, date, "terminal.txt"),
-  ))
+  os.system("{} python trainer.py --date {} --load_model \"\"  --my_testing x060 --task {} \
+            --strategy deepspeed_stage_2 --accelerator gpu --devices 1 --precision bf16 | tee {}" \
+            .format(
+                args.cuda,
+                config.date,
+                args.task,
+                os.path.join(config.output_dir, date, "terminal.txt"),
+  ))   
+  

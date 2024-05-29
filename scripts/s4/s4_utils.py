@@ -1,5 +1,5 @@
 import torch, json
-def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings, augmentation=None):
+def sequences_collator(texts, w2i, max_seq_len, max_position_embeddings=None, augmentation=None):
     input_ids = []
     labels = []
     for t in texts:

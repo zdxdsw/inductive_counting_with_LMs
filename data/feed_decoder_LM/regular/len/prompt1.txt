@@ -1,1 +1,0 @@
-The string "{}" has a length of

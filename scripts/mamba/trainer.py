@@ -6,15 +6,19 @@ from accelerate import Accelerator
 from torch.utils.data import DataLoader
 from datasets import load_dataset, concatenate_datasets
 from functools import partial
-from model import S4Model, LSTMModel, RNNModel
 from config import *
-from s4_utils import sequences_collator
 sys.path.append("../")
 from causal_transformer.config_taskspecific import *
 from causal_transformer.utils import trim_task, inference
+from s4.s4_utils import sequences_collator
+from mamba.mamba_utils import convert_precision_config
+
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
+
+#from mamba_ssm.models.mixer_seq_simple import MambaLMHeadModel
+from mamba.model import MambaLMHeadModel
 
 
 def Print(s):
@@ -35,6 +39,7 @@ tmp = json.load(open(os.path.join(config.output_dir, args.date, "config.json"), 
 for k, v in tmp.items():
     setattr(config, k, v)
 config.date = args.date
+accelerator_mix_precision, model_dtype = convert_precision_config(config.precision)
 if "hf_cache_dir" in dir(config) and config.hf_cache_dir is not None: os.environ['HF_HOME'] = config.hf_cache_dir
 
 # Fix all seeds to ensure reproducibility
@@ -44,78 +49,45 @@ np.random.seed(SEED)
 torch.manual_seed(SEED)
 torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
-#torch.backends.cudnn.enabled = True
 
 ddp_kwargs = DistributedDataParallelKwargs()
 accelerator = Accelerator(
-    mixed_precision="fp16",
+    mixed_precision=accelerator_mix_precision,
     gradient_accumulation_steps=config.gradient_accumulation_steps,
     #log_with="tensorboard",
     kwargs_handlers=[ddp_kwargs],
     project_dir=os.path.join(config.output_dir, config.date),
 )
 accelerator.wait_for_everyone()
-if accelerator.is_main_process:
-    #accelerator.init_trackers("tensorboard")
-    os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
+# if accelerator.is_main_process:
+#     accelerator.init_trackers("tensorboard")
+#     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
+Print(f"------------- Preparing mamba model -------------")
 
-Print(f"------------- Preparing {config.model} model -------------")
+model = MambaLMHeadModel(                                                                              
+        d_model=config.hidden_size,                                                                                       
+        n_layer=config.num_hidden_layers,                                                                                        
+        vocab_size=len(config.vocab),                                                                                  
+        ssm_cfg={},                                                                                        
+        rms_norm=True,                                                                                     
+        residual_in_fp32=True,                                                                             
+        fused_add_norm=True,
+        #pad_vocab_size_multiple=1 #8
+    ).to(device="cuda", dtype=model_dtype) #float32)
 
-model = eval(f"{config.model}Model")(config)
 Print(f"Total parameters: {sum(p.numel() for p in model.parameters())}")
 print(f"Trainable parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad)}")
 
-def setup_optimizer(model, lr, weight_decay, epochs):
-    """
-    S4 requires a specific optimizer setup.
 
-    The S4 layer (A, B, C, dt) parameters typically
-    require a smaller learning rate (typically 0.001), with no weight decay.
-
-    The rest of the model can be trained with a higher learning rate (e.g. 0.004, 0.01)
-    and weight decay (if desired).
-    """
-
-    # All parameters in the model
-    all_parameters = list(model.parameters())
-
-    # General parameters don't contain the special _optim key
-    params = [p for p in all_parameters if not hasattr(p, "_optim")]
-
-    # Create an optimizer with the general parameters
-    optimizer = torch.optim.AdamW(params, lr=lr, weight_decay=weight_decay)
-
-    # Add parameters with special hyperparameters
-    hps = [getattr(p, "_optim") for p in all_parameters if hasattr(p, "_optim")]
-    hps = [
-        dict(s) for s in sorted(list(dict.fromkeys(frozenset(hp.items()) for hp in hps)))
-    ]  # Unique dicts
-    for hp in hps:
-        params = [p for p in all_parameters if getattr(p, "_optim", None) == hp]
-        optimizer.add_param_group(
-            {"params": params, **hp}
-        )
-
-    # Create a lr scheduler
-    # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=patience, factor=0.2)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs)
-
-    # Print optimizer info
-    keys = sorted(set([k for hp in hps for k in hp.keys()]))
-    for i, g in enumerate(optimizer.param_groups):
-        group_hps = {k: g.get(k, None) for k in keys}
-        print(' | '.join([
-            f"Optimizer group {i}",
-            f"{len(g['params'])} tensors",
-        ] + [f"{k} {v}" for k, v in group_hps.items()]))
-
-    return optimizer, scheduler
-
-criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
-optimizer, lr_scheduler = setup_optimizer(
-    model, lr=config.learning_rate, weight_decay=config.weight_decay, epochs=config.num_epochs
+optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate, weight_decay=config.weight_decay)
+lr_scheduler = get_constant_schedule_with_warmup(
+    optimizer=optimizer,
+    num_warmup_steps=config.warmup_steps * accelerator.num_processes / config.gradient_accumulation_steps,
 )
+criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
+
+Print(f"\n------------- accelerator = {accelerator.mixed_precision}, model_dtype = {next(model.parameters()).dtype} -------------\n")
 
 
 Print("------------- Preparing data -------------")
@@ -139,8 +111,8 @@ Print(f"max_seen_len for {args.task} = {args.max_seen_len}")
 collator = partial(sequences_collator, 
                     w2i={w:i for i,w in enumerate(config.vocab)}, 
                     max_seq_len=config.max_seq_len,
-                    max_position_embeddings=config.max_seq_len,
-                    augmentation=None,
+                    #max_seq_len=config.max_seq_len,
+                    #augmentation=None,
                 )
 
 train_dataloader = DataLoader(train_data, shuffle=True, batch_size=config.per_device_train_batch_size, collate_fn=collator, pin_memory=True, num_workers=1, persistent_workers=False)
@@ -190,7 +162,7 @@ if config.init_from_ckpt is not None:
 Print(f"------------ Start job {config.date} ------------")
 progress_bar = tqdm(total=(config.num_epochs-global_epoch)*len(train_dataloader), disable=not accelerator.is_local_main_process, mininterval=10)
 for epoch in range(global_epoch, config.num_epochs):
-
+    Print(f"\n------------- accelerator = {accelerator.mixed_precision}, model_dtype = {next(model.parameters()).dtype} -------------\n")
     for step, batch in enumerate(train_dataloader):
         
         if global_step % config.eval_every_steps == 0: 

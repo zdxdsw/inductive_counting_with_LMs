@@ -2,8 +2,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [1234]
+    seed = [42, 319]
     date = "debug"
+    hf_cache_dir = '/data/yingshac/hf_cache'
     num_hidden_layers = 4
     vocab = []
     task = ""
@@ -20,12 +21,12 @@ class Basic_Config:
     resid_pdrop = 0. #0.1
     embd_pdrop = 0. #0.1
     attn_pdrop = 0. #0.1
-    must_attend_to_identity = True
+    must_attend_to_identity = False
     tie_word_embeddings = False
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
-    output_dir = "output"
+    output_dir = "output_postsm"
     ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
     train_data_path = "/data/yingshac/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
@@ -50,13 +51,14 @@ class Basic_Config:
     scaler_posemb_shift = False
     sinusoidal_posemb = False
     sinusoidal_posemb_shift = False
-    load_from_dir = None #"0507_005038" # 
+    load_from_dir = None #"0527_162257" # 
     init_from_ckpt = None
 
 
 @dataclass
 class Default_Config:
     seed = 1234
+    hf_cache_dir = None
     must_attend_to_identity = False
     tie_word_embeddings = False
     absolute_posemb = False

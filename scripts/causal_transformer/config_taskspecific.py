@@ -51,6 +51,12 @@ class counting_samesymbol_plain2_addbigram_nullseq_Config(Basic_Config):
     freeze_null_emb = True
 
 @dataclass
+class counting_samesymbol_plain3_addbigram_Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
+    aux_tasks = ['addbigram']
+    test_files = ["ood_test", "addbigram_test"]
+
+@dataclass
 class counting_samesymbol_plain3_addbigram_blkseq_Config(Basic_Config):
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a', '<b>']
     aux_tasks = ['addbigram_blkseq']
@@ -180,6 +186,10 @@ class counting_diffsymbol_mod10_100_200_Config(Basic_Config):
     vocab = [str(i) for i in range(11)] + ['<pad>'] + list('abcdefghijklmnopqrstuvwxyz')
     max_position_embeddings = 256
     max_seq_len = 256
+
+@dataclass
+class counting_samesymbol_mod10bos_Config(Basic_Config):
+    vocab = [str(i) for i in range(11)] + ['<pad>', 'a']
 
 @dataclass
 class counting_samesymbol_mod11_Config(Basic_Config):

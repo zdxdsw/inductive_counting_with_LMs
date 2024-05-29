@@ -272,7 +272,7 @@ class Attention(nn.Module):
 
         res = torch.matmul(w, v)
 
-        return res
+        return res, w
     
     def merge_heads(self, x):
         x = x.permute(0, 2, 1, 3).contiguous()
@@ -294,7 +294,7 @@ class Attention(nn.Module):
         key = self.split_heads(key, k=True)
         value = self.split_heads(value)
         
-        a = self._attn(query, key, value, attention_mask, position_ids)
+        a, _ = self._attn(query, key, value, attention_mask, position_ids)
 
         a = self.merge_heads(a)
         a = self.c_proj(a)

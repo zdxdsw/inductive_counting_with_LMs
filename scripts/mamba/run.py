@@ -1,10 +1,10 @@
-import random, time, os, pytz, argparse, sys, json, warnings
+import random, time, os, pytz, argparse, yaml, sys, json, warnings
 from config import *
 sys.path.append("../")
 from causal_transformer.config_taskspecific import *
 from tqdm import trange
 from datetime import datetime
-timezone = pytz.timezone('America/New_York') 
+timezone = pytz.timezone('America/Los_Angeles') 
 
 if os.path.exists('/data/yingshac/'): 
     os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
@@ -25,6 +25,7 @@ default_config = Default_Config()
 
 SEEDS = config.seed
 if isinstance(SEEDS, int): SEEDS = [SEEDS]
+if config.load_from_dir is not None: SEEDS = [0]
 for seed in SEEDS:
   date = datetime.now(timezone).strftime("%m%d_%H%M%S")
   config.date = date
@@ -39,21 +40,17 @@ for seed in SEEDS:
       config_keys = dir(config)
       for k in config_keys:
         if k.startswith("__"): continue
-        if k not in ["warmup_steps", "learning_rate", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
+        if k not in ["warmup_steps", "num_epochs", "save_every_steps", "eval_every_steps", "logging_steps", "load_from_dir", "date", "data_path"]:
           if k in resume_from_config:
             setattr(config, k, resume_from_config[k])
           else:
             setattr(config, k, default_config.__getattribute__(k))
             warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
-      
+
       if "task" in resume_from_config:
         args.task = resume_from_config['task']
       else:
         args.task = resume_from_config['data_path'].split("/")[-1] # compatible with old train.txt paths
-        ## auto infer task from the incomplete run
-      #if "tie_word_embeddings" not in resume_from_config: config.tie_word_embeddings = False # for backward compatibility
-      #if not "scaler_posemb" in resume_from_config: config.scaler_posemb = False # for backward compatibility
-
 
     # dump config
     config.task = args.task
@@ -65,11 +62,26 @@ for seed in SEEDS:
   if args.sleep is not None:
     for i in trange(args.sleep, desc="Sleeping"):
       time.sleep(60)
+  
 
-  os.system("{} accelerate launch --main_process_port {} --num_processes 1 trainer.py --date {} --task {} | tee {}".format(
+  os.system("{} accelerate launch --main_process_port {} trainer.py --date {} --task {} | tee {}".format(
     args.cuda,
     args.port,
     config.date,
     args.task,
     os.path.join(config.output_dir, date, "terminal.txt"),
   ))
+#   if not args.turnoff_accelerator:
+#     os.system("{} accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+#         args.cuda,
+#         args.accelerator,
+#         config.date,
+#         args.task,
+#         os.path.join(config.output_dir, date, "terminal.txt"),
+#     ))
+#   else:
+#     os.system("python trainer.py --date {} --task {} | tee {}".format(
+#         config.date,
+#         args.task,
+#         os.path.join(config.output_dir, date, "terminal.txt"),
+#     ))

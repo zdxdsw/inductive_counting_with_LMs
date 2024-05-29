@@ -1,16 +1,21 @@
 venv/
 *.tar.gz
 
-scripts/llama/output/
-scripts/mamba
-scripts/causal_transformer/output/
-scripts/s4/output/
+scripts/llama
+scripts/mamba/output
+scripts/causal_transformer/output
+scripts/causal_transformer/output_postsm
+scripts/s4/output
 
-#data/
+data/feed_decoder_LM
+data/finetune
 slurm/
 events.out*
 .nfs*
-
+scripts/helper.py
+scripts/rwkv-v5/demo-training-run.sh
+scripts/causal_transformer/tmp/
+scripts/__pycache__/
 
 # ------------- Auto discovered large files -------------
 scripts/causal_transformer/output/0421_215647/tensorboard/events.out.tfevents.1713751011.babel-11-17.2789471.0
