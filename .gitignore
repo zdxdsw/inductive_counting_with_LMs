@@ -16,6 +16,7 @@ scripts/helper.py
 scripts/rwkv-v5/demo-training-run.sh
 scripts/causal_transformer/tmp/
 scripts/__pycache__/
+scripts/llm_helpers_outdated/
 
 # ------------- Auto discovered large files -------------
 scripts/causal_transformer/output/0421_215647/tensorboard/events.out.tfevents.1713751011.babel-11-17.2789471.0
