@@ -6,7 +6,7 @@ from accelerate import Accelerator
 from torch.utils.data import DataLoader
 from datasets import load_dataset, concatenate_datasets
 from functools import partial
-from model import S4Model, LSTMModel, RNNModel
+from model import S4Model, LSTMModel, RNNModel, MyRNNModel, JitRNNModel, JitRNN2Model
 from config import *
 from s4_utils import sequences_collator
 sys.path.append("../")
@@ -16,8 +16,6 @@ from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
 
-if os.path.exists('/data/yingshac/'): 
-    os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
 
 
 def Print(s):
@@ -46,18 +44,19 @@ np.random.seed(SEED)
 torch.manual_seed(SEED)
 torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
+#torch.backends.cudnn.enabled = True
 
 ddp_kwargs = DistributedDataParallelKwargs()
 accelerator = Accelerator(
     mixed_precision="fp16",
     gradient_accumulation_steps=config.gradient_accumulation_steps,
-    log_with="tensorboard",
+    #log_with="tensorboard",
     kwargs_handlers=[ddp_kwargs],
     project_dir=os.path.join(config.output_dir, config.date),
 )
 accelerator.wait_for_everyone()
 if accelerator.is_main_process:
-    accelerator.init_trackers("tensorboard")
+    #accelerator.init_trackers("tensorboard")
     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
 

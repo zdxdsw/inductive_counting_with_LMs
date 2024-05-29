@@ -2,7 +2,7 @@ import json, os, math, sys, random, re, pytz, argparse, warnings, time
 from datetime import datetime
 timezone = pytz.timezone('America/New_York') 
 import torch
-from model import S4Model, LSTMModel, RNNModel
+from model import S4Model, LSTMModel, RNNModel, MyRNNModel, JitRNNModel, JitRNN2Model
 from config import *
 sys.path.append("../")
 from causal_transformer.utils import trim_task, get_acc
@@ -14,8 +14,6 @@ from torch.utils.data import DataLoader
 from datasets import load_dataset
 from functools import partial
 
-if os.path.exists('/data/yingshac/'): 
-    os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--handle', type=str)

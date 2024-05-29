@@ -11,6 +11,8 @@ slurm/logs/
 #slurm/
 events.out*
 .nfs*
+scripts/__pycache__
+__pycache__
 
 # ------------- Auto discovered large files -------------
 scripts/causal_transformer/output/0421_215647/tensorboard/events.out.tfevents.1713751011.babel-11-17.2789471.0

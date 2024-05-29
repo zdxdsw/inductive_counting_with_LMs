@@ -11,7 +11,7 @@ if os.path.exists('/data/yingshac/'):
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default="")
 parser.add_argument('--sleep', type=int)
-parser.add_argument('--accelerator', type=str, default="")
+parser.add_argument('--port', type=str, default="29500")
 parser.add_argument('--cuda', type=str, default="")
 parser.add_argument('--turnoff_accelerator', action='store_true')
 args = parser.parse_args()
@@ -44,15 +44,15 @@ for seed in SEEDS:
           else:
             setattr(config, k, default_config.__getattribute__(k))
             warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
-
+      
       if "task" in resume_from_config:
         args.task = resume_from_config['task']
       else:
         args.task = resume_from_config['data_path'].split("/")[-1] # compatible with old train.txt paths
         ## auto infer task from the incomplete run
-      # if "tie_word_embeddings" not in resume_from_config: config.tie_word_embeddings = False # for backward compatibility
-      # if not "scaler_posemb" in resume_from_config: config.scaler_posemb = False # for backward compatibility
-        
+      #if "tie_word_embeddings" not in resume_from_config: config.tie_word_embeddings = False # for backward compatibility
+      #if not "scaler_posemb" in resume_from_config: config.scaler_posemb = False # for backward compatibility
+
 
     # dump config
     config.task = args.task
@@ -66,9 +66,9 @@ for seed in SEEDS:
       time.sleep(60)
 
   if not args.turnoff_accelerator:
-    os.system("{} accelerate launch {} trainer.py --date {} --task {} | tee {}".format(
+    os.system("{} accelerate launch --main_process_port {} --num_processes 1 trainer.py --date {} --task {} | tee {}".format(
         args.cuda,
-        args.accelerator,
+        args.port,
         config.date,
         args.task,
         os.path.join(config.output_dir, date, "terminal.txt"),

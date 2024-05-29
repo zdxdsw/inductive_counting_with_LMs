@@ -2209,7 +2209,7 @@ class MyRNNModel(nn.Module):
                 module.weight.data[module.padding_idx].zero_()
 
     def initHidden(self):
-        return torch.zeros(1, self.hidden_size)
+        return torch.zeros(1, self.embed_dim)
     
     def forward_rnn(self, input, hidden):
         hidden = self.actv(self.i2h(input) + self.h2h(hidden))
@@ -2220,7 +2220,7 @@ class MyRNNModel(nn.Module):
         x = self.encoder(x)
 
         #x, _ = self.lstm(x)
-        hidden = self.initHidden()
+        hidden = self.initHidden().to(x.device)
         outputs = []
         for i in range(x.size(1)):
             input = x[:, i, :]
@@ -2232,6 +2232,162 @@ class MyRNNModel(nn.Module):
         if self.config.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
         
         # Decode the outputs
+        x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
+
+        return x
+
+
+from torch import jit
+class JitRNNModel(jit.ScriptModule):
+    def __init__(self, config):
+        super().__init__()
+        #self.config = config # jitModule would complain that it doesn't support customized config class.
+        self.embed_dim = config.hidden_size
+        self.tie_word_embeddings = config.tie_word_embeddings
+        self.initializer_range = config.initializer_range
+        
+        if config.freeze_null_emb: 
+            self.encoder = Embedding_with_null(len(config.vocab), config.hidden_size)
+            assert config.vocab[0] == '<null>'
+        else: self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
+
+        self.i2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2o = nn.Linear(config.hidden_size, config.hidden_size)
+        self.actv = ACT_TO_FUNC[config.rnn_actv]
+
+        # Linear decoder
+        self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
+        
+        self.apply(self._init_weights)
+        if self.tie_word_embeddings:
+            warnings.warn("=========== tie_word_embeddings = True! ==========")
+            self.decoder.weight = self.encoder.weight
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            # Slightly different from the TF version which uses truncated_normal for initialization
+            # cf https://github.com/pytorch/pytorch/pull/5617
+            module.weight.data.normal_(mean=0.0, std=self.initializer_range)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        if isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=self.initializer_range)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+
+    def initHidden(self):
+        return torch.zeros(1, self.embed_dim)
+    
+    @jit.script_method
+    def forward_rnn(self, input, hidden):
+        hidden = self.actv(self.i2h(input) + self.h2h(hidden))
+        output = self.h2o(hidden)
+        return output, hidden
+
+    @jit.script_method
+    def forward(self, x, position_ids=None, attention_mask=None): #, **kwargs): 
+        """ 
+        jit doesn't support kwargs. 
+        So copied position_ids and attention_mask here to be consistent with Transformer's forward function
+        """
+        x = self.encoder(x)
+
+        #x, _ = self.lstm(x)
+        hidden = self.initHidden().to(x.device)
+        outputs = []
+        for i in range(x.size(1)):
+            input = x[:, i, :]
+            hidden = self.actv(self.i2h(input) + self.h2h(hidden))
+            output = self.h2o(hidden)
+            #output, hidden = self.forward_rnn(input, hidden)
+            outputs.append(output)
+        x = torch.stack(outputs, dim=1)
+
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
+        
+        # Decode the outputs
+        x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
+
+        return x
+
+
+from torch import jit
+class JitRNN2Model(jit.ScriptModule):
+    def __init__(self, config):
+        super().__init__()
+        #self.config = config # jitModule would complain that it doesn't support customized config class.
+        self.embed_dim = config.hidden_size
+        self.tie_word_embeddings = config.tie_word_embeddings
+        self.initializer_range = config.initializer_range
+        
+        if config.freeze_null_emb: 
+            self.encoder = Embedding_with_null(len(config.vocab), config.hidden_size)
+            assert config.vocab[0] == '<null>'
+        else: self.encoder = nn.Embedding(len(config.vocab), config.hidden_size)
+        self.W_in = nn.Linear(config.hidden_size, config.hidden_size)
+
+        self.i2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2h = nn.Linear(config.hidden_size, config.hidden_size)
+        self.h2o = nn.Linear(config.hidden_size, config.hidden_size)
+        self.actv = ACT_TO_FUNC[config.rnn_actv]
+        self.nonlinearity = nn.ReLU()
+
+        self.W_out = nn.Linear(config.hidden_size, config.hidden_size)
+        # Linear decoder
+        self.decoder = nn.Linear(config.hidden_size, len(config.vocab), bias=False)
+        
+        self.apply(self._init_weights)
+        if self.tie_word_embeddings:
+            warnings.warn("=========== tie_word_embeddings = True! ==========")
+            self.decoder.weight = self.encoder.weight
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            # Slightly different from the TF version which uses truncated_normal for initialization
+            # cf https://github.com/pytorch/pytorch/pull/5617
+            module.weight.data.normal_(mean=0.0, std=self.initializer_range)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        if isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=self.initializer_range)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+
+    def initHidden(self):
+        return torch.zeros(1, self.embed_dim)
+    
+    @jit.script_method
+    def forward_rnn(self, input, hidden):
+        hidden = self.actv(self.i2h(input) + self.h2h(hidden))
+        output = self.h2o(hidden)
+        return output, hidden
+
+    @jit.script_method
+    def forward(self, x, position_ids=None, attention_mask=None): #, **kwargs): 
+        """ 
+        jit doesn't support kwargs. 
+        So copied position_ids and attention_mask here to be consistent with Transformer's forward function
+        """
+        x = self.encoder(x)
+        x = self.W_in(self.nonlinearity(x))
+        #x, _ = self.lstm(x)
+        hidden = self.initHidden().to(x.device)
+        outputs = []
+        for i in range(x.size(1)):
+            input = x[:, i, :]
+            hidden = self.actv(self.i2h(input) + self.h2h(hidden))
+            output = self.h2o(hidden)
+            #output, hidden = self.forward_rnn(input, hidden)
+            outputs.append(output)
+        x = torch.stack(outputs, dim=1)
+
+        # Reference https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L1765
+        if self.tie_word_embeddings: x = x * (self.embed_dim**-0.5)
+        
+        # Decode the outputs
+        x = self.nonlinearity(self.W_out(x))
         x = self.decoder(x)  # (B, seq_len, d_model) -> (B, seq_len, d_output)
 
         return x

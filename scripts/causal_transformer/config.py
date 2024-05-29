@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [12, 123]
+    seed = [1234, 12, 123]
     date = "debug"
-    num_hidden_layers = 2
+    num_hidden_layers = 1
     vocab = []
     task = ""
     aux_tasks = []
@@ -26,8 +26,8 @@ class Basic_Config:
     initializer_range = 0.02
     max_grad_norm = 0.3
     output_dir = "output"
-    ckpt_dir = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/scripts/causal_transformer/output"
-    train_data_path = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/data/rasp_primitives/"
+    ckpt_dir = "/home/ubuntu/largefiles/llms_do_math/scripts/causal_transformer/output"
+    train_data_path = "/home/ubuntu/largefiles/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
     test_files = ["ood_test"]
     per_device_train_batch_size = 32
@@ -37,20 +37,20 @@ class Basic_Config:
     logging_steps = 100
     warmup_steps = 3000
     learning_rate = 1e-4
-    num_epochs = 10
+    num_epochs = 50
     #save_every_steps = 20000
-    eval_every_steps = 130000
+    eval_every_steps = 40000
     absolute_posemb = False
     absolute_posemb_shift = False
     absolute_posemb_rdmz = False
-    rotary_posemb = False
-    rotary_posemb_shift = False
+    rotary_posemb = True
+    rotary_posemb_shift = True
     rotary_posemb_rdmz = False
     scaler_posemb = False
     scaler_posemb_shift = False
     sinusoidal_posemb = False
     sinusoidal_posemb_shift = False
-    load_from_dir = None # "0507_223425" #
+    load_from_dir = None #"0507_005038" # 
     init_from_ckpt = None
 
 
