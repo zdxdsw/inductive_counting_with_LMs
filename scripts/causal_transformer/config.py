@@ -2,10 +2,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = [42, 319]
+    seed = 1234
     date = "debug"
     hf_cache_dir = '/data/yingshac/hf_cache'
-    num_hidden_layers = 4
+    num_hidden_layers = 2
     vocab = []
     task = ""
     aux_tasks = []
@@ -44,8 +44,8 @@ class Basic_Config:
     absolute_posemb = False
     absolute_posemb_shift = False
     absolute_posemb_rdmz = False
-    rotary_posemb = False
-    rotary_posemb_shift = False
+    rotary_posemb = True
+    rotary_posemb_shift = True
     rotary_posemb_rdmz = False
     scaler_posemb = False
     scaler_posemb_shift = False

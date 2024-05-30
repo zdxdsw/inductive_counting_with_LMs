@@ -19,6 +19,12 @@ pip install -r s4_requirements.txt
 ```
 Please click these links for building [`mamba`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/mamba/README.md) and [`rwkv`](https://github.com/zdxdsw/think_more_like_Transformers/blob/master/scripts/rwkv-v5/README.md) environments.
 
+
+## Generate Data
+For examples of the input-output formats, [there](https://github.com/zdxdsw/inductive_counting_with_LMs/tree/master/data/rasp_primitives) are validation and OOD testing files for each task.
+
+Our training data is generated in this [notebook](https://github.com/zdxdsw/inductive_counting_with_LMs/blob/master/notebooks/counting.ipynb).
+
 ## Train Models
 If this is the first time you use accelerate, and you haven't configured it, please do:
 `accelerate config`, and config accordingly.
