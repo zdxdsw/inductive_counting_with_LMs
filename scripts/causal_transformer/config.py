@@ -26,7 +26,7 @@ class Basic_Config:
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
-    output_dir = "output_postsm"
+    output_dir = "output"
     ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
     train_data_path = "/data/yingshac/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
@@ -72,3 +72,5 @@ class Default_Config:
     sinusoidal_posemb = False
     sinusoidal_posemb_shift = False
     freeze_null_emb = False
+    aux_tasks = []
+    max_seq_len = 128
