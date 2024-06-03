@@ -74,6 +74,12 @@ E.g., timestamp = 0522_103640
 
 ## Cite Us &#x1f64f;
 ```
+@article{chang2024language,
+  title={Language Models Need Inductive Biases to Count Inductively},
+  author={Chang, Yingshan and Bisk, Yonatan},
+  journal={arXiv preprint arXiv:2405.20131},
+  year={2024}
+}
 ```
 
 ## Acknowledgements
