@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Basic_Config:
     seed = [123, 42, 319]
     date = "debug"
-    num_hidden_layers = 2
+    num_hidden_layers = 4
     vocab = []
     task = ""
     aux_tasks = []
@@ -22,7 +22,7 @@ class Basic_Config:
     logging_steps = 100
     warmup_steps = 0
     learning_rate = 0.0001
-    weight_decay = 0.01
+    weight_decay = 0 #0.01
     num_epochs = 50
     eval_every_steps = 10000
     load_from_dir = None #"0507_205708" # 

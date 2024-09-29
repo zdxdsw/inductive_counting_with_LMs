@@ -27,8 +27,8 @@ class Basic_Config:
     initializer_range = 0.02
     max_grad_norm = 0.3
     output_dir = "output_iclr"
-    ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output_iclr"
-    train_data_path = "/data/yingshac/llms_do_math/data/rasp_primitives/"
+    ckpt_dir = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/scripts/causal_transformer/output"
+    train_data_path = "/data/tir/projects/tir7/user_data/yingshac/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
     test_files = ["ood_test"]
     per_device_train_batch_size = 32

@@ -31,8 +31,8 @@ if __name__ == "__main__":
     
     config = Basic_Config()
 
-    tmp = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
-    for k, v in tmp.items():
+    load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
+    for k, v in load_from_config.items():
         setattr(config, k, v)
 
 
@@ -145,7 +145,6 @@ if __name__ == "__main__":
     # --------------------------------------------------------------------------
     val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
     args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
-    print(f"\nmax_seen_len for {config.task} = {args.max_seen_len}\n")
 
     collator = partial(sequences_collator, 
                         w2i={w:i for i,w in enumerate(args.vocab)}, 
@@ -153,10 +152,23 @@ if __name__ == "__main__":
                     )
 
     test_dataloaders = {}
+    if args.test_files is None:
+        if "test_files" in load_from_config: 
+            args.test_files = " ".join(["val"] + load_from_config["test_files"])
+            warnings.warn(f"No test_files specified, defaulting to {args.test_files}")
+        else: 
+            args.test_files = "val ood_test"
+            warnings.warn("No test_files specified, defaulting to 'val ood_test'")
+
+
     for test_file in args.test_files.split():
         test_data = load_dataset("text",  data_files={test_file: f"{config.eval_data_path}/{trim_task(config.task)}/{test_file}.txt"})
         test_dataloaders[test_file] = DataLoader(test_data[test_file], shuffle=False, batch_size=config.per_device_eval_batch_size, collate_fn=collator)
 
+    messages = []
+    msg = f"max_seen_len for {config.task} = {args.max_seen_len}"
+    messages.append(msg)
+    print(msg)
     
     # --------------------------------------------------------------------------
     
@@ -228,13 +240,15 @@ if __name__ == "__main__":
                         }
                         k+=1
                 
-            print(f""" {split} acc, load from {load_from_pt}
+            msg = f""" {split} acc, load from {load_from_pt}
                     | Test Loss: {round(np.mean(test_losses), 4)} 
                     | Test Acc: {round(correct/demo, 4)} 
                     | Test Counting Acc: {round(counting_correct/counting_demo, 4)} 
                     | Test Last Acc: {round(last_correct/last_demo, 4)}
                     | Test Unseen Len Acc: {round(unseen_len_correct/unseen_len_demo, 4) if unseen_len_demo != 0 else -1}
-                """)
+                """
+            messages.append(msg)
+            print(msg)
 
             save_dir = "test_samples" if "test" in split else "val_samples"
             os.makedirs(f"{config.output_dir}/{args.handle}/{save_dir}", exist_ok=True)
@@ -249,6 +263,11 @@ if __name__ == "__main__":
                     "testing_output": testing_output,
                 }, 
                 open(f"{config.output_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
+        messages.append("\n")
+    
+    messages.append(f"Finish testing {args.handle}!")
+    with open(f"{config.output_dir}/{args.handle}/terminal_tester.txt", "w") as f:
+        f.write("".join(messages))
         
 
 

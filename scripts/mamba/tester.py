@@ -1,12 +1,12 @@
 import json, os, math, sys, random, re, pytz, argparse, warnings, time
 from datetime import datetime
-timezone = pytz.timezone('America/New_York') 
+timezone = pytz.timezone('America/Los_Angeles') 
 import torch
-from model import S4Model, LSTMModel, RNNModel
 from config import *
 sys.path.append("../")
 from causal_transformer.utils import trim_task, get_acc
-from s4_utils import sequences_collator
+from s4.s4_utils import sequences_collator
+from mamba.model import MambaLMHeadModel
 
 import numpy as np
 from tqdm import tqdm
@@ -38,8 +38,16 @@ for k in config_keys:
             setattr(config, k, default_config.__getattribute__(k))
             warnings.warn(f"Cannot find {k} in the resume_from_config. Set to {default_config.__getattribute__(k)} by default.")
 
-model = eval(f"{config.model}Model")(config)
-model = model.to(device)
+model = MambaLMHeadModel(                                                                              
+        d_model=config.hidden_size,                                                                                       
+        n_layer=config.num_hidden_layers,                                                                                        
+        vocab_size=len(config.vocab),                                                                                  
+        ssm_cfg={},                                                                                        
+        rms_norm=True,                                                                                     
+        residual_in_fp32=True,                                                                             
+        fused_add_norm=True,
+        #pad_vocab_size_multiple=1 #8
+    ).to(device="cuda", dtype=torch.float32)
 model.eval()
 
 if not config.task:
@@ -65,8 +73,8 @@ criterion = torch.nn.CrossEntropyLoss(ignore_index=-1)
 collator = partial(sequences_collator, 
                 w2i={w:i for i,w in enumerate(config.vocab)}, 
                 max_seq_len=config.max_seq_len,
-                max_position_embeddings=config.max_seq_len,
-                augmentation=None,
+                #max_position_embeddings=config.max_seq_len,
+                #augmentation=None,
                 )
 if args.test_files is None:
     if "test_files" in load_from_config: 
@@ -75,7 +83,6 @@ if args.test_files is None:
     else: 
         args.test_files = "val ood_test"
         warnings.warn("No test_files specified, defaulting to 'val ood_test'")
-
 
 
 """ ----------------------------- Testing ----------------------------- """

@@ -3,12 +3,12 @@ venv/
 
 scripts/llama/output/
 scripts/causal_transformer/output/
+scripts/causal_transformer/output_iclr/
 scripts/s4/output/
 scripts/rwkv-v5/output/
 scripts/mamba/output
 slurm/logs/
 #data/
-#slurm/
 events.out*
 .nfs*
 
