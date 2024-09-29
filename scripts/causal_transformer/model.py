@@ -241,6 +241,7 @@ class Attention(nn.Module):
                 alpha=scale_factor,
             )
             w = w.reshape(bsz, num_heads, seq_len, seq_len)
+            raw_attn_scores = w.clone()
 
 
         # Add extra logging of the attention weight
@@ -272,7 +273,7 @@ class Attention(nn.Module):
 
         res = torch.matmul(w, v)
 
-        return res
+        return res, w #, raw_attn_scores
     
     def merge_heads(self, x):
         x = x.permute(0, 2, 1, 3).contiguous()
@@ -288,14 +289,13 @@ class Attention(nn.Module):
         return x.permute(0, 2, 1, 3)  # (batch, head, seq_length, head_features)
         
     def forward(self, hidden_states, attention_mask=None, position_ids=None):
-        query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
 
+        query, key, value = self.c_attn(hidden_states).split(self.split_size, dim=2)
         query = self.split_heads(query)
         key = self.split_heads(key, k=True)
         value = self.split_heads(value)
         
-        a = self._attn(query, key, value, attention_mask, position_ids)
-
+        a, _ = self._attn(query, key, value, attention_mask, position_ids)
         a = self.merge_heads(a)
         a = self.c_proj(a)
         a = self.resid_dropout(a)
@@ -356,7 +356,11 @@ class Causal_Transformer(nn.Module):
             assert config.vocab[0] == '<null>'
         else: self.wte = nn.Embedding(self.vocab_size, num_embeddings)
 
-        if self.config.absolute_posemb: self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)        
+        if self.config.absolute_posemb: 
+            self.wpe = nn.Embedding(config.max_position_embeddings, self.embed_dim)
+            if self.config.absolute_posemb_freeze: self.wpe.weight.requires_grad = False
+            if self.config.absolute_posemb_initfromsine: 
+                self.wpe.weight.data = SinusoidalEmbedding(self.embed_dim, config.max_position_embeddings).pe
         if self.config.sinusoidal_posemb: self.sine = SinusoidalEmbedding(self.embed_dim, config.max_position_embeddings)
 
         

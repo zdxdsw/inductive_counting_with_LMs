@@ -13,8 +13,6 @@ from torch.utils.data import DataLoader
 from datasets import load_dataset
 from functools import partial
 
-if os.path.exists('/data/yingshac/'): 
-    os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--handle', type=str)
@@ -26,7 +24,10 @@ args = parser.parse_args()
 """ ------------------------ Prepare Config ------------------------ """
 config = Basic_Config()
 default_config = Default_Config()
-device="cuda" 
+if "hf_cache_dir" in dir(config) and config.hf_cache_dir is not None: os.environ['HF_HOME'] = config.hf_cache_dir
+
+device="cuda"
+print(f"\n\n---------------------- {args.handle} ----------------------")
 load_from_config = json.load(open(os.path.join(config.output_dir, args.handle, "config.json"), "r"))
 config_keys = dir(config)
 for k in config_keys:
@@ -49,11 +50,14 @@ if not config.task:
 ckpt_dir = os.path.join(config.ckpt_dir, args.handle, "ckpts")
 avail_ckpts = sorted(os.listdir(ckpt_dir), key=lambda x: int(x.split("_")[1]))
 if args.load_from_epochs != "all":
-    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[1]) in [int(e) for e in args.load_from_epochs.split()]]
+    avail_ckpts = [ckpt for ckpt in avail_ckpts if int(ckpt.split("_")[0]) in [int(e) for e in args.load_from_epochs.split()]]
 
 val_file = open(f"{config.eval_data_path}/{trim_task(config.task)}/val.txt", "r").readlines()
 args.max_seen_len = max([len([x for x in json.loads(l)[0] if x != "<pad>"]) for l in val_file])
-print(f"max_seen_len for {config.task} = {args.max_seen_len}")
+messages = []
+msg = f"max_seen_len for {config.task} = {args.max_seen_len}"
+print(msg)
+messages.append(msg)
 
 
 """ -------------------- Prepare Reusable Variables -------------------- """
@@ -74,7 +78,9 @@ collator = partial(sequences_collator,
                 augmentation=augmentation,
                 )
 if args.test_files is None:
-    if "test_files" in load_from_config: args.test_files = load_from_config["test_files"]
+    if "test_files" in load_from_config: 
+        args.test_files = " ".join(["val"] + load_from_config["test_files"])
+        warnings.warn(f"No test_files specified, defaulting to {args.test_files}")
     else: 
         args.test_files = "val ood_test"
         warnings.warn("No test_files specified, defaulting to 'val ood_test'")
@@ -142,17 +148,19 @@ for load_from_pt in avail_ckpts:
                         "pred": " ".join(pred_seq),
                     }
                     k+=1
-            
-        print(f""" {split} acc, load from {load_from_pt}
+        
+        msg = f""" {split} acc, load from {load_from_pt}
                 | Test Loss: {round(np.mean(test_losses), 4)} 
                 | Test Acc: {round(correct/demo, 4)} 
                 | Test Counting Acc: {round(counting_correct/counting_demo, 4)} 
                 | Test Last Acc: {round(last_correct/last_demo, 4)}
                 | Test Unseen Len Acc: {round(unseen_len_correct/unseen_len_demo, 4) if unseen_len_demo != 0 else -1}
-            """)
+            """
+        print(msg)
+        messages.append(msg)
 
         save_dir = "test_samples" if "test" in split else "val_samples"
-        os.makedirs(f"{config.output_dir}/{args.handle}/{save_dir}", exist_ok=True)
+        os.makedirs(f"{config.ckpt_dir}/{args.handle}/{save_dir}", exist_ok=True)
         json.dump({
                 "test_data_file":  f"{data_path}/{split}.txt",
                 "load_from": f"{args.handle}/{load_from_pt}",
@@ -163,5 +171,11 @@ for load_from_pt in avail_ckpts:
                 "test_loss": round(np.mean(test_losses), 4),
                 "testing_output": testing_output,
             }, 
-            open(f"{config.output_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
+            open(f"{config.ckpt_dir}/{args.handle}/{save_dir}/{_date}.json", "w"), indent=2)
+    
+    messages.append("\n")
+
+messages.append(f"Finish testing {args.handle}!")
+with open(f"{config.output_dir}/{args.handle}/terminal_tester.txt", "w") as f:
+    f.write("".join(messages))
     

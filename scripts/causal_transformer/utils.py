@@ -49,6 +49,11 @@ def check_config(config):
         assert (not config.absolute_posemb) and (not config.rotary_posemb), "========== You cannot use both scaler and absolute/rotary positional embeddings =========="
     if config.sinusoidal_posemb:
         warnings.warn("========== You're using Sinusoidal positional embeddings. ==========")
+    if config.absolute_posemb:
+        accesory = ""
+        if config.absolute_posemb_freeze: accesory += "Frozen "
+        if config.absolute_posemb_initfromsine: accesory += "InitFromSine "
+        warnings.warn(f"========== You're using {accesory}Absolute positional embeddings. ==========")
 
 def trim_task(task):
     return task.replace("_blkseq", "").replace("_nullseq", "").replace("_addbigram", "").replace("_addtablelarge", "").replace("_addtable", "")

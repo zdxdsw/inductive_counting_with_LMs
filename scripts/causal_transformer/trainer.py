@@ -16,9 +16,6 @@ from accelerate import Accelerator, DistributedDataParallelKwargs
 from transformers.optimization import get_constant_schedule_with_warmup
 from collections import defaultdict, Counter
 
-if os.path.exists('/data/yingshac/'): 
-    os.environ['HF_HOME'] = '/data/yingshac/hf_cache'
-
 
 def Print(s):
    if not Accelerator().process_index:
@@ -38,6 +35,8 @@ tmp = json.load(open(os.path.join(config.output_dir, args.date, "config.json"), 
 for k, v in tmp.items():
     setattr(config, k, v)
 config.date = args.date
+if "hf_cache_dir" in dir(config) and config.hf_cache_dir is not None: os.environ['HF_HOME'] = config.hf_cache_dir
+
 check_config(config)
 
 # Fix all seeds to ensure reproducibility
@@ -52,13 +51,13 @@ ddp_kwargs = DistributedDataParallelKwargs()
 accelerator = Accelerator(
     mixed_precision="fp16",
     gradient_accumulation_steps=config.gradient_accumulation_steps,
-    log_with="tensorboard",
+    #log_with="tensorboard",
     kwargs_handlers=[ddp_kwargs],
     project_dir=os.path.join(config.output_dir, config.date),
 )
 accelerator.wait_for_everyone()
 if accelerator.is_main_process:
-    accelerator.init_trackers("tensorboard")
+    #accelerator.init_trackers("tensorboard")
     os.makedirs(os.path.join(config.ckpt_dir, config.date, "ckpts"), exist_ok=True)
 
 
