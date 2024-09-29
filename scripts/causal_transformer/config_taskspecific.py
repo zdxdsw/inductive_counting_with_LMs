@@ -114,8 +114,30 @@ class counting_samesymbol_shiftedstart2_Config(Basic_Config):
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
 
 @dataclass
-class counting_samesymbol_shiftedstart3_Config(Basic_Config):
+class counting_samesymbol_shiftedstart3_Config(Basic_Config): # __tr50_te100__
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+
+@dataclass
+class counting_samesymbol_shiftedstart3__tr25_te50___Config(Basic_Config):
+    vocab = [str(i) for i in range(51)] + ['<pad>', 'a']
+    max_position_embeddings = 64
+    max_seq_len = 64
+
+@dataclass
+class counting_samesymbol_shiftedstart3__tr25_te100___Config(Basic_Config):
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+
+@dataclass
+class counting_samesymbol_shiftedstart3__tr50_te200___Config(Basic_Config):
+    vocab = [str(i) for i in range(201)] + ['<pad>', 'a']
+    max_position_embeddings = 256
+    max_seq_len = 256
+
+@dataclass
+class counting_samesymbol_shiftedstart3__tr25_te200___Config(Basic_Config):
+    vocab = [str(i) for i in range(201)] + ['<pad>', 'a']
+    max_position_embeddings = 256
+    max_seq_len = 256
 
 @dataclass
 class counting_diffsymbol_shiftedstart_Config(Basic_Config):
@@ -328,6 +350,10 @@ class counting_selective_10items_padhelper_Config(Basic_Config):
 @dataclass
 class counting_selective_10items2_Config(Basic_Config):
     vocab = [str(i) for i in range(10)] + ['<pad>'] 
+
+@dataclass
+class counting_selective_10items2bos_Config(Basic_Config):
+    vocab = [str(i) for i in range(10)] + ['<bos>', '<pad>'] 
 
 @dataclass
 class counting_selective_10items_padhelper2_Config(Basic_Config):

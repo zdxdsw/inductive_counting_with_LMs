@@ -2,10 +2,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Basic_Config:
-    seed = 1234
+    seed = [1234, 12]
     date = "debug"
     hf_cache_dir = '/data/yingshac/hf_cache'
-    num_hidden_layers = 2
+    num_hidden_layers = 4
     vocab = []
     task = ""
     aux_tasks = []
@@ -26,8 +26,8 @@ class Basic_Config:
     activation_function = 'relu'
     initializer_range = 0.02
     max_grad_norm = 0.3
-    output_dir = "output"
-    ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output"
+    output_dir = "output_iclr"
+    ckpt_dir = "/data/yingshac/llms_do_math/scripts/causal_transformer/output_iclr"
     train_data_path = "/data/yingshac/llms_do_math/data/rasp_primitives/"
     eval_data_path = "../../data/rasp_primitives/"
     test_files = ["ood_test"]
@@ -40,9 +40,11 @@ class Basic_Config:
     learning_rate = 1e-4
     num_epochs = 10
     #save_every_steps = 20000
-    eval_every_steps = 40000
+    eval_every_steps = 80000
     absolute_posemb = False
     absolute_posemb_shift = False
+    absolute_posemb_freeze = False
+    absolute_posemb_initfromsine = False
     absolute_posemb_rdmz = False
     rotary_posemb = True
     rotary_posemb_shift = True
@@ -51,7 +53,7 @@ class Basic_Config:
     scaler_posemb_shift = False
     sinusoidal_posemb = False
     sinusoidal_posemb_shift = False
-    load_from_dir = None #"0527_162257" # 
+    load_from_dir = None #"0926_230957" # 
     init_from_ckpt = None
 
 
@@ -64,6 +66,8 @@ class Default_Config:
     absolute_posemb = False
     absolute_posemb_shift = False
     absolute_posemb_rdmz = False
+    absolute_posemb_freeze = False
+    absolute_posemb_initfromsine = False
     rotary_posemb = False
     rotary_posemb_shift = False
     rotary_posemb_rdmz = False

@@ -1,0 +1,92 @@
+------------- Preparing model -------------
+Total parameters: 50802688
+Trainable parameters: 50802688
+------------- Preparing data -------------
+max_seen_len for counting_samesymbol_shiftedstart3__tr50_te200__ = 51
+num train = 999922
+num val = 151
+------------ Start job 0929_094038 ------------
+k = 151, last_demo = 151
+Epoch 0 Step 0 
+                        | Val Loss: 5.5035 
+                        | Val Acc: 0.0069 
+                        | Val Counting Acc: 0.0069 
+                        | Val Last Acc: 0.0066
+                        | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 5.5301
+                            | Test Acc: 0.006
+                            | Test Counting Acc: 0.0061
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0054
+k = 151, last_demo = 151
+Epoch 0 Step 31248 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 0 Step 31248 ood_test.txt
+                    | Test Loss: 4.789
+                    | Test Acc: 0.5175
+                    | Test Counting Acc: 0.5208
+                    | Test Last Acc: 0.1
+                    | Test Unseen Len Acc: 0.1872
+k = 151, last_demo = 151
+Epoch 1 Step 62496 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 1 Step 62496 ood_test.txt
+                    | Test Loss: 4.1778
+                    | Test Acc: 0.5342
+                    | Test Counting Acc: 0.5376
+                    | Test Last Acc: 0.12
+                    | Test Unseen Len Acc: 0.2154
+k = 151, last_demo = 151
+Epoch 2 Step 80000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 2 Step 80000 ood_test.txt
+                            | Test Loss: 3.4859
+                            | Test Acc: 0.5344
+                            | Test Counting Acc: 0.5377
+                            | Test Last Acc: 0.1267
+                            | Test Unseen Len Acc: 0.2157
+k = 151, last_demo = 151
+Epoch 2 Step 93744 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 2 Step 93744 ood_test.txt
+                    | Test Loss: 3.4402
+                    | Test Acc: 0.5304
+                    | Test Counting Acc: 0.5338
+                    | Test Last Acc: 0.1133
+                    | Test Unseen Len Acc: 0.209
+k = 151, last_demo = 151
+Epoch 3 Step 124992 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 4500, last_demo = 4500
+Epoch 3 Step 124992 ood_test.txt
+                    | Test Loss: 3.4352
+                    | Test Acc: 0.532
+                    | Test Counting Acc: 0.5351
+                    | Test Last Acc: 0.1398
+                    | Test Unseen Len Acc: 0.2116
