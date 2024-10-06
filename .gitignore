@@ -1,11 +1,11 @@
 venv/
 *.tar.gz
-
+__pycache__
 scripts/llama
 scripts/mamba/output
-# scripts/causal_transformer/output
-# scripts/causal_transformer/output_iclr
-# scripts/causal_transformer/output_postsm
+scripts/causal_transformer/output
+scripts/causal_transformer/output_iclr
+scripts/causal_transformer/output_postsm
 scripts/s4/output
 
 data/feed_decoder_LM
