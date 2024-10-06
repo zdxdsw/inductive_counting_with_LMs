@@ -1,6 +1,6 @@
 venv/
 *.tar.gz
-
+__pycache__
 scripts/llama
 scripts/mamba/output
 scripts/causal_transformer/output
