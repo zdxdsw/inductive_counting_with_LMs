@@ -1,0 +1,478 @@
+------------- Preparing model -------------
+Total parameters: 50599936
+Trainable parameters: 50598912
+------------- Preparing data -------------
+max_seen_len for counting_samesymbol_shiftedstart4_addbigram_nullseq = 51
+num train = 200000
+num val = 300
+------------ Start job 0507_111911 ------------
+k = 300, last_demo = 300
+Epoch 0 Step 0 
+                        | Val Loss: 4.6444 
+                        | Val Acc: 0.0 
+                        | Val Counting Acc: 0.0 
+                        | Val Last Acc: 0.0
+                        | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 4.6444
+                            | Test Acc: 0.0
+                            | Test Counting Acc: 0.0
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 0 Step 0 addbigram_shiftednullseq_test.txt
+                            | Test Loss: 4.8724
+                            | Test Acc: 0.0132
+                            | Test Counting Acc: 0.0134
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0359
+k = 300, last_demo = 300
+Epoch 0 Step 6250 
+                    | Val Loss: 0.0001 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 0 Step 6250 ood_test.txt
+                    | Test Loss: 7.9043
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 0 Step 6250 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4192
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 300, last_demo = 300
+Epoch 1 Step 12500 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 1 Step 12500 ood_test.txt
+                    | Test Loss: 8.1804
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 1 Step 12500 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4192
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0016
+k = 300, last_demo = 300
+Epoch 2 Step 18750 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 2 Step 18750 ood_test.txt
+                    | Test Loss: 8.8897
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 2 Step 18750 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4197
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 300, last_demo = 300
+Epoch 3 Step 25000 
+                    | Val Loss: 0.0001 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 3 Step 25000 ood_test.txt
+                    | Test Loss: 10.3797
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 3 Step 25000 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4193
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 300, last_demo = 300
+Epoch 4 Step 31250 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 4 Step 31250 ood_test.txt
+                    | Test Loss: 10.1683
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 4 Step 31250 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4192
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0016
+k = 300, last_demo = 300
+Epoch 5 Step 37500 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 5 Step 37500 ood_test.txt
+                    | Test Loss: 9.7519
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 5 Step 37500 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4192
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0359
+k = 300, last_demo = 300
+Epoch 6 Step 40000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 6 Step 40000 ood_test.txt
+                            | Test Loss: 9.1518
+                            | Test Acc: 0.3423
+                            | Test Counting Acc: 0.3469
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 6 Step 40000 addbigram_shiftednullseq_test.txt
+                            | Test Loss: 4.4194
+                            | Test Acc: 0.0265
+                            | Test Counting Acc: 0.0268
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0359
+k = 300, last_demo = 300
+Epoch 6 Step 43750 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 6 Step 43750 ood_test.txt
+                    | Test Loss: 11.9426
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 6 Step 43750 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4193
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0359
+k = 300, last_demo = 300
+Epoch 7 Step 50000 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 7 Step 50000 ood_test.txt
+                    | Test Loss: 9.7918
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 7 Step 50000 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4193
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0359
+k = 300, last_demo = 300
+Epoch 8 Step 56250 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 8 Step 56250 ood_test.txt
+                    | Test Loss: 10.9747
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 8 Step 56250 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4188
+                    | Test Acc: 0.0265
+                    | Test Counting Acc: 0.0268
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 300, last_demo = 300
+Epoch 9 Step 62500 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 9 Step 62500 ood_test.txt
+                    | Test Loss: 13.6414
+                    | Test Acc: 0.3423
+                    | Test Counting Acc: 0.3469
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 50, last_demo = 50
+Epoch 9 Step 62500 addbigram_shiftednullseq_test.txt
+                    | Test Loss: 4.4174
+                    | Test Acc: 0.0397
+                    | Test Counting Acc: 0.0403
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0204
+
+
+------------- Start Inference -------------
+
+
+---------------------- 0507_111911 ----------------------
+max_seen_len for counting_samesymbol_shiftedstart4_addbigram_nullseq = 51
+ val acc, load from 0_6250_transformer.pt
+                | Test Loss: 0.0001 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 8.1495 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 4.3698 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ val acc, load from 1_12500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 8.4291 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 4.3704 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0016
+            
+ val acc, load from 2_18750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 2_18750_transformer.pt
+                | Test Loss: 9.1509 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 2_18750_transformer.pt
+                | Test Loss: 4.367 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ val acc, load from 3_25000_transformer.pt
+                | Test Loss: 0.0001 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 3_25000_transformer.pt
+                | Test Loss: 10.5255 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 3_25000_transformer.pt
+                | Test Loss: 4.3685 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ val acc, load from 4_31250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 4_31250_transformer.pt
+                | Test Loss: 10.3055 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 4_31250_transformer.pt
+                | Test Loss: 4.3711 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0016
+            
+ val acc, load from 5_37500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 5_37500_transformer.pt
+                | Test Loss: 9.8985 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 5_37500_transformer.pt
+                | Test Loss: 4.372 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0359
+            
+ val acc, load from 6_43750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 6_43750_transformer.pt
+                | Test Loss: 12.1652 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 6_43750_transformer.pt
+                | Test Loss: 4.3735 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0359
+            
+ val acc, load from 7_50000_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 7_50000_transformer.pt
+                | Test Loss: 10.0076 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 7_50000_transformer.pt
+                | Test Loss: 4.3685 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0359
+            
+ val acc, load from 8_56250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 8_56250_transformer.pt
+                | Test Loss: 11.1947 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 8_56250_transformer.pt
+                | Test Loss: 4.3701 
+                | Test Acc: 0.0265 
+                | Test Counting Acc: 0.0268 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ val acc, load from 9_62500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 9_62500_transformer.pt
+                | Test Loss: 13.9222 
+                | Test Acc: 0.3423 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+            
+ addbigram_shiftednullseq_test acc, load from 9_62500_transformer.pt
+                | Test Loss: 4.3663 
+                | Test Acc: 0.0397 
+                | Test Counting Acc: 0.0403 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0204
+            
+Finish!!! 0507_111911

@@ -5,7 +5,7 @@ class Basic_Config:
     seed = [1234, 12]
     date = "debug"
     hf_cache_dir = '/data/yingshac/hf_cache'
-    num_hidden_layers = 4
+    num_hidden_layers = 2
     vocab = []
     task = ""
     aux_tasks = []
@@ -46,14 +46,14 @@ class Basic_Config:
     absolute_posemb_freeze = False
     absolute_posemb_initfromsine = False
     absolute_posemb_rdmz = False
-    rotary_posemb = True
-    rotary_posemb_shift = True
+    rotary_posemb = False
+    rotary_posemb_shift = False
     rotary_posemb_rdmz = False
     scaler_posemb = False
     scaler_posemb_shift = False
     sinusoidal_posemb = False
     sinusoidal_posemb_shift = False
-    load_from_dir = None #"0926_230957" # 
+    load_from_dir = None # "0930_182414" #
     init_from_ckpt = None
 
 
@@ -77,4 +77,5 @@ class Default_Config:
     sinusoidal_posemb_shift = False
     freeze_null_emb = False
     aux_tasks = []
+    test_files = ["ood_test"]
     max_seq_len = 128

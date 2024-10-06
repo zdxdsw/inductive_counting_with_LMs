@@ -1,0 +1,58 @@
+max_seen_len for counting_samesymbol_plain3_addbigram = 51 val acc, load from 0_6250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 3.7261 
+                | Test Acc: 0.6667 
+                | Test Counting Acc: 0.6757 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+             addbigram_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: 1.0
+            
+ val acc, load from 1_12500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 4.6963 
+                | Test Acc: 0.6667 
+                | Test Counting Acc: 0.6757 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+             addbigram_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: 1.0
+            
+ val acc, load from 2_18750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 2_18750_transformer.pt
+                | Test Loss: 4.8696 
+                | Test Acc: 0.6667 
+                | Test Counting Acc: 0.6757 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+             addbigram_test acc, load from 2_18750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: 1.0
+            
+Finish testing 0527_161926!

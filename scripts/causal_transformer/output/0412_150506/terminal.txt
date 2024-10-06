@@ -1,0 +1,221 @@
+------------- Preparing model -------------
+Total parameters: 50597888
+------------- Preparing data -------------
+num train = 1000000
+num val = 600
+------------ Start job 0412_150506 ------------
+[2024-04-12 15:05:19,169] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-12 15:05:19,181] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-12 15:05:19,185] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-12 15:05:19,186] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Epoch 0 Step 0 
+                      | Val Loss: 4.8541 
+                      | Val Acc: 0.0081 
+                      | Val Counting Acc: 0.0078 
+                      | Val Last Acc: 0.0156
+Epoch 0 Step 10000 
+                      | Val Loss: 1.7937 
+                      | Val Acc: 0.5325 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9531
+Epoch 0 Step 20000 
+                      | Val Loss: 1.7871 
+                      | Val Acc: 0.5328 
+                      | Val Counting Acc: 0.5106 
+                      | Val Last Acc: 0.9922
+Epoch 0 Step 30000 
+                      | Val Loss: 1.7866 
+                      | Val Acc: 0.5332 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9688
+Epoch 0 Step 31250 
+                | Val Loss: 1.7883 
+                | Val Acc: 0.5341 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9883
+Epoch 1 Step 40000 
+                      | Val Loss: 1.7853 
+                      | Val Acc: 0.5346 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 1.0
+Epoch 1 Step 50000 
+                      | Val Loss: 1.7868 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 1 Step 60000 
+                      | Val Loss: 1.7855 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 1 Step 62500 
+                | Val Loss: 1.7866 
+                | Val Acc: 0.5343 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9922
+Epoch 2 Step 70000 
+                      | Val Loss: 1.7869 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 2 Step 80000 
+                      | Val Loss: 1.7866 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 2 Step 90000 
+                      | Val Loss: 1.7853 
+                      | Val Acc: 0.5346 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 1.0
+Epoch 2 Step 93750 
+                | Val Loss: 1.7869 
+                | Val Acc: 0.5346 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 1.0
+Epoch 3 Step 100000 
+                      | Val Loss: 1.7895 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 3 Step 110000 
+                      | Val Loss: 1.7866 
+                      | Val Acc: 0.5346 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 1.0
+Epoch 3 Step 120000 
+                      | Val Loss: 1.7882 
+                      | Val Acc: 0.5341 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9883
+Epoch 3 Step 125000 
+                | Val Loss: 1.7881 
+                | Val Acc: 0.5341 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9883
+Epoch 4 Step 130000 
+                      | Val Loss: 1.7903 
+                      | Val Acc: 0.5337 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9805
+Epoch 4 Step 140000 
+                      | Val Loss: 1.7916 
+                      | Val Acc: 0.5332 
+                      | Val Counting Acc: 0.5119 
+                      | Val Last Acc: 0.9727
+Epoch 4 Step 150000 
+                      | Val Loss: 1.7912 
+                      | Val Acc: 0.5332 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9688
+Epoch 4 Step 156250 
+                | Val Loss: 1.791 
+                | Val Acc: 0.5339 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9844
+Epoch 5 Step 160000 
+                      | Val Loss: 1.7884 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 5 Step 170000 
+                      | Val Loss: 1.7872 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 5 Step 180000 
+                      | Val Loss: 1.7883 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 5 Step 187500 
+                | Val Loss: 1.7863 
+                | Val Acc: 0.5345 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9961
+Epoch 6 Step 190000 
+                      | Val Loss: 1.7886 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 6 Step 200000 
+                      | Val Loss: 1.7867 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 6 Step 210000 
+                      | Val Loss: 1.7871 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 6 Step 218750 
+                | Val Loss: 1.7878 
+                | Val Acc: 0.5341 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9883
+Epoch 7 Step 220000 
+                      | Val Loss: 1.7911 
+                      | Val Acc: 0.5339 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9844
+Epoch 7 Step 230000 
+                      | Val Loss: 1.7903 
+                      | Val Acc: 0.5339 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9844
+Epoch 7 Step 240000 
+                      | Val Loss: 1.7891 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 7 Step 250000 
+                | Val Loss: 1.7884 
+                | Val Acc: 0.5343 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9922
+Epoch 8 Step 250000 
+                      | Val Loss: 1.7884 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 8 Step 260000 
+                      | Val Loss: 1.7882 
+                      | Val Acc: 0.5339 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9844
+Epoch 8 Step 270000 
+                      | Val Loss: 1.7854 
+                      | Val Acc: 0.5346 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 1.0
+Epoch 8 Step 280000 
+                      | Val Loss: 1.7875 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 8 Step 281250 
+                | Val Loss: 1.7873 
+                | Val Acc: 0.5341 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 0.9883
+Epoch 9 Step 290000 
+                      | Val Loss: 1.7871 
+                      | Val Acc: 0.5343 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9922
+Epoch 9 Step 300000 
+                      | Val Loss: 1.785 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 9 Step 310000 
+                      | Val Loss: 1.7857 
+                      | Val Acc: 0.5345 
+                      | Val Counting Acc: 0.5121 
+                      | Val Last Acc: 0.9961
+Epoch 9 Step 312500 
+                | Val Loss: 1.7861 
+                | Val Acc: 0.5346 
+                | Val Counting Acc: 0.5121 
+                | Val Last Acc: 1.0
+Finish!!! 0412_150506

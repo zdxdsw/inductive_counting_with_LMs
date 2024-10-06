@@ -118,6 +118,10 @@ class counting_samesymbol_shiftedstart3_Config(Basic_Config): # __tr50_te100__
     vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
 
 @dataclass
+class counting_samesymbol_shiftedstart3__tr50_te100___Config(Basic_Config): # __tr50_te100__
+    vocab = [str(i) for i in range(101)] + ['<pad>', 'a']
+
+@dataclass
 class counting_samesymbol_shiftedstart3__tr25_te50___Config(Basic_Config):
     vocab = [str(i) for i in range(51)] + ['<pad>', 'a']
     max_position_embeddings = 64

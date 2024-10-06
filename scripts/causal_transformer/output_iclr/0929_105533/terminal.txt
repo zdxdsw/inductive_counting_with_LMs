@@ -174,3 +174,34 @@ Epoch 7 Step 250000 ood_test.txt
                     | Test Counting Acc: 0.7436
                     | Test Last Acc: 0.1171
                     | Test Unseen Len Acc: 0.2057
+k = 2000, last_demo = 2000
+Epoch 8 Step 281250 
+                    | Val Loss: 0.0001 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 8 Step 281250 ood_test.txt
+                    | Test Loss: 6.522
+                    | Test Acc: 0.7247
+                    | Test Counting Acc: 0.7332
+                    | Test Last Acc: 0.097
+                    | Test Unseen Len Acc: 0.1742
+k = 2000, last_demo = 2000
+Epoch 9 Step 312500 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 9 Step 312500 ood_test.txt
+                    | Test Loss: 6.7184
+                    | Test Acc: 0.7271
+                    | Test Counting Acc: 0.7355
+                    | Test Last Acc: 0.1057
+                    | Test Unseen Len Acc: 0.1812
+
+
+------------- Start Inference -------------

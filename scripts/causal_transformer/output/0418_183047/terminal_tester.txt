@@ -1,0 +1,8 @@
+max_seen_len for counting_samesymbol_mod10 = 50 corrupted_tokenemb acc, load from 9_312500_transformer.pt
+                | Test Loss: 4.9178 
+                | Test Acc: 0.6279 
+                | Test Counting Acc: 0.629 
+                | Test Last Acc: 0.5526
+                | Test Unseen Len Acc: 0.4907
+            
+Finish testing 0418_183047!

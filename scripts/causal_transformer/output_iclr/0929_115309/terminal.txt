@@ -83,3 +83,10 @@ Epoch 3 Step 125000
                     | Val Counting Acc: 0.9981 
                     | Val Last Acc: 0.994
                     | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 3 Step 125000 ood_test.txt
+                    | Test Loss: 4.9115
+                    | Test Acc: 0.7555
+                    | Test Counting Acc: 0.7636
+                    | Test Last Acc: 0.1556
+                    | Test Unseen Len Acc: 0.2693

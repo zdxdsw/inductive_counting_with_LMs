@@ -90,3 +90,31 @@ Epoch 3 Step 125000 ood_test.txt
                     | Test Counting Acc: 0.9942
                     | Test Last Acc: 0.9776
                     | Test Unseen Len Acc: 0.9849
+k = 2000, last_demo = 2000
+Epoch 4 Step 156250 
+                    | Val Loss: 0.0117 
+                    | Val Acc: 0.996 
+                    | Val Counting Acc: 0.9962 
+                    | Val Last Acc: 0.985
+                    | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 4 Step 156250 ood_test.txt
+                    | Test Loss: 0.0307
+                    | Test Acc: 0.9898
+                    | Test Counting Acc: 0.9901
+                    | Test Last Acc: 0.9625
+                    | Test Unseen Len Acc: 0.9746
+k = 2000, last_demo = 2000
+Epoch 5 Step 160000 
+                        | Val Loss: 0.0077 
+                        | Val Acc: 0.9978 
+                        | Val Counting Acc: 0.9978 
+                        | Val Last Acc: 0.9955
+                        | Val Unseen Len Acc: -1
+k = 2989, last_demo = 2989
+Epoch 5 Step 160000 ood_test.txt
+                            | Test Loss: 0.0185
+                            | Test Acc: 0.9938
+                            | Test Counting Acc: 0.994
+                            | Test Last Acc: 0.9759
+                            | Test Unseen Len Acc: 0.9841

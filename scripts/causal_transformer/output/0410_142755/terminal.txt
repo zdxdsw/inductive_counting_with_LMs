@@ -1,0 +1,53 @@
+------------- Preparing model -------------
+Total parameters: 50597888
+------------- Preparing data -------------
+num train = 1000000
+num val = 300
+resume from ckpt: 7_250000_transformer.pt
+	epoch 8 step 250001
+[2024-04-10 14:28:12,353] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-10 14:28:12,353] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-10 14:28:12,354] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-10 14:28:12,356] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+------------ Start job 0410_142755 ------------
+Epoch 8 Step 260000 
+                      | Val Loss: 0.0238 
+                      | Val Acc: 0.9944 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 0.8789
+Epoch 8 Step 270000 
+                      | Val Loss: 0.0142 
+                      | Val Acc: 0.9966 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 0.9258
+Epoch 8 Step 280000 
+                      | Val Loss: 0.0065 
+                      | Val Acc: 0.9982 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 0.9609
+Epoch 8 Step 281251 
+                | Val Loss: 0.0068 
+                | Val Acc: 0.998 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 0.957
+Epoch 9 Step 290000 
+                      | Val Loss: 0.3003 
+                      | Val Acc: 0.921 
+                      | Val Counting Acc: 0.9193 
+                      | Val Last Acc: 0.957
+Epoch 9 Step 300000 
+                      | Val Loss: 0.0287 
+                      | Val Acc: 0.9933 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 0.8555
+Epoch 9 Step 310000 
+                      | Val Loss: 0.0101 
+                      | Val Acc: 0.9975 
+                      | Val Counting Acc: 1.0 
+                      | Val Last Acc: 0.9453
+Epoch 9 Step 312501 
+                | Val Loss: 0.0057 
+                | Val Acc: 0.9986 
+                | Val Counting Acc: 1.0 
+                | Val Last Acc: 0.9688
+Finish!!! 0410_142755

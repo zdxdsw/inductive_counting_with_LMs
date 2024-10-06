@@ -1,0 +1,131 @@
+max_seen_len for counting_samesymbol_mod10bos = 51 val acc, load from 0_31250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 0_31250_transformer.pt
+                | Test Loss: 3.5898 
+                | Test Acc: 0.7717 
+                | Test Counting Acc: 0.7796 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.2963
+            
+ val acc, load from 1_62500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 1_62500_transformer.pt
+                | Test Loss: 4.7062 
+                | Test Acc: 0.7717 
+                | Test Counting Acc: 0.7796 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.2963
+            
+ val acc, load from 2_93750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 2_93750_transformer.pt
+                | Test Loss: 6.9551 
+                | Test Acc: 0.7717 
+                | Test Counting Acc: 0.7796 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.2963
+            
+ val acc, load from 3_125000_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 3_125000_transformer.pt
+                | Test Loss: 7.3757 
+                | Test Acc: 0.7717 
+                | Test Counting Acc: 0.7796 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.2963
+            
+ val acc, load from 4_156250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 4_156250_transformer.pt
+                | Test Loss: 25.3831 
+                | Test Acc: 0.7592 
+                | Test Counting Acc: 0.7672 
+                | Test Last Acc: 0.16
+                | Test Unseen Len Acc: 0.258
+            
+ val acc, load from 5_187500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 5_187500_transformer.pt
+                | Test Loss: 5.3571 
+                | Test Acc: 0.7693 
+                | Test Counting Acc: 0.7772 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.289
+            
+ val acc, load from 6_218750_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 6_218750_transformer.pt
+                | Test Loss: 9.0093 
+                | Test Acc: 0.7897 
+                | Test Counting Acc: 0.797 
+                | Test Last Acc: 0.24
+                | Test Unseen Len Acc: 0.3518
+            
+ val acc, load from 7_250000_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 7_250000_transformer.pt
+                | Test Loss: 21.1707 
+                | Test Acc: 0.7971 
+                | Test Counting Acc: 0.8043 
+                | Test Last Acc: 0.26
+                | Test Unseen Len Acc: 0.3747
+            
+ val acc, load from 8_281250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 8_281250_transformer.pt
+                | Test Loss: 7.1202 
+                | Test Acc: 0.8064 
+                | Test Counting Acc: 0.8134 
+                | Test Last Acc: 0.28
+                | Test Unseen Len Acc: 0.4033
+            
+ val acc, load from 9_312500_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 9_312500_transformer.pt
+                | Test Loss: 4.5457 
+                | Test Acc: 0.7717 
+                | Test Counting Acc: 0.7796 
+                | Test Last Acc: 0.18
+                | Test Unseen Len Acc: 0.2963
+            
+Finish testing 0528_154749!

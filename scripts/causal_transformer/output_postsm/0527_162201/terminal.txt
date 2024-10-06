@@ -1,0 +1,134 @@
+------------- Preparing model -------------
+Total parameters: 25407488
+Trainable parameters: 25407488
+------------- Preparing data -------------
+max_seen_len for counting_samesymbol_plain3_addbigram = 51
+num train = 200000
+num val = 10
+------------ Start job 0527_162201 ------------
+k = 10, last_demo = 10
+Epoch 0 Step 0 
+                        | Val Loss: 4.7975 
+                        | Val Acc: 0.0 
+                        | Val Counting Acc: 0.0 
+                        | Val Last Acc: 0.0
+                        | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 4.82
+                            | Test Acc: 0.0076
+                            | Test Counting Acc: 0.0074
+                            | Test Last Acc: 0.0204
+                            | Test Unseen Len Acc: 0.0238
+k = 10, last_demo = 10
+Epoch 0 Step 0 addbigram_test.txt
+                            | Test Loss: 4.8603
+                            | Test Acc: 0.0
+                            | Test Counting Acc: 0.0
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 0 Step 6250 
+                    | Val Loss: 0.8461 
+                    | Val Acc: 0.46 
+                    | Val Counting Acc: 0.449 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 0 Step 6250 ood_test.txt
+                    | Test Loss: 4.882
+                    | Test Acc: 0.3067
+                    | Test Counting Acc: 0.3108
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 0 Step 6250 addbigram_test.txt
+                    | Test Loss: 0.0001
+                    | Test Acc: 1.0
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 1.0
+                    | Test Unseen Len Acc: 1.0
+k = 10, last_demo = 10
+Epoch 1 Step 12500 
+                    | Val Loss: 0.3324 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 1 Step 12500 ood_test.txt
+                    | Test Loss: 5.2519
+                    | Test Acc: 0.6667
+                    | Test Counting Acc: 0.6757
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 1 Step 12500 addbigram_test.txt
+                    | Test Loss: 0.0
+                    | Test Acc: 1.0
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 1.0
+                    | Test Unseen Len Acc: 1.0
+k = 10, last_demo = 10
+Epoch 2 Step 18750 
+                    | Val Loss: 1.4324 
+                    | Val Acc: 0.42 
+                    | Val Counting Acc: 0.4082 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 2 Step 18750 ood_test.txt
+                    | Test Loss: 6.3352
+                    | Test Acc: 0.2933
+                    | Test Counting Acc: 0.2973
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 2 Step 18750 addbigram_test.txt
+                    | Test Loss: 0.0
+                    | Test Acc: 1.0
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 1.0
+                    | Test Unseen Len Acc: 1.0
+k = 10, last_demo = 10
+Epoch 3 Step 25000 
+                    | Val Loss: 0.0845 
+                    | Val Acc: 0.98 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 0.0
+                    | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 3 Step 25000 ood_test.txt
+                    | Test Loss: 5.8062
+                    | Test Acc: 0.6533
+                    | Test Counting Acc: 0.6622
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 3 Step 25000 addbigram_test.txt
+                    | Test Loss: 0.0
+                    | Test Acc: 1.0
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 1.0
+                    | Test Unseen Len Acc: 1.0
+k = 10, last_demo = 10
+Epoch 4 Step 31250 
+                    | Val Loss: 0.0679 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 49, last_demo = 49
+Epoch 4 Step 31250 ood_test.txt
+                    | Test Loss: 6.6968
+                    | Test Acc: 0.6667
+                    | Test Counting Acc: 0.6757
+                    | Test Last Acc: 0.0
+                    | Test Unseen Len Acc: 0.0
+k = 10, last_demo = 10
+Epoch 4 Step 31250 addbigram_test.txt
+                    | Test Loss: 0.0
+                    | Test Acc: 1.0
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 1.0
+                    | Test Unseen Len Acc: 1.0
