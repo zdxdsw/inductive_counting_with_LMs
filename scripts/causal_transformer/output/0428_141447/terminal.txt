@@ -1,0 +1,622 @@
+------------- Preparing model -------------
+Total parameters: 25299968
+------------- Preparing data -------------
+max_seen_len for counting_samesymbol_shiftedstart2_padhelper_addtable = 51
+num train = 1099000
+num val = 300
+------------ Start job 0428_141447 ------------
+[2024-04-28 14:14:58,761] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+k = 300, last_demo = 300
+Epoch 0 Step 0 
+                        | Val Loss: 4.6352 
+                        | Val Acc: 0.0108 
+                        | Val Counting Acc: 0.0113 
+                        | Val Last Acc: 0.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 4.6353
+                            | Test Acc: 0.0113
+                            | Test Counting Acc: 0.0115
+                            | Test Last Acc: 0.0
+                            | Test Unseen Len Acc: 0.0
+k = 4950, last_demo = 4950
+Epoch 0 Step 0 addtable_padhelper_test.txt
+                            | Test Loss: 4.6339
+                            | Test Acc: 0.0039
+                            | Test Counting Acc: 0.0
+                            | Test Last Acc: 0.0079
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 0 Step 34344 
+                    | Val Loss: 0.0052 
+                    | Val Acc: 0.9981 
+                    | Val Counting Acc: 0.998 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 0 Step 34344 ood_test.txt
+                    | Test Loss: 0.6184
+                    | Test Acc: 0.8774
+                    | Test Counting Acc: 0.8845
+                    | Test Last Acc: 0.4049
+                    | Test Unseen Len Acc: 0.5115
+k = 4950, last_demo = 4950
+Epoch 0 Step 34344 addtable_padhelper_test.txt
+                    | Test Loss: 0.1633
+                    | Test Acc: 0.9465
+                    | Test Counting Acc: 0.998
+                    | Test Last Acc: 0.8949
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 1 Step 40000 
+                        | Val Loss: 0.0001 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 1 Step 40000 ood_test.txt
+                            | Test Loss: 0.7059
+                            | Test Acc: 0.8806
+                            | Test Counting Acc: 0.8881
+                            | Test Last Acc: 0.3829
+                            | Test Unseen Len Acc: 0.5226
+k = 4950, last_demo = 4950
+Epoch 1 Step 40000 addtable_padhelper_test.txt
+                            | Test Loss: 0.1386
+                            | Test Acc: 0.9529
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9059
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 1 Step 68688 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 1 Step 68688 ood_test.txt
+                    | Test Loss: 0.6196
+                    | Test Acc: 0.8892
+                    | Test Counting Acc: 0.8965
+                    | Test Last Acc: 0.3992
+                    | Test Unseen Len Acc: 0.5567
+k = 4950, last_demo = 4950
+Epoch 1 Step 68688 addtable_padhelper_test.txt
+                    | Test Loss: 0.0114
+                    | Test Acc: 0.9977
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9954
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 2 Step 80000 
+                        | Val Loss: 0.0001 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 2 Step 80000 ood_test.txt
+                            | Test Loss: 0.6188
+                            | Test Acc: 0.8838
+                            | Test Counting Acc: 0.8909
+                            | Test Last Acc: 0.4098
+                            | Test Unseen Len Acc: 0.5352
+k = 4950, last_demo = 4950
+Epoch 2 Step 80000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0548
+                            | Test Acc: 0.9829
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9659
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 2 Step 103032 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 2 Step 103032 ood_test.txt
+                    | Test Loss: 0.6732
+                    | Test Acc: 0.8881
+                    | Test Counting Acc: 0.8954
+                    | Test Last Acc: 0.4
+                    | Test Unseen Len Acc: 0.5524
+k = 4950, last_demo = 4950
+Epoch 2 Step 103032 addtable_padhelper_test.txt
+                    | Test Loss: 0.0207
+                    | Test Acc: 0.9959
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9917
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 3 Step 120000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 3 Step 120000 ood_test.txt
+                            | Test Loss: 0.6607
+                            | Test Acc: 0.8947
+                            | Test Counting Acc: 0.9016
+                            | Test Last Acc: 0.4327
+                            | Test Unseen Len Acc: 0.5789
+k = 4950, last_demo = 4950
+Epoch 3 Step 120000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0081
+                            | Test Acc: 0.9979
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9958
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 3 Step 137376 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 3 Step 137376 ood_test.txt
+                    | Test Loss: 0.5491
+                    | Test Acc: 0.91
+                    | Test Counting Acc: 0.9164
+                    | Test Last Acc: 0.48
+                    | Test Unseen Len Acc: 0.64
+k = 4950, last_demo = 4950
+Epoch 3 Step 137376 addtable_padhelper_test.txt
+                    | Test Loss: 0.0124
+                    | Test Acc: 0.9971
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9941
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 4 Step 160000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 4 Step 160000 ood_test.txt
+                            | Test Loss: 0.4947
+                            | Test Acc: 0.9095
+                            | Test Counting Acc: 0.9156
+                            | Test Last Acc: 0.502
+                            | Test Unseen Len Acc: 0.638
+k = 4950, last_demo = 4950
+Epoch 4 Step 160000 addtable_padhelper_test.txt
+                            | Test Loss: 0.007
+                            | Test Acc: 0.9984
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9968
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 4 Step 171720 
+                    | Val Loss: 0.0001 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 4 Step 171720 ood_test.txt
+                    | Test Loss: 0.4784
+                    | Test Acc: 0.9159
+                    | Test Counting Acc: 0.9217
+                    | Test Last Acc: 0.5249
+                    | Test Unseen Len Acc: 0.6635
+k = 4950, last_demo = 4950
+Epoch 4 Step 171720 addtable_padhelper_test.txt
+                    | Test Loss: 0.0453
+                    | Test Acc: 0.9845
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9691
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 5 Step 200000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 5 Step 200000 ood_test.txt
+                            | Test Loss: 0.5633
+                            | Test Acc: 0.9044
+                            | Test Counting Acc: 0.9107
+                            | Test Last Acc: 0.4833
+                            | Test Unseen Len Acc: 0.6177
+k = 4950, last_demo = 4950
+Epoch 5 Step 200000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0043
+                            | Test Acc: 0.9989
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9978
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 5 Step 206064 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 5 Step 206064 ood_test.txt
+                    | Test Loss: 0.6342
+                    | Test Acc: 0.8987
+                    | Test Counting Acc: 0.9053
+                    | Test Last Acc: 0.4588
+                    | Test Unseen Len Acc: 0.5948
+k = 4950, last_demo = 4950
+Epoch 5 Step 206064 addtable_padhelper_test.txt
+                    | Test Loss: 0.0075
+                    | Test Acc: 0.9984
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9968
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 6 Step 240000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 6 Step 240000 ood_test.txt
+                            | Test Loss: 0.6502
+                            | Test Acc: 0.9011
+                            | Test Counting Acc: 0.9078
+                            | Test Last Acc: 0.4522
+                            | Test Unseen Len Acc: 0.6044
+k = 4950, last_demo = 4950
+Epoch 6 Step 240000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0101
+                            | Test Acc: 0.9969
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9937
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 6 Step 240408 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 6 Step 240408 ood_test.txt
+                    | Test Loss: 0.6415
+                    | Test Acc: 0.9017
+                    | Test Counting Acc: 0.9084
+                    | Test Last Acc: 0.4531
+                    | Test Unseen Len Acc: 0.6067
+k = 4950, last_demo = 4950
+Epoch 6 Step 240408 addtable_padhelper_test.txt
+                    | Test Loss: 0.0086
+                    | Test Acc: 0.9979
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9958
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 7 Step 274752 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 7 Step 274752 ood_test.txt
+                    | Test Loss: 0.599
+                    | Test Acc: 0.9074
+                    | Test Counting Acc: 0.9137
+                    | Test Last Acc: 0.4865
+                    | Test Unseen Len Acc: 0.6297
+k = 4950, last_demo = 4950
+Epoch 7 Step 274752 addtable_padhelper_test.txt
+                    | Test Loss: 0.0019
+                    | Test Acc: 0.9995
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.999
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 8 Step 280000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 8 Step 280000 ood_test.txt
+                            | Test Loss: 0.6297
+                            | Test Acc: 0.901
+                            | Test Counting Acc: 0.9074
+                            | Test Last Acc: 0.4776
+                            | Test Unseen Len Acc: 0.6042
+k = 4950, last_demo = 4950
+Epoch 8 Step 280000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0042
+                            | Test Acc: 0.9989
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.9978
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 8 Step 309096 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 8 Step 309096 ood_test.txt
+                    | Test Loss: 0.5529
+                    | Test Acc: 0.9056
+                    | Test Counting Acc: 0.9118
+                    | Test Last Acc: 0.4914
+                    | Test Unseen Len Acc: 0.6223
+k = 4950, last_demo = 4950
+Epoch 8 Step 309096 addtable_padhelper_test.txt
+                    | Test Loss: 0.0017
+                    | Test Acc: 0.9997
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9994
+                    | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 9 Step 320000 
+                        | Val Loss: 0.0 
+                        | Val Acc: 1.0 
+                        | Val Counting Acc: 1.0 
+                        | Val Last Acc: 1.0
+                        | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 9 Step 320000 ood_test.txt
+                            | Test Loss: 0.62
+                            | Test Acc: 0.9015
+                            | Test Counting Acc: 0.9079
+                            | Test Last Acc: 0.4686
+                            | Test Unseen Len Acc: 0.6059
+k = 4950, last_demo = 4950
+Epoch 9 Step 320000 addtable_padhelper_test.txt
+                            | Test Loss: 0.0081
+                            | Test Acc: 0.998
+                            | Test Counting Acc: 1.0
+                            | Test Last Acc: 0.996
+                            | Test Unseen Len Acc: -1
+k = 300, last_demo = 300
+Epoch 9 Step 343440 
+                    | Val Loss: 0.0 
+                    | Val Acc: 1.0 
+                    | Val Counting Acc: 1.0 
+                    | Val Last Acc: 1.0
+                    | Val Unseen Len Acc: -1
+k = 1225, last_demo = 1225
+Epoch 9 Step 343440 ood_test.txt
+                    | Test Loss: 0.6884
+                    | Test Acc: 0.9005
+                    | Test Counting Acc: 0.907
+                    | Test Last Acc: 0.4637
+                    | Test Unseen Len Acc: 0.6019
+k = 4950, last_demo = 4950
+Epoch 9 Step 343440 addtable_padhelper_test.txt
+                    | Test Loss: 0.0013
+                    | Test Acc: 0.9998
+                    | Test Counting Acc: 1.0
+                    | Test Last Acc: 0.9996
+                    | Test Unseen Len Acc: -1
+
+
+------------- Start Inference -------------
+max_seen_len for counting_samesymbol_shiftedstart2_padhelper_addtable = 51
+ val acc, load from 0_34344_transformer.pt
+                | Test Loss: 0.0051 
+                | Test Acc: 0.9981 
+                | Test Counting Acc: 0.998 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 0_34344_transformer.pt
+                | Test Loss: 0.5864 
+                | Test Acc: 0.8773 
+                | Test Counting Acc: 0.8844 
+                | Test Last Acc: 0.4049
+                | Test Unseen Len Acc: 0.5109
+            
+ addtable_padhelper_test acc, load from 0_34344_transformer.pt
+                | Test Loss: 0.1633 
+                | Test Acc: 0.9466 
+                | Test Counting Acc: 0.998 
+                | Test Last Acc: 0.8952
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 1_68688_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 1_68688_transformer.pt
+                | Test Loss: 0.5811 
+                | Test Acc: 0.8892 
+                | Test Counting Acc: 0.8965 
+                | Test Last Acc: 0.3992
+                | Test Unseen Len Acc: 0.5567
+            
+ addtable_padhelper_test acc, load from 1_68688_transformer.pt
+                | Test Loss: 0.0114 
+                | Test Acc: 0.9977 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9954
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 2_103032_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 2_103032_transformer.pt
+                | Test Loss: 0.6295 
+                | Test Acc: 0.8881 
+                | Test Counting Acc: 0.8954 
+                | Test Last Acc: 0.4
+                | Test Unseen Len Acc: 0.5524
+            
+ addtable_padhelper_test acc, load from 2_103032_transformer.pt
+                | Test Loss: 0.0208 
+                | Test Acc: 0.9959 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9917
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 3_137376_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 3_137376_transformer.pt
+                | Test Loss: 0.4966 
+                | Test Acc: 0.91 
+                | Test Counting Acc: 0.9164 
+                | Test Last Acc: 0.48
+                | Test Unseen Len Acc: 0.64
+            
+ addtable_padhelper_test acc, load from 3_137376_transformer.pt
+                | Test Loss: 0.0122 
+                | Test Acc: 0.9971 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9941
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 4_171720_transformer.pt
+                | Test Loss: 0.0001 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 4_171720_transformer.pt
+                | Test Loss: 0.4397 
+                | Test Acc: 0.916 
+                | Test Counting Acc: 0.9218 
+                | Test Last Acc: 0.5257
+                | Test Unseen Len Acc: 0.6641
+            
+ addtable_padhelper_test acc, load from 4_171720_transformer.pt
+                | Test Loss: 0.0447 
+                | Test Acc: 0.9845 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9691
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 5_206064_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 5_206064_transformer.pt
+                | Test Loss: 0.5816 
+                | Test Acc: 0.8988 
+                | Test Counting Acc: 0.9053 
+                | Test Last Acc: 0.4588
+                | Test Unseen Len Acc: 0.5951
+            
+ addtable_padhelper_test acc, load from 5_206064_transformer.pt
+                | Test Loss: 0.0076 
+                | Test Acc: 0.9984 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9968
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 6_240408_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 6_240408_transformer.pt
+                | Test Loss: 0.5903 
+                | Test Acc: 0.9017 
+                | Test Counting Acc: 0.9084 
+                | Test Last Acc: 0.4531
+                | Test Unseen Len Acc: 0.6069
+            
+ addtable_padhelper_test acc, load from 6_240408_transformer.pt
+                | Test Loss: 0.0087 
+                | Test Acc: 0.9979 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9958
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 7_274752_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 7_274752_transformer.pt
+                | Test Loss: 0.5484 
+                | Test Acc: 0.9077 
+                | Test Counting Acc: 0.9139 
+                | Test Last Acc: 0.4873
+                | Test Unseen Len Acc: 0.6306
+            
+ addtable_padhelper_test acc, load from 7_274752_transformer.pt
+                | Test Loss: 0.0019 
+                | Test Acc: 0.9995 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.999
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 8_309096_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 8_309096_transformer.pt
+                | Test Loss: 0.5085 
+                | Test Acc: 0.9057 
+                | Test Counting Acc: 0.9119 
+                | Test Last Acc: 0.4931
+                | Test Unseen Len Acc: 0.6228
+            
+ addtable_padhelper_test acc, load from 8_309096_transformer.pt
+                | Test Loss: 0.0012 
+                | Test Acc: 0.9997 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9994
+                | Test Unseen Len Acc: -1
+            
+ val acc, load from 9_343440_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 9_343440_transformer.pt
+                | Test Loss: 0.6245 
+                | Test Acc: 0.9005 
+                | Test Counting Acc: 0.907 
+                | Test Last Acc: 0.4637
+                | Test Unseen Len Acc: 0.6019
+            
+ addtable_padhelper_test acc, load from 9_343440_transformer.pt
+                | Test Loss: 0.0013 
+                | Test Acc: 0.9998 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 0.9996
+                | Test Unseen Len Acc: -1
+            
+Finish!!! 0428_141447

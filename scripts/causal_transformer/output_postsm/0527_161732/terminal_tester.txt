@@ -1,0 +1,14 @@
+max_seen_len for counting_samesymbol_mod10bos = 51 val acc, load from 0_31250_transformer.pt
+                | Test Loss: 0.0 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 0_31250_transformer.pt
+                | Test Loss: 4.7397 
+                | Test Acc: 0.7224 
+                | Test Counting Acc: 0.7307 
+                | Test Last Acc: 0.1
+                | Test Unseen Len Acc: 0.1853
+            
+Finish testing 0527_161732!

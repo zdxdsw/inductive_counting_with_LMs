@@ -1,0 +1,39 @@
+max_seen_len for counting_samesymbol_plain3_addbigram = 51 val acc, load from 0_6250_transformer.pt
+                | Test Loss: 1.3336 
+                | Test Acc: 0.34 
+                | Test Counting Acc: 0.3469 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 6.0739 
+                | Test Acc: 0.2267 
+                | Test Counting Acc: 0.2297 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+             addbigram_test acc, load from 0_6250_transformer.pt
+                | Test Loss: 0.0002 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: 1.0
+            
+ val acc, load from 1_12500_transformer.pt
+                | Test Loss: 0.6298 
+                | Test Acc: 0.76 
+                | Test Counting Acc: 0.7551 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: -1
+             ood_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 6.9273 
+                | Test Acc: 0.5067 
+                | Test Counting Acc: 0.5135 
+                | Test Last Acc: 0.0
+                | Test Unseen Len Acc: 0.0
+             addbigram_test acc, load from 1_12500_transformer.pt
+                | Test Loss: 0.0001 
+                | Test Acc: 1.0 
+                | Test Counting Acc: 1.0 
+                | Test Last Acc: 1.0
+                | Test Unseen Len Acc: 1.0
+            
+Finish testing 0527_162257!

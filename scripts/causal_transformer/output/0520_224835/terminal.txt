@@ -1,0 +1,408 @@
+------------- Preparing model -------------
+Total parameters: 25204736
+Trainable parameters: 25204736
+------------- Preparing data -------------
+max_seen_len for counting_selective_modular_4items = 64
+num train = 1000000
+num val = 2000
+------------ Start job 0520_224835 ------------
+k = 2000, last_demo = 2000
+Epoch 0 Step 0 
+                        | Val Loss: 1.6296 
+                        | Val Acc: 0.2608 
+                        | Val Counting Acc: 0.261 
+                        | Val Last Acc: 0.2475
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 0 Step 0 ood_test.txt
+                            | Test Loss: 1.6341
+                            | Test Acc: 0.2556
+                            | Test Counting Acc: 0.2557
+                            | Test Last Acc: 0.2363
+                            | Test Unseen Len Acc: 0.2504
+k = 2000, last_demo = 2000
+Epoch 0 Step 31250 
+                    | Val Loss: 0.4872 
+                    | Val Acc: 0.7776 
+                    | Val Counting Acc: 0.7818 
+                    | Val Last Acc: 0.5115
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 0 Step 31250 ood_test.txt
+                    | Test Loss: 0.8392
+                    | Test Acc: 0.6151
+                    | Test Counting Acc: 0.6178
+                    | Test Last Acc: 0.274
+                    | Test Unseen Len Acc: 0.3618
+k = 2000, last_demo = 2000
+Epoch 1 Step 40000 
+                        | Val Loss: 0.4345 
+                        | Val Acc: 0.81 
+                        | Val Counting Acc: 0.8137 
+                        | Val Last Acc: 0.576
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 1 Step 40000 ood_test.txt
+                            | Test Loss: 0.7924
+                            | Test Acc: 0.6444
+                            | Test Counting Acc: 0.6474
+                            | Test Last Acc: 0.265
+                            | Test Unseen Len Acc: 0.3801
+k = 2000, last_demo = 2000
+Epoch 1 Step 62500 
+                    | Val Loss: 0.5631 
+                    | Val Acc: 0.7699 
+                    | Val Counting Acc: 0.7735 
+                    | Val Last Acc: 0.543
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 1 Step 62500 ood_test.txt
+                    | Test Loss: 0.9114
+                    | Test Acc: 0.6231
+                    | Test Counting Acc: 0.6258
+                    | Test Last Acc: 0.292
+                    | Test Unseen Len Acc: 0.4088
+k = 2000, last_demo = 2000
+Epoch 2 Step 80000 
+                        | Val Loss: 0.3751 
+                        | Val Acc: 0.846 
+                        | Val Counting Acc: 0.8498 
+                        | Val Last Acc: 0.606
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 2 Step 80000 ood_test.txt
+                            | Test Loss: 0.9599
+                            | Test Acc: 0.6387
+                            | Test Counting Acc: 0.6417
+                            | Test Last Acc: 0.2577
+                            | Test Unseen Len Acc: 0.3777
+k = 2000, last_demo = 2000
+Epoch 2 Step 93750 
+                    | Val Loss: 0.2286 
+                    | Val Acc: 0.9044 
+                    | Val Counting Acc: 0.9077 
+                    | Val Last Acc: 0.701
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 2 Step 93750 ood_test.txt
+                    | Test Loss: 0.7504
+                    | Test Acc: 0.7011
+                    | Test Counting Acc: 0.7045
+                    | Test Last Acc: 0.2657
+                    | Test Unseen Len Acc: 0.4379
+k = 2000, last_demo = 2000
+Epoch 3 Step 120000 
+                        | Val Loss: 0.3665 
+                        | Val Acc: 0.8483 
+                        | Val Counting Acc: 0.8519 
+                        | Val Last Acc: 0.618
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 3 Step 120000 ood_test.txt
+                            | Test Loss: 0.8928
+                            | Test Acc: 0.6778
+                            | Test Counting Acc: 0.6808
+                            | Test Last Acc: 0.2883
+                            | Test Unseen Len Acc: 0.453
+k = 2000, last_demo = 2000
+Epoch 3 Step 125000 
+                    | Val Loss: 0.6125 
+                    | Val Acc: 0.7708 
+                    | Val Counting Acc: 0.7742 
+                    | Val Last Acc: 0.555
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 3 Step 125000 ood_test.txt
+                    | Test Loss: 1.1585
+                    | Test Acc: 0.6198
+                    | Test Counting Acc: 0.6228
+                    | Test Last Acc: 0.2437
+                    | Test Unseen Len Acc: 0.3937
+k = 2000, last_demo = 2000
+Epoch 4 Step 156250 
+                    | Val Loss: 0.1852 
+                    | Val Acc: 0.9213 
+                    | Val Counting Acc: 0.9232 
+                    | Val Last Acc: 0.8035
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 4 Step 156250 ood_test.txt
+                    | Test Loss: 0.6972
+                    | Test Acc: 0.7596
+                    | Test Counting Acc: 0.7636
+                    | Test Last Acc: 0.26
+                    | Test Unseen Len Acc: 0.5409
+k = 2000, last_demo = 2000
+Epoch 5 Step 160000 
+                        | Val Loss: 0.21 
+                        | Val Acc: 0.915 
+                        | Val Counting Acc: 0.9172 
+                        | Val Last Acc: 0.778
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 5 Step 160000 ood_test.txt
+                            | Test Loss: 0.7417
+                            | Test Acc: 0.7487
+                            | Test Counting Acc: 0.7525
+                            | Test Last Acc: 0.263
+                            | Test Unseen Len Acc: 0.5204
+k = 2000, last_demo = 2000
+Epoch 5 Step 187500 
+                    | Val Loss: 0.5094 
+                    | Val Acc: 0.837 
+                    | Val Counting Acc: 0.8403 
+                    | Val Last Acc: 0.633
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 5 Step 187500 ood_test.txt
+                    | Test Loss: 0.9977
+                    | Test Acc: 0.6832
+                    | Test Counting Acc: 0.6863
+                    | Test Last Acc: 0.2797
+                    | Test Unseen Len Acc: 0.4472
+k = 2000, last_demo = 2000
+Epoch 6 Step 200000 
+                        | Val Loss: 0.1654 
+                        | Val Acc: 0.9286 
+                        | Val Counting Acc: 0.9306 
+                        | Val Last Acc: 0.803
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 6 Step 200000 ood_test.txt
+                            | Test Loss: 0.7843
+                            | Test Acc: 0.7439
+                            | Test Counting Acc: 0.7477
+                            | Test Last Acc: 0.2627
+                            | Test Unseen Len Acc: 0.5077
+k = 2000, last_demo = 2000
+Epoch 6 Step 218750 
+                    | Val Loss: 0.1842 
+                    | Val Acc: 0.9214 
+                    | Val Counting Acc: 0.923 
+                    | Val Last Acc: 0.818
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 6 Step 218750 ood_test.txt
+                    | Test Loss: 0.6734
+                    | Test Acc: 0.7645
+                    | Test Counting Acc: 0.7686
+                    | Test Last Acc: 0.2367
+                    | Test Unseen Len Acc: 0.5498
+k = 2000, last_demo = 2000
+Epoch 7 Step 240000 
+                        | Val Loss: 0.1534 
+                        | Val Acc: 0.9375 
+                        | Val Counting Acc: 0.9392 
+                        | Val Last Acc: 0.831
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 7 Step 240000 ood_test.txt
+                            | Test Loss: 0.8463
+                            | Test Acc: 0.7306
+                            | Test Counting Acc: 0.7346
+                            | Test Last Acc: 0.2293
+                            | Test Unseen Len Acc: 0.4811
+k = 2000, last_demo = 2000
+Epoch 7 Step 250000 
+                    | Val Loss: 0.2221 
+                    | Val Acc: 0.9075 
+                    | Val Counting Acc: 0.9091 
+                    | Val Last Acc: 0.804
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 7 Step 250000 ood_test.txt
+                    | Test Loss: 0.8174
+                    | Test Acc: 0.7385
+                    | Test Counting Acc: 0.7424
+                    | Test Last Acc: 0.2487
+                    | Test Unseen Len Acc: 0.5064
+k = 2000, last_demo = 2000
+Epoch 8 Step 280000 
+                        | Val Loss: 0.24 
+                        | Val Acc: 0.9007 
+                        | Val Counting Acc: 0.9036 
+                        | Val Last Acc: 0.714
+                        | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 8 Step 280000 ood_test.txt
+                            | Test Loss: 1.0093
+                            | Test Acc: 0.7297
+                            | Test Counting Acc: 0.7334
+                            | Test Last Acc: 0.26
+                            | Test Unseen Len Acc: 0.5069
+k = 2000, last_demo = 2000
+Epoch 8 Step 281250 
+                    | Val Loss: 0.2575 
+                    | Val Acc: 0.9083 
+                    | Val Counting Acc: 0.9102 
+                    | Val Last Acc: 0.787
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 8 Step 281250 ood_test.txt
+                    | Test Loss: 1.0411
+                    | Test Acc: 0.7342
+                    | Test Counting Acc: 0.738
+                    | Test Last Acc: 0.249
+                    | Test Unseen Len Acc: 0.4946
+k = 2000, last_demo = 2000
+Epoch 9 Step 312500 
+                    | Val Loss: 0.4705 
+                    | Val Acc: 0.854 
+                    | Val Counting Acc: 0.8572 
+                    | Val Last Acc: 0.6545
+                    | Val Unseen Len Acc: -1
+k = 3000, last_demo = 3000
+Epoch 9 Step 312500 ood_test.txt
+                    | Test Loss: 1.3493
+                    | Test Acc: 0.6772
+                    | Test Counting Acc: 0.6805
+                    | Test Last Acc: 0.259
+                    | Test Unseen Len Acc: 0.4339
+
+
+------------- Start Inference -------------
+
+
+---------------------- 0520_224835 ----------------------
+max_seen_len for counting_selective_modular_4items = 64
+ val acc, load from 0_31250_transformer.pt
+                | Test Loss: 0.4876 
+                | Test Acc: 0.7774 
+                | Test Counting Acc: 0.7817 
+                | Test Last Acc: 0.512
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 0_31250_transformer.pt
+                | Test Loss: 0.8395 
+                | Test Acc: 0.615 
+                | Test Counting Acc: 0.6177 
+                | Test Last Acc: 0.274
+                | Test Unseen Len Acc: 0.3616
+            
+ val acc, load from 1_62500_transformer.pt
+                | Test Loss: 0.5679 
+                | Test Acc: 0.7681 
+                | Test Counting Acc: 0.7717 
+                | Test Last Acc: 0.542
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 1_62500_transformer.pt
+                | Test Loss: 0.9178 
+                | Test Acc: 0.621 
+                | Test Counting Acc: 0.6236 
+                | Test Last Acc: 0.2897
+                | Test Unseen Len Acc: 0.407
+            
+ val acc, load from 2_93750_transformer.pt
+                | Test Loss: 0.2315 
+                | Test Acc: 0.9032 
+                | Test Counting Acc: 0.9065 
+                | Test Last Acc: 0.696
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 2_93750_transformer.pt
+                | Test Loss: 0.7569 
+                | Test Acc: 0.6994 
+                | Test Counting Acc: 0.7028 
+                | Test Last Acc: 0.2643
+                | Test Unseen Len Acc: 0.4357
+            
+ val acc, load from 3_125000_transformer.pt
+                | Test Loss: 0.5996 
+                | Test Acc: 0.7745 
+                | Test Counting Acc: 0.7779 
+                | Test Last Acc: 0.5595
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 3_125000_transformer.pt
+                | Test Loss: 1.1453 
+                | Test Acc: 0.6229 
+                | Test Counting Acc: 0.6259 
+                | Test Last Acc: 0.2433
+                | Test Unseen Len Acc: 0.3958
+            
+ val acc, load from 4_156250_transformer.pt
+                | Test Loss: 0.1855 
+                | Test Acc: 0.9213 
+                | Test Counting Acc: 0.9232 
+                | Test Last Acc: 0.8035
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 4_156250_transformer.pt
+                | Test Loss: 0.6954 
+                | Test Acc: 0.7601 
+                | Test Counting Acc: 0.764 
+                | Test Last Acc: 0.2603
+                | Test Unseen Len Acc: 0.5418
+            
+ val acc, load from 5_187500_transformer.pt
+                | Test Loss: 0.5093 
+                | Test Acc: 0.8373 
+                | Test Counting Acc: 0.8406 
+                | Test Last Acc: 0.631
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 5_187500_transformer.pt
+                | Test Loss: 0.9959 
+                | Test Acc: 0.683 
+                | Test Counting Acc: 0.6862 
+                | Test Last Acc: 0.279
+                | Test Unseen Len Acc: 0.447
+            
+ val acc, load from 6_218750_transformer.pt
+                | Test Loss: 0.1841 
+                | Test Acc: 0.9216 
+                | Test Counting Acc: 0.9232 
+                | Test Last Acc: 0.818
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 6_218750_transformer.pt
+                | Test Loss: 0.6699 
+                | Test Acc: 0.7653 
+                | Test Counting Acc: 0.7695 
+                | Test Last Acc: 0.2373
+                | Test Unseen Len Acc: 0.5514
+            
+ val acc, load from 7_250000_transformer.pt
+                | Test Loss: 0.2207 
+                | Test Acc: 0.9076 
+                | Test Counting Acc: 0.9093 
+                | Test Last Acc: 0.8035
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 7_250000_transformer.pt
+                | Test Loss: 0.8133 
+                | Test Acc: 0.7394 
+                | Test Counting Acc: 0.7433 
+                | Test Last Acc: 0.2487
+                | Test Unseen Len Acc: 0.5082
+            
+ val acc, load from 8_281250_transformer.pt
+                | Test Loss: 0.2583 
+                | Test Acc: 0.9081 
+                | Test Counting Acc: 0.91 
+                | Test Last Acc: 0.786
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 8_281250_transformer.pt
+                | Test Loss: 1.0441 
+                | Test Acc: 0.7337 
+                | Test Counting Acc: 0.7375 
+                | Test Last Acc: 0.2507
+                | Test Unseen Len Acc: 0.4937
+            
+ val acc, load from 9_312500_transformer.pt
+                | Test Loss: 0.468 
+                | Test Acc: 0.854 
+                | Test Counting Acc: 0.8572 
+                | Test Last Acc: 0.6545
+                | Test Unseen Len Acc: -1
+            
+ ood_test acc, load from 9_312500_transformer.pt
+                | Test Loss: 1.3508 
+                | Test Acc: 0.677 
+                | Test Counting Acc: 0.6803 
+                | Test Last Acc: 0.2573
+                | Test Unseen Len Acc: 0.4334
+            
+Finish!!! 0520_224835

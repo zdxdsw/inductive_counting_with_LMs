@@ -1,0 +1,101 @@
+------------- Preparing model -------------
+Total parameters: 86976
+------------- Preparing data -------------
+num train = 1000000
+num val = 300
+------------ Start job 0411_230821 ------------
+[2024-04-11 23:08:46,958] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-11 23:08:46,958] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-11 23:08:46,959] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-04-11 23:08:46,959] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Epoch 0 Step 0 
+                      | Val Loss: 5.0945 
+                      | Val Acc: 0.0032 
+                      | Val Counting Acc: 0.0033 
+                      | Val Last Acc: 0.0
+Epoch 0 Step 7813 
+                | Val Loss: 0.5295 
+                | Val Acc: 0.8884 
+                | Val Counting Acc: 0.8883 
+                | Val Last Acc: 0.918
+Epoch 1 Step 10000 
+                      | Val Loss: 0.4636 
+                      | Val Acc: 0.8973 
+                      | Val Counting Acc: 0.8973 
+                      | Val Last Acc: 0.918
+Epoch 1 Step 15626 
+                | Val Loss: 0.3825 
+                | Val Acc: 0.9126 
+                | Val Counting Acc: 0.9125 
+                | Val Last Acc: 0.9336
+Epoch 2 Step 20000 
+                      | Val Loss: 0.3815 
+                      | Val Acc: 0.9089 
+                      | Val Counting Acc: 0.9089 
+                      | Val Last Acc: 0.9219
+Epoch 2 Step 23439 
+                | Val Loss: 0.363 
+                | Val Acc: 0.9151 
+                | Val Counting Acc: 0.915 
+                | Val Last Acc: 0.9258
+Epoch 3 Step 30000 
+                      | Val Loss: 0.3516 
+                      | Val Acc: 0.9194 
+                      | Val Counting Acc: 0.9193 
+                      | Val Last Acc: 0.9297
+Epoch 3 Step 31252 
+                | Val Loss: 0.3484 
+                | Val Acc: 0.9201 
+                | Val Counting Acc: 0.9201 
+                | Val Last Acc: 0.9336
+Epoch 4 Step 39065 
+                | Val Loss: 0.3437 
+                | Val Acc: 0.922 
+                | Val Counting Acc: 0.9219 
+                | Val Last Acc: 0.9336
+Epoch 5 Step 40000 
+                      | Val Loss: 0.3415 
+                      | Val Acc: 0.9221 
+                      | Val Counting Acc: 0.922 
+                      | Val Last Acc: 0.9297
+Epoch 5 Step 46878 
+                | Val Loss: 0.3373 
+                | Val Acc: 0.9236 
+                | Val Counting Acc: 0.9236 
+                | Val Last Acc: 0.9297
+Epoch 6 Step 50000 
+                      | Val Loss: 0.3363 
+                      | Val Acc: 0.924 
+                      | Val Counting Acc: 0.924 
+                      | Val Last Acc: 0.9336
+Epoch 6 Step 54691 
+                | Val Loss: 0.3351 
+                | Val Acc: 0.9243 
+                | Val Counting Acc: 0.9243 
+                | Val Last Acc: 0.9336
+Epoch 7 Step 60000 
+                      | Val Loss: 0.3342 
+                      | Val Acc: 0.9242 
+                      | Val Counting Acc: 0.9242 
+                      | Val Last Acc: 0.9375
+Epoch 7 Step 62504 
+                | Val Loss: 0.3337 
+                | Val Acc: 0.9244 
+                | Val Counting Acc: 0.9243 
+                | Val Last Acc: 0.9375
+Epoch 8 Step 70000 
+                      | Val Loss: 0.3341 
+                      | Val Acc: 0.9244 
+                      | Val Counting Acc: 0.9243 
+                      | Val Last Acc: 0.9375
+Epoch 8 Step 70317 
+                | Val Loss: 0.3335 
+                | Val Acc: 0.9249 
+                | Val Counting Acc: 0.9249 
+                | Val Last Acc: 0.9375
+Epoch 9 Step 78130 
+                | Val Loss: 0.3321 
+                | Val Acc: 0.9251 
+                | Val Counting Acc: 0.925 
+                | Val Last Acc: 0.9375
+Finish!!! 0411_230821
